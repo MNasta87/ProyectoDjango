@@ -1,0 +1,66 @@
+img.redimention{
+  width: 100px; 
+  height: 100px;
+}
+
+body{
+background: #00416A ;
+}
+.NoticiasRelevantes{
+  background: rgba(12, 10, 10, 0.5);
+  padding: 30px;
+  
+
+}
+.NoticiasSemanales{
+  background: rgba(12, 10, 10, 0.5);
+  padding: 20px;
+  
+
+}
+
+.NoticiasSemanales2{
+  background:#14171A ;
+  padding: 20px;
+  
+
+}
+
+.Fechas{
+    color: #E1E8ED ;
+}
+
+h1, label{
+  color: #1DA1F2;
+  font-weight: bold;
+
+}
+h6{
+  color: #1DA1F2;
+  
+}
+h2{
+    color:  #1DA1F2;
+}
+
+
+h3, h4{
+    color: #1DA1F2;
+}
+
+
+.color_enlace1{
+  color:#1DA1F2;
+  font-weight: bold;
+  
+}
+
+p{
+  color: white;
+}
+a{
+  color: white;
+}
+.a2{
+  color:#1DA1F2 ;
+}

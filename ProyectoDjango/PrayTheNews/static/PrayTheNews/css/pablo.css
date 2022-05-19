@@ -1,0 +1,40 @@
+.formulaCatalogo {
+  background: rgba(12, 10, 10, 0.5);
+  padding: 50px;
+}
+
+body {
+  background: #00416A;
+}
+
+.cardjuegos {
+  background: #14171A;
+}
+
+.card-img-top {
+  height: 400px;
+  width: 286px;
+  background-color: #14171A;
+}
+
+.btn-primary {
+  background-color: #657786;
+  border-color: rgba(8, 8, 8, 0.2);
+}
+
+.card-title {
+  height: 72px;
+  margin: auto;
+  color: #ffffff;
+}
+
+.card-text {
+  color: #ffffff;
+}
+.card{
+  background-color: #002bff9e;
+}
+
+#varJuegos {
+  background: #6e6e6e ;
+}
