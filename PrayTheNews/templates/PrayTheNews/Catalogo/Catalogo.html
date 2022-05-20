@@ -1,0 +1,69 @@
+{%extends 'PrayTheNews/Catalogo/PlantillaCatalogo.html'%}
+    {% load static %}
+ 
+    {% block Titulo%}
+    <title>Catalogo PlayStation</title>
+    {%endblock Titulo%}
+  
+    <!-- catalogo-->
+
+    <div class="container formulario3">
+      <div class="row" >
+      {%block catalogo%}
+       <div class="col-md-6 col-lg-4 col-xl-3" style="
+          margin-bottom: 40px;">
+          <div class="card" style="width: 18rem">
+            <!--Aqui se deberia hacer un While para recorrer toda la lista-->
+            
+            <img src="img2/Playstation/Bloodborne.webp" class="card-img-top" alt="..." />
+
+            <div class="card-body cardjuegos" >
+              <h5 class="card-title text-center">Bloodborne PS4</h5>
+              <p class="card-text text-center" style="font-weight: bold; font-size: 17px;"> 
+                19.990 CLP     
+                
+              </p>
+              <div class="container bg-light">
+                <div class="col-md-12 text-center">
+                  <a href="https://www.eneba.com/latam/bloodborne-collector-s-edition-playstation-4" target="_blank">
+                    <button type="button" class="btn btn-light">Visitar</button>
+                  </a>
+          
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      {%endblock catalogo%}
+    </div>
+      
+   </div>
+
+     
+     <!--paguinas-->
+     <div style="margin-top: 50px ;"> 
+       <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center ">
+            <li class="page-item disabled">
+              <a class="page-link">Anterior</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">Siguiente</a>
+            </li>
+          </ul>
+        </nav>
+     </div>
+  
+
+    <div></div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

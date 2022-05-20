@@ -4,7 +4,9 @@ from django.shortcuts import render
 
 
 def MenuPrincipal(request):
-    return render(request,'PraytheNews/MenuPrincipal.html')
+    return render(request,'PraytheNews/Principal/MenuPrincipal.html')
+def Catalogo(request):
+    return render(request,'PrayTheNews/Catalogo/Catalogo.html')
 
 
 def MenuNoticias(request):
