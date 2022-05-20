@@ -51,32 +51,18 @@ def NoticiaValorant(request):
                 "subtitulo1":"Valorant tendrá mayores castigos para la toxicidad en el chat de texto y voz",
                 "subtitulo2":"¿CUÁNDO PODRÍA EXTINGUIRSE LA COMUNIDAD DE VALORANT?",
                 "subtitulo3":"¿Podría la llegada a consolas salvar el juego?",
-                "cuerpo1": "Riot Games se ha comprometido a mejorar la experiencia de Valorat y luchar contra la toxicidad en el chat de texto y voz de su shooter gratuito, con mayores castigos y actuaciones más rápidas. Si bien es cierto que nunca podremos evitar que ciertos individuos opten por comportarse así, sí que podemos intentar disuadiros de amenazar, acosar o insultar a otros a través de nuestros sistemas del juego. También nos pareceque podemos promover el comportamiento responsable, dice la compañía. La lista de medidas a tomar incluyen sanciones más estrictas dentro de los sistemasexistentes. 'Algunos de los sistemas de detección y sanción de toxicidad eran algo más'conservadores' de lo que nos gustaría inicialmente, para que pudiéramos recopilar datossin tener miedo de cometer errores de detección. Ahora confiamos mucho más en nuestro sistema de detección, así que comenzaremos a aumentar gradualmente la gravedad y laprogresión de dichas sanciones. Esto debería resultar en una gestión más ágil de laspersonas problemáticas', comenta Riot. También se crea un programa de pruebas regional. 'Nuestro equipo turco ha puesto en marcha recientemente un programa local que pretende reducir la toxicidad de la región. Consiste, básicamente, en crear una línea operativa con agentes de asistencia al jugador que revisan los informes entrantes relacionados con el comportamiento de los jugadores y toman medidas siguiendo una guía preestablecida. Está en fase de beta temprana pero, si vemos que promete, es posible que una versión de ese sistema acabe llegando al resto de regiones.",
+                "cuerpo1": "Riot Games se ha comprometido a mejorar la experiencia de Valorat y luchar contra la toxicidad en el chat de texto y voz de su shooter gratuito, con mayores castigos y actuaciones más rápidas. Si bien es cierto que nunca podremos evitar que ciertos individuos opten por comportarse así, sí que podemos intentar disuadiros de amenazar, acosar o insultar a otros a través de nuestros sistemas del juego. También nos pareceque podemos promover el comportamiento responsable, dice la compañía. La lista de medidas a tomar incluyen sanciones más estrictas dentro de los sistemasexistentes. 'Algunos de los sistemas de detección y sanción de toxicidad eran algo más'conservadores' de lo que nos gustaría inicialmente, para que pudiéramos recopilar datossin tener miedo de cometer errores de detección. Ahora confiamos mucho más en nuestro sistema de detección, así que comenzaremos a aumentar gradualmente la gravedad y laprogresión de dichas sanciones. Esto debería resultar en una gestión más ágil de las personas problemáticas', comenta Riot.",
 
                 "cuerpo2":"  En una publicación de los diarios de los desarrolladores, Donlon admitió que trabajan en un agente. No obstante, se lo tomarán con calma. Durante el acto 2 no se añadirá un mapa ni personaje, sino que trabajarán en el balance del título. A inicios de mayo de este año, llegaría el parche del acto 3 pero el agente llegaría recién cerca del 19 de ese mes. Por lo pronto se desconoce cuál será su rol en el shooter, ay que recientemente se añadió a una duelista: Neon. Se cree que podría tratarse de un controlador para darle variedad a la plantilla de personajes. Recordemos que Brimstone y Omen son de los menos usados en el shooter y necesitan también una revisión. Se espera también que Riot Games vaya adelantando los cambios a Yoru, uno de de los personajes que menos se ve en el competitivo.",
 
-                "cuerpo3":"     Aunque la llegada de VALORANT a consolas no es noticia nueva, el perfil de “ShiinaVLR” -conocido por realizar filtraciones- alertó que se encontraron archivos en el FPS que hacen referencia a Xbox y a PlayStation. En particular, hacen alusión a la conexión a Xbox Live y PSN. La introducción de estos archivos al juego anticipa que su versión para
-                                consolas podría estar más cerca de lo anticipado y que los jugadores contarían con la
-                                posibilidad de probar la experiencia en nuevos dispositivos.
-
-                                El último comentario que Riot Games hizo sobre llevar VALORANT a consolas fue realizado
-                                en septiembre del 2020, pero después un silencio prolongado, ahora la llegada podría ser
-                                inminente. En aquel entonces aseguraron que el equipo ya se encontraba trabajando en los
-                                ports. Su competidor directo, CS:GO, llegó a Xbox en 2012 y tuvo una recepción general
-                                positiva, pero igual quedó lejos de vivir a la altura de la experiencia para PC.
-
-				 Así como muchos seguidores del título estarán interesados en esta propuesta, también
-                                existe un sector que espera ansiosamente por una versión para móviles. VALORANT podría
-                                ser el primer shooter táctico del estilo en lograr adaptar la experiencia a otras
-                                plataformas, pero hasta el momento el mouse y teclado permanece como la opción exclusiva
-                                y única en garantizar la experiencia fiel a su propuesta.",
+                "cuerpo3":"Aunque la llegada de VALORANT a consolas no es noticia nueva, el perfil de “ShiinaVLR” -conocido por realizar filtraciones- alertó que se encontraron archivos en el FPS que hacen referencia a Xbox y a PlayStation. En particular, hacen alusión a la conexión a Xbox Live y PSN. La introducción de estos archivos al juego anticipa que su versión para consolas podría estar más cerca de lo anticipado y que los jugadores contarían con la posibilidad de probar la experiencia en nuevos dispositivos. El último comentario que Riot Games hizo sobre llevar VALORANT a consolas fue realizado en septiembre del 2020, pero después un silencio prolongado, ahora la llegada podría ser inminente. En aquel entonces aseguraron que el equipo ya se encontraba trabajando en los ports. Su competidor directo, CS:GO, llegó a Xbox en 2012 y tuvo una recepción general positiva, pero igual quedó lejos de vivir a la altura de la experiencia para PC. Así como muchos seguidores del título estarán interesados en esta propuesta, también existe un sector que espera ansiosamente por una versión para móviles. VALORANT podríaser el primer shooter táctico del estilo en lograr adaptar la experiencia a otras plataformas, pero hasta el momento el mouse y teclado permanece como la opción exclusiva y única en garantizar la experiencia fiel a su propuesta.",
 
                
     
-                "img1":"/static/PrayTheNews/img_noticia/img/Hollow-Knight-Silksong.jpg",
-                "img2":"/static/PrayTheNews/img_noticia/img/Promo_04.webp",
-                "img3":"/static/PrayTheNews/img_noticia/img/silksong.jpg",
-                "img4":"/static/PrayTheNews/img_noticia/img/EGeoR8IUUAIcdfA.jpg"}}
+                "img1":"/static/PrayTheNews/img_noticia/img/Valorant-Two-German-leagues-coming-next-year.jpg",
+                "img2":"/static/PrayTheNews/img_noticia/img/EGS_VALORANT_RiotGames_S1_2560x1440-160cacc798ef1693cc0a339e869f1761.jpg",
+                "img3":"/static/PrayTheNews/img_noticia/img/Z3REASXJ6BCQJE5DIZZN2NNISE.jpg",
+                "img4":"/static/PrayTheNews/img_noticia/img/Val_Banner_AntiCheat_Fall2021_1920x1080.webp"}
 
 
-    return render(request, 'PrayTheNews/NoticiaValorant')
+    return render(request, 'PrayTheNews/NoticiaValorant.html', Contexto)
