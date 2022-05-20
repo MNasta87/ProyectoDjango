@@ -1,11 +1,11 @@
-from tokenize import Name
-from unicodedata import name
+
 from django.urls import path
-from .views import MenuNoticias, NoticiasIndividuales
+from .views import MenuNoticias, NoticiasIndividuales, NoticiaValorant
 
 
 
 urlpatterns = [
-    path('',MenuNoticias, name="MenuNoticias"),
-    path('1',NoticiasIndividuales, name="NoticiasIndividuales"),    
+    path('MenuNoticias/',MenuNoticias, name="MenuNoticias"),
+    path('NoticiasIndividuales/',NoticiasIndividuales, name="NoticiasIndividuales"), 
+    path('',NoticiaValorant, name="NoticiaValorant"),   
 ]
