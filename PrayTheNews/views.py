@@ -1,6 +1,12 @@
 from django.shortcuts import render
 
 # Create your views here.
+
+
+def MenuPrincipal(request):
+    return render(request,'PraytheNews/MenuPrincipal.html')
+
+
 def MenuNoticias(request):
     Noticia ={"titulo1":" La solución de Riot a los problemas en el Deathmatch de Valorant", 
                 "contenido1":"  Hace unos días Riot Games lanzó de manera oficial el Parche 4.03 de Valorant, y con él una nueva serie de ajustes a Agentes, modos de juego y errores que van surgiendo actualización tras actualización. La salida de este nuevo parche trajo consigo una nueva problemática, esta vez en el modo de juego Deathmatch.", 
@@ -66,3 +72,5 @@ def NoticiaValorant(request):
 
 
     return render(request, 'PrayTheNews/NoticiaValorant.html', Contexto)
+
+    
