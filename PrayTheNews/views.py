@@ -8,6 +8,9 @@ def MenuPrincipal(request):
 def Catalogo(request):
     return render(request,'PrayTheNews/Catalogo/Catalogo.html')
 
+def MenuAnalisis(request):
+    return render(request,'PrayTheNews/Analisis/MenuAnalisis.html')
+
 
 def MenuNoticias(request):
     Noticia ={"titulo1":" La solución de Riot a los problemas en el Deathmatch de Valorant", 
@@ -28,7 +31,7 @@ def MenuNoticias(request):
                 "miniatura5":"static/PrayTheNews/img_noticia/img/horizon-forbidden-west-ps5-playstation-5-1.webp"}
                               
     
-    return render(request, 'PrayTheNews/MenuNoticias.html', Noticia)
+    return render(request, 'PrayTheNews/Noticias/MenuNoticias.html', Noticia)
 
 def NoticiasIndividuales(request):
 
@@ -50,7 +53,7 @@ def NoticiasIndividuales(request):
                 "img2":"/static/PrayTheNews/img_noticia/img/Promo_04.webp",
                 "img3":"/static/PrayTheNews/img_noticia/img/silksong.jpg",
                 "img4":"/static/PrayTheNews/img_noticia/img/EGeoR8IUUAIcdfA.jpg"}
-    return render(request, 'PrayTheNews/NoticiasIndividuales.html',Contexto )
+    return render(request, 'PrayTheNews/Noticias/NoticiasIndividuales.html',Contexto )
 
 def NoticiaValorant(request):
 
@@ -73,6 +76,6 @@ def NoticiaValorant(request):
                 "img4":"/static/PrayTheNews/img_noticia/img/Val_Banner_AntiCheat_Fall2021_1920x1080.webp"}
 
 
-    return render(request, 'PrayTheNews/NoticiaValorant.html', Contexto)
+    return render(request, 'PrayTheNews/Noticias/Antiguas/NoticiaValorant.html', Contexto)
 
     

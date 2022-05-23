@@ -1,14 +1,15 @@
 
 from django.urls import path
-from .views import MenuNoticias, NoticiasIndividuales, NoticiaValorant,MenuPrincipal,Catalogo
+from .views import MenuNoticias, NoticiasIndividuales, NoticiaValorant,MenuPrincipal,Catalogo,MenuAnalisis
 
 
 
 urlpatterns = [
     #Paginas Principales
     path('',MenuPrincipal,name="MenuPrincipal"),
-    path('MenuNoticias/',MenuNoticias, name="MenuNoticias"),
-    path('Catalogo/',Catalogo,name="Catalogo"),   
+    path('Noticias/',MenuNoticias, name="MenuNoticias"),
+    path('Catalogo/',Catalogo,name="Catalogo"),
+    path('MenuAnalisis/',MenuAnalisis,name="MenuAnalisis"),   
 
 
 
