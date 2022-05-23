@@ -67,7 +67,7 @@ WSGI_APPLICATION = 'ProyectoDjango.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
-        'NAME': '127.0.0.1:1521/XE',
+        'NAME': '127.0.0.1:1521/xe',
         'USER': 'super',
         'PASSWORD':'super',
         'TEST': {
