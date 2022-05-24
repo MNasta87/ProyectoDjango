@@ -1,6 +1,6 @@
 
 from django.urls import path
-from .views import MenuNoticias, NoticiasIndividuales, NoticiaValorant,MenuPrincipal,Catalogo,MenuAnalisis
+from .views import MenuNoticias, NoticiasIndividuales, NoticiaValorant,MenuPrincipal,Catalogo,MenuAnalisis,RegistroUsuarios
 
 
 
@@ -9,7 +9,8 @@ urlpatterns = [
     path('',MenuPrincipal,name="MenuPrincipal"),
     path('Noticias/',MenuNoticias, name="MenuNoticias"),
     path('Catalogo/',Catalogo,name="Catalogo"),
-    path('Analisis/',MenuAnalisis,name="MenuAnalisis"),   
+    path('Analisis/',MenuAnalisis,name="MenuAnalisis"),
+    path('Registro/',RegistroUsuarios,name="RegistroUsuarios"),   
 
 
 

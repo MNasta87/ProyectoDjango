@@ -11,6 +11,9 @@ def Catalogo(request):
 def MenuAnalisis(request):
     return render(request,'PrayTheNews/Analisis/MenuAnalisis.html')
 
+def RegistroUsuarios(request):
+    return render(request,'PrayTheNews/Login/RegistroUsuario.html')
+
 
 def MenuNoticias(request):
     Noticia ={"titulo1":" La solución de Riot a los problemas en el Deathmatch de Valorant", 
