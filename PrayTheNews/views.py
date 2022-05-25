@@ -3,7 +3,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 
-from PrayTheNews.models import Usuario
+from .models import Usuario,Rol
 # Create your views here.
 
 
@@ -16,27 +16,47 @@ def Catalogo(request):
 def MenuAnalisis(request):
     return render(request,'PrayTheNews/Analisis/MenuAnalisis.html')
 
-def RegistroUsuarios(request):
+def FormularioUsuarios(request):
     return render(request,'PrayTheNews/Login/RegistroUsuario.html')
 
-def LoginUsuario(request):
-    if request.method == "POST":
-	    form = AuthenticationForm(request, data=request.POST)
-		if form.is_valid():
-			Usuario = form.cleaned_data.get('Usuario')
-			password = form.cleaned_data.get('password')
-			user = authenticate(Usuario=Usuario, password=password)
-			if user is not None:
-				login(request, user)
-				messages.info(request, f"You are now logged in as {Usuario}.")
-				return redirect("main:homepage")
-			else:
-				messages.error(request,"Invalid username or password.")
-		else:
-			messages.error(request,"Invalid username or password.")
-	    form = AuthenticationForm()
 
-return render(request, 'PrayTheNews/Login/LoginUsuario.html')
+
+def RegistroUsuarios(request):
+    nombreCompleto_U = request.POST.get('nombre', False)
+    correo_U = request.POST.get('correo', False)
+    clave_U = request.POST.get('password', False)
+    nickname_U = request.POST.get('usuario', False)
+    telefono_U = request.POST.get('telefono', False)
+    linkInstagram_U = ''
+    linkTwitch_U = ''
+    linkTwitter_U = ''
+
+    rol_u = Rol.objects.get(idRol = 1)
+    #1 de rol de usuario
+
+    Usuario.objects.create(nombreCompleto = nombreCompleto_U, correo = correo_U,clave = clave_U, nickname = nickname_U,telefono = telefono_U,linkInstagram = linkInstagram_U, linkTwitch = linkTwitch_U,linkTwitter= linkTwitter_U, rol = rol_u)
+   
+    messages.success(request, 'Usuario registrado')
+
+    return redirect('Formulario')
+
+def LoginUsuario(request):
+    #if request.method == "POST":
+	    #form = AuthenticationForm(request, data=request.POST)
+		#if form.is_valid():
+			#Usuario = form.cleaned_data.get('Usuario')
+			#password = form.cleaned_data.get('password')
+			#user = authenticate(Usuario=Usuario, password=password)
+			#if user is not None:
+			#	login(request, user)
+			#	messages.info(request, f"You are now logged in as {Usuario}.")
+			#	return redirect("main:homepage")
+			#else:
+			#	messages.error(request,"Invalid username or password.")
+		#else:
+			#messages.error(request,"Invalid username or password.")
+	    #form = AuthenticationForm()
+    return render(request, 'PrayTheNews/Login/LoginUsuario.html')
 
 def AdministrarUsuario(request):
     return render(request, 'PrayTheNews/Admin/AdministrarUsuario.html')

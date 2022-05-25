@@ -30,7 +30,7 @@ class Usuario(models.Model):
     nombreCompleto = models.CharField(max_length=30, verbose_name="Nombre del usuario",null=False, blank=False)
     correo = models.EmailField(max_length=80, verbose_name="Correo Electronico",null=False, blank=False)
     clave = models.CharField(max_length=200, verbose_name="Contrasenna",null=False, blank=False)
-    nickname = models.CharField(max_length=50, verbose_name="Nombre usuario",null=False, blank=False)
+    nickname = models.CharField(max_length=50, verbose_name="NickName",null=False, blank=False)
     telefono = models.CharField(max_length=50,null=True, blank=True)
     linkInstagram = models.CharField(max_length=100, verbose_name="Redes sociales intagram", blank=True)
     linkTwitch = models.CharField(max_length=100, verbose_name="Redes sociales twitch", blank=True)

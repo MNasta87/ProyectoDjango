@@ -93,11 +93,17 @@
 		<div class="row justify-content-center pt-5 mt-5 mr-1">
 			<div class="col-md-12 formulario">
 
+				{% if messages %}           
+                	{% for i in messages %}                   
+					<div class "alert alert-success" role = "alert">
+						{{ i }}
+					</div>
+                	{% endfor %}
+            	{% endif %}
 
 
-
-				<form action="" class="row g-3 col-lg-6 offset-lg-3" id="formulario">
-
+				<form action="{% url 'RegistroUsuarios' %}" method="POST" enctype="multipart/form-data" class="row g-3 col-lg-6 offset-lg-3" id="formulario" name="formulario">
+					{% csrf_token %}
 					<div class="form-group text-center">
 						<h1 style="color: #E1E8ED; font-weight: bold;">Registro de Usuario</h1>
 					</div>
