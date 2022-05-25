@@ -36,6 +36,12 @@ def CuentaUsuario(request):
 def EditarCuenta(request):
     return render(request, 'PrayTheNews/Usuario/EditarCuenta.html')
 
+def PerfilUsuario(request):
+    return render(request, 'PrayTheNews/Usuario/PerfilUsuario.html')
+
+def PublicarNoticia(request):
+    return render(request, 'PrayTheNews/Noticias/PublicarNoticia.html')
+
 
 def MenuNoticias(request):
     Noticia ={"titulo1":" La solución de Riot a los problemas en el Deathmatch de Valorant", 

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pray The News/Analisis</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://code.jquery.com/jquery-3.3.1.slim.min.js">
+  <link rel="stylesheet" href="{% static 'PrayTheNews/css/register.css' %}">
+  <link rel="stylesheet" href="{% static 'PrayTheNews/css/usuario.css' %}">
+  <link rel="stylesheet" href="js/Buttons/ir-arriba.js">
+  <link rel="stylesheet" href="http://code.jquery.com/jquery-latest.js">
+
+</head>
+
+<body>
+
+
+<!-- BARRA NAVEGACIÓN -->
+    
+<nav class="navbar navbar-expand-md navbar-dark bg-dark border-primary">
+  <div class="container-fluid">
+      <a href="#" class="navbar-brand"><img src="{%static 'PrayTheNews/img_noticia/img/logo_small.png'%}" alt="" width="100"></a>
+      <button type="button"
+          class="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#MenuNavegacion">
+              <span class="navbar-toggler-icon"></span>
+      </button>
+  </div>
+
+<div id="MenuNavegacion" class="collapse navbar-collapse">
+<ul class="navbar-nav ms-3">
+<li class="nav-item">
+              <a class="nav-link active" href="{% url 'MenuPrincipal' %}">Inicio</a>
+          </li>
+              <li class="nav-item">
+              <a class="nav-link" href="{% url 'MenuNoticias' %}">Noticias</a>
+          </li>
+              <li class="nav-item">
+              <a class="nav-link" href="{% url 'MenuAnalisis' %}">Analisis</a>
+              
+          </li>
+
+
+          
+
+          <li class="nav-item">
+            <a class="nav-link" href="Lanzamientos.html">Lanzamientos</a>
+          </li>
+
+          <li class="nav-item">
+              <a class="nav-link" href="catalogoPS.html">Catalogo</a>
+          </li>
+
+
+
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" style="padding-right: 70px;">
+                Perfil
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'LoginUsuario' %}">Conectate</a></li>
+                <li><a class="dropdown-item" href="{% url 'Registro' %}">Registrate</a></li>
+                <li><a class="dropdown-item" href="{% url 'CuentaUsario' %}">Ver Perfil</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{% url 'EditarUsuario' %}">Administrador</a></li>
+                
+
+                
+                
+              </ul>
+          </li>
+
+
+</ul>
+      
+</div>
+</nav>
+
+  <!--NOTICIAS SEMANALES-->
+
+
+
+
+
+
+  <!-- For demo purpose -->
+
+
+  <div class="row py-5 px-4">
+    <div class="col-xl-4 col-md-6 col-sm-10 mx-auto">
+
+      <!-- Profile widget -->
+      <div class="bg-white shadow rounded overflow-hidden">
+        <div class="px-4 pt-0 pb-4 bg-dark">
+          <div class="media align-items-end profile-header">
+            <div class="profile mr-3"><img src="img/usuarios/Carlos perez2.jpg" alt="..." width="130"
+                class="rounded mb-2 img-thumbnail">
+
+
+
+              
+            </div>
+            <div class="media-body mb-5 text-white">
+              <h4 class="mt-0 mb-0">Jose Perez</h4>
+              <p class="small mb-4"> <i class="fa fa-id-card mr-2"></i>Periodista/Analista</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-light p-4 d-flex justify-content-end text-center">
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item">
+              <h5 class="font-weight-bold mb-0 d-block">241</h5><small class="text-muted"> <i
+                  class="fa fa-newspaper-o mr-1"></i>Noticias Nº</small> 
+            </li>
+            <li class="list-inline-item">
+              <h5 class="font-weight-bold mb-0 d-block">84</h5><small class="text-muted"> <i
+                  class="fa fa-line-chart mr-1"></i>Analisis Nº</small>
+            </li>
+          </ul>
+        </div>
+
+        <div class="py-4 px-4">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <h5 class="mb-0">Publicaciones Recientes</h5>
+          </div>
+          <div class="row">
+
+            <div class="col-lg-6 mb-2 pr-lg-1">
+              <div class="card" style="width: 15rem;">
+                <img src="img/Analisis/portada/Tunic-portada.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title" style="color: #1DA1F2;">Analisis</h5>
+                  <p class="card-text" style="color: black;">Tunic Descubriendo la leyenda del zorro.</p>
+                  <a href="#" class="btn btn-secondary btn-sm">Ver Publicacion</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 mb-2 pr-lg-1">
+              <div class="card" style="width: 15rem;">
+                <img src="img/Analisis/portada/martha-is-dead-review_7n7f.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title" style="color: #1DA1F2;">Analisis</h5>
+                  <p class="card-text" style="color: black;">Martha Is Dead, Explorando el horror humano.</p>
+                  <a href="#" class="btn btn-secondary btn-sm">Ver Publicacion</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 mb-2 pr-lg-1">
+              <div class="card" style="width: 15rem;">
+                <img src="img/hogwarts-legacy-1-1601466696.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title" style="color: #1DA1F2;">Noticia</h5>
+                  <p class="card-text" style="color: black;">El videojuego basado en la saga Harry Potter.</p>
+                  <a href="#" class="btn btn-secondary btn-sm">Ver Publicacion</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 mb-2 pr-lg-1">
+              <div class="card" style="width: 15rem;">
+                <img src="img/gm-d9aca072-2f2d-49a5-ae25-0e2504921135-elden-ring-4k-screenshot.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title" style="color: #1DA1F2;"> Noticia</h5>
+                  <p class="card-text"  style="color: black;">Elden Ring es lo mejor que ha pasado en la vida.</p>
+                  <a href="#" class="btn btn-secondary btn-sm">Ver Publicacion</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="py-4" name="ejemplo">
+            <h5 class="mb-3">Redes Sociales</h5>
+
+            <p class="font-italic mb-0">
+            <ul class="list-group list-group-flush rounded-3"> 
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fa fa-twitter d-flex justify-content-end"></i>
+                <p class="mb-0"><a href="https://twitter.com/spaceronin7?lang=es">Twitter</a></p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fa fa-twitch" style="color: #ac2bac;"></i>
+                <p class="mb-0"><a href="https://www.twitch.tv/spaceronin7">Twitch</a></p>
+              </li>
+            </ul>
+            </p>
+
+            
+
+
+          </div>
+        </div>
+      </div><!-- End profile widget -->
+
+    </div>
+  </div>
+
+
+
+
+  </div>
+
+  </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Footer -->
+  <footer class="text-center text-lg-start bg-dark text-muted">
+    <!-- Section: Social media -->
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+      <!-- Left -->
+      <div class="me-5 d-none d-lg-block">
+        <span>Get connected with us on social networks:</span>
+      </div>
+      <!-- Left -->
+
+      <!-- Right -->
+      <div>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-google"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              <i class="fas fa-gem me-3"></i>Company name
+            </h6>
+            <img src="img/logo_small.png" alt="" width="100">
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              Terminos Legales
+            </h6>
+            <p>
+              <a href="#!" class="text-reset">Terminos y Condiciones</a>
+            </p>
+            <p>
+
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              Direccion
+            </h6>
+            <p>
+              <a href="#!" class="text-reset">C. Nueva 1660, Huechuraba, Región Metropolitana</a>
+            </p>
+
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              Contact
+            </h6>
+
+            <p>
+              <i class="fas fa-envelope me-3"></i>
+              praythenews@example.com
+            </p>
+            <p><i class="fas fa-phone me-3"></i> (2) 2999 3000</p>
+            <p><i class="fas fa-print me-3"></i> (+569) 2999 3000</p>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+      © 2021 Copyright:
+      <a class="text-reset fw-bold" href="https://mdbootstrap.com/">Pray The News.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+    crossorigin="anonymous"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>
