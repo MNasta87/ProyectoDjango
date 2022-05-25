@@ -5,6 +5,7 @@ from django.shortcuts import render
 
 def MenuPrincipal(request):
     return render(request,'PraytheNews/Principal/MenuPrincipal.html')
+
 def Catalogo(request):
     return render(request,'PrayTheNews/Catalogo/Catalogo.html')
 
@@ -13,6 +14,27 @@ def MenuAnalisis(request):
 
 def RegistroUsuarios(request):
     return render(request,'PrayTheNews/Login/RegistroUsuario.html')
+
+def LoginUsuario(request):
+    return render(request, 'PrayTheNews/Login/LoginUsuario.html')
+
+def AdministrarUsuario(request):
+    return render(request, 'PrayTheNews/Admin/AdministrarUsuario.html')
+
+def BuscarAnalisis(request):
+    return render(request, 'PrayTheNews/Admin/BuscarAnalisis.html')
+
+def BuscarUsuario(request):
+    return render(request, 'PrayTheNews/Admin/BuscarUsuarios.html')
+
+def EditarUsuario(request):
+    return render(request, 'PrayTheNews/Admin/EditarUsuarios.html')
+
+def CuentaUsuario(request):
+    return render(request, 'PrayTheNews/Usuario/CuentaUsuario.html')
+
+def EditarCuenta(request):
+    return render(request, 'PrayTheNews/Usuario/EditarCuenta.html')
 
 
 def MenuNoticias(request):
@@ -80,5 +102,7 @@ def NoticiaValorant(request):
 
 
     return render(request, 'PrayTheNews/Noticias/Antiguas/NoticiaValorant.html', Contexto)
+
+
 
     

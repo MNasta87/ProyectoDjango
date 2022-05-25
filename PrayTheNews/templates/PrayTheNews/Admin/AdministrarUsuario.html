@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Bootstrap Accordion Menu for All Purpose</title>		
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static 'PrayTheNews/css/register.css'%}">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<style>
+  .accordion .card {
+	color: #424e5d;
+	border: 1px solid #dddddd;
+  }
+  .accordion .card a {
+	color: #424e5d;
+	text-decoration: none;				
+}
+.accordion .card-header {
+	background: linear-gradient(#fff, #f1f1f1);
+	padding: .75rem 1rem;
+	position: relative;
+}
+.accordion .card-header:hover {
+	background: linear-gradient(#f1f1f1, #e8e8e8);
+}
+.accordion .card-header h2 {
+	font-size: 1rem;
+}
+.accordion .fa {
+	width: 20px;
+	margin-right: .25rem;
+}
+.accordion .card-header a {
+	float: left;
+	width: 100%;
+	cursor: pointer;
+}
+.accordion .toggle {
+	font-size: .8rem;
+	line-height: .8rem;
+	cursor: pointer;
+	opacity: 0.7;
+	position: absolute;
+	right: 16px;
+	top: 16px;
+	width: 14px;
+	margin: 0;
+}
+.accordion .toggle:hover {
+	opacity: 1;
+}
+.accordion .card-body {
+	padding: 0;
+}
+.accordion .list-group-item {				
+	border-radius: 0;
+	border-width: 1px 0 1px 0;
+	padding-left: 30px;
+	background: #d6dbe0;
+	font-weight: 500;
+}
+.accordion .list-group-item:hover {
+	background: #007bff;
+}
+.accordion .list-group-item:hover a {
+	color: #fff !important;
+}
+.accordion .list-group-item:hover .badge{
+	background: #fff;
+	color: #007bff;
+}
+.accordion .list-group-item a {
+	color: #61656b;
+	display: block;
+}
+.accordion .list-group-item .badge {
+	float: right;
+	min-width: 36px;
+}
+.accordion .rotate{
+	transform: rotate(180deg); 
+}
+</style>
+<script>
+$(document).ready(function(){			
+	// Toggle plus minus icon on show hide of collapse element
+	$(".collapse").on('show.bs.collapse', function(){
+		$(this).parent(".card").find(".toggle").addClass("rotate");
+	}).on('hide.bs.collapse', function(){
+		$(this).parent(".card").find(".toggle").removeClass("rotate");
+	});
+});
+</script>
+</head	>
+<body>
+
+
+
+    <!--NAVBAR-->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark border-primary">
+      <div class="container-fluid">
+          <a href="#" class="navbar-brand"><img src="{%static 'PrayTheNews/img_noticia/img/logo_small.png'%}" alt="" width="100"></a>
+          <button type="button"
+              class="navbar-toggler"
+              data-bs-toggle="collapse"
+              data-bs-target="#MenuNavegacion">
+                  <span class="navbar-toggler-icon"></span>
+          </button>
+      </div>
+    
+    <div id="MenuNavegacion" class="collapse navbar-collapse">
+    <ul class="navbar-nav ms-3">
+    <li class="nav-item">
+                  <a class="nav-link active" href="{% url 'MenuPrincipal' %}">Inicio</a>
+              </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="{% url 'MenuNoticias' %}">Noticias</a>
+              </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="{% url 'MenuAnalisis' %}">Analisis</a>
+                  
+              </li>
+    
+    
+              
+    
+              <li class="nav-item">
+                <a class="nav-link" href="Lanzamientos.html">Lanzamientos</a>
+              </li>
+    
+              <li class="nav-item">
+                  <a class="nav-link" href="catalogoPS.html">Catalogo</a>
+              </li>
+    
+    
+    
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" style="padding-right: 70px;">
+                    Perfil
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'LoginUsuario' %}">Conectate</a></li>
+                    <li><a class="dropdown-item" href="{% url 'Registro' %}">Registrate</a></li>
+                    <li><a class="dropdown-item" href="{% url 'CuentaUsario' %}">Ver Perfil</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{% url 'EditarUsuario' %}">Administrador</a></li>
+                    
+    
+                    
+                    
+                  </ul>
+              </li>
+    
+    
+    </ul>
+          
+    </div>
+    </nav>
+
+
+
+
+    <div class="container" style="margin-bottom: 70px;">
+        <div class="row justify-content-center pt-5 mt-5 mr-1">
+          <div class="col-md-12 formulario3">
+            
+
+
+            <div class="container-lg mt-5">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="accordion mb-2" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h2 class="mb-0">									
+                                        <a data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                            <span><i class="fa fa-user"></i> Cuenta</span>
+                                            <i class="fa fa-chevron-down toggle"></i>
+                                        </a>
+                                    </h2>
+                                </div>
+                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <ul class="list-group">
+                                            <li class="list-group-item"><a href="Cuenta-perfil-usuario.html"><i class="fa fa-pencil"></i>Ver Perfil</a></li>
+                                            <li class="list-group-item"><a href="#"><i class="fa fa-pencil"></i>Editar Perfil</a></li>
+                                            <li class="list-group-item"><a href="#"><i class="fa fa-key"></i> Cambiar Contraseña</a></li>
+                                            <li class="list-group-item"><a href="#" class="text-danger"><i class="fa fa-trash"></i> Delete Account</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h2 class="mb-0">									
+                                        <a data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <span><i class="fa fa-users"></i> Administrar</span>
+                                            <i class="fa fa-chevron-down toggle rotate"></i>
+                                        </a>
+                                    </h2>
+                                </div>
+                                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <ul class="list-group">
+                                            <li class="list-group-item"><a href="#"><i class="fa fa-inbox"></i>  Administrar Usuarios <span class="badge badge-pill badge-primary">20</span></a></li>
+                                            <li class="list-group-item"><a href="#"><i class="fa fa-paper-plane"></i> Editar Usuarios</a></li>
+                                            <li class="list-group-item"><a href="#"><i class="fa fa-file-text"></i> Buscar Usuarios <span class="badge badge-pill badge-info">15</span></a></li>
+                                            <li class="list-group-item"><a href="#"><i class="fa fa-trash"></i> Trash</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                    <h2 class="mb-0">									
+                                        <a data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            <span><i class="fa fa-bar-chart"></i> Estadisticas</span>
+                                            <i class="fa fa-chevron-down toggle"></i>
+                                        </a>
+                                    </h2>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <ul class="list-group">										
+                                            <li class="list-group-item"><a href="#"><i class="fa fa-dollar"></i> Sales</a></li>
+                                            <li class="list-group-item"><a href="#"><i class="fa fa-tags"></i> Orders</a></li>
+                                            <li class="list-group-item"><a href="#"><i class="fa fa-plane"></i> Shipment</a></li>
+                                            <li class="list-group-item"><a href="#"><i class="fa fa-users"></i> Customers</a></li>										
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingFour">
+                                    <h2 class="mb-0">									
+                                        <a data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                            <span><i class="fa fa-cog"></i> Buscar Post</span>
+                                            <i class="fa fa-chevron-down toggle"></i>
+                                        </a>
+                                    </h2>
+                                </div>
+                                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <ul class="list-group">
+                                            <li class="list-group-item"><a href="#"><i class="fa fa-font"></i> Typography</a></li>
+                                            <li class="list-group-item"><a href="#"><i class="fa fa-bell"></i> Notifications</a></li>
+                                            <li class="list-group-item"><a href="#"><i class="fa fa-map"></i> Maps</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingFive">
+                                    <h2 class="mb-0"><a href="#"><i class="fa fa-power-off"></i> Logout</a></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="jumbotron">
+                            <h1 class="display-4">Hello, world!</h1>
+                            <p class="lead">This is a simple example of accordion menu that can easily be integrated into any Bootstrap template. You'll find many such examples at <a href="https://www.tutorialrepublic.com" target="_blank">tutorialrepublic.com</a>.</p>
+                            <hr class="my-4">						
+                            <a class="btn btn-primary btn-lg" href="https://www.tutorialrepublic.com/snippets/gallery.php" target="_blank">Learn more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </body>
+        
+  
+          </div>
+
+
+  
+        </div>
+  
+  
+  
+      </div>
+
+
+
+
+
+
+        <!-- Footer -->
+  <!-- Footer -->
+  <footer class="text-center text-lg-start bg-dark text-muted">
+    <!-- Section: Social media -->
+    <section
+      class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+    >
+      <!-- Left -->
+      <div class="me-5 d-none d-lg-block">
+        <span>Get connected with us on social networks:</span>
+      </div>
+      <!-- Left -->
+  
+      <!-- Right -->
+      <div>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-google"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+  
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              <i class="fas fa-gem me-3"></i>Company name
+            </h6>
+              <img src="img/logo_small.png" alt="" class="logop">
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              Terminos Legales
+            </h6>
+            <p>
+              <a href="#!" class="text-reset">Terminos y Condiciones</a>
+            </p>
+            <p>
+  
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              Direccion
+            </h6>
+            <p>
+              <a href="#!" class="text-reset">C. Nueva 1660, Huechuraba, Región Metropolitana</a>
+            </p>
+  
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              Contact
+            </h6>
+            
+            <p>
+              <i class="fas fa-envelope me-3"></i>
+              praythenews@example.com
+            </p>
+            <p><i class="fas fa-phone me-3"></i> (2) 2999 3000</p>
+            <p><i class="fas fa-print me-3"></i> (+569) 2999 3000</p>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+  
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+      © 2021 Copyright:
+      <a class="text-reset fw-bold" href="https://mdbootstrap.com/">Pray The News.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+</body>
+</html>
