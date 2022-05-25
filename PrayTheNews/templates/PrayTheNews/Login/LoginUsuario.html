@@ -83,7 +83,8 @@
     <div class="container" style="margin-bottom: 70px;">
         <div class="row justify-content-center pt-5 mt-5 mr-1">
           <div class="col-md-10 formulario">
-            <form class="row g-3 col-lg-6 offset-lg-3">
+            <form class="row g-3 col-lg-6 offset-lg-3" id="form" method="post">
+              {% csrf_token %}
                 <div class="form-group text-center">
                     <h1>Inicio de sesion </h1><img src="{% static 'PrayTheNews/img/Logo_realmente_listo2.0.png' %}" alt="" width="100"> 
 

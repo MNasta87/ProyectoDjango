@@ -27,7 +27,7 @@
   <div id="MenuNavegacion" class="collapse navbar-collapse">
       <ul class="navbar-nav ms-3">
           <li class="nav-item">
-            <a class="nav-link active" href="{% url 'MenuPrincipal'  %}">Inicio</a>
+              <a class="nav-link active" href="{% url 'MenuPrincipal'  %}">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'MenuNoticias'%}">Noticias</a>
@@ -38,7 +38,7 @@
           </li>
 
           <li class="nav-item">
-              <a class="nav-link" href="../catalogoPS.html">Catalogo</a>
+              <a class="nav-link" href="{%url 'Catalogo'%}">Catalogo</a>
           </li>
 
 
@@ -49,13 +49,13 @@
                   Perfil
               </a>
               <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="../LoginUsuario.html">Conectate</a></li>
+                  <li><a class="dropdown-item" href="{% url 'LoginUsuario' %}">Conectate</a></li>
                   <li><a class="dropdown-item" href="{% url 'RegistroUsuarios'%}">Registrate</a></li>
-                  <li><a class="dropdown-item" href="../Cuenta-perfil-usuario.html">Ver Perfil</a></li>
+                  <li><a class="dropdown-item" href="{% url 'CuentaUsuario' %}">Ver Perfil</a></li>
                   <li>
                       <hr class="dropdown-divider">
                   </li>
-                  <li><a class="dropdown-item" href="../CuentaAdmin-EditarUsuarios.html">Administrador</a></li>
+                  <li><a class="dropdown-item" href="{% url 'EditarUsuario' %}">Administrador</a></li>
 
 
 
@@ -68,6 +68,7 @@
 
   </div>
 </nav>
+
 
 
      <!--NOTICIAS SEMANALES-->
