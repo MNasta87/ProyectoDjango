@@ -41,22 +41,22 @@ def RegistroUsuarios(request):
     return redirect('Formulario')
 
 def LoginUsuario(request):
-    #if request.method == "POST":
-	    #form = AuthenticationForm(request, data=request.POST)
-		#if form.is_valid():
-			#Usuario = form.cleaned_data.get('Usuario')
-			#password = form.cleaned_data.get('password')
-			#user = authenticate(Usuario=Usuario, password=password)
-			#if user is not None:
-			#	login(request, user)
-			#	messages.info(request, f"You are now logged in as {Usuario}.")
-			#	return redirect("main:homepage")
-			#else:
-			#	messages.error(request,"Invalid username or password.")
-		#else:
-			#messages.error(request,"Invalid username or password.")
-	    #form = AuthenticationForm()
-    return render(request, 'PrayTheNews/Login/LoginUsuario.html')
+	if request.method == "POST":
+		form = AuthenticationForm(request, data=request.POST)
+		if form.is_valid():
+			username = form.cleaned_data.get('username')
+			password = form.cleaned_data.get('password')
+			user = authenticate(username=username, password=password)
+			if user is not None:
+				login(request, user)
+				messages.info(request, f"You are now logged in as {username}.")
+				return redirect("main:homepage")
+			else:
+				messages.error(request,"Invalid username or password.")
+		else:
+			messages.error(request,"Invalid username or password.")
+	form = AuthenticationForm()
+	return render(request,"PrayTheNews/Login/LoginUsuario.html")
 
 def AdministrarUsuario(request):
     return render(request, 'PrayTheNews/Admin/AdministrarUsuario.html')
