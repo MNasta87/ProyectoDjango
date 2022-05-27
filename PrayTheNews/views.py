@@ -23,12 +23,15 @@ def FormularioUsuarios(request):
 
 def RegistroUsuarios(request):
     print("Llego")
+
+
     nombreCompleto_U = request.POST.get('nombre', False)
     correo_U = request.POST.get('correo', False)
     clave_U = request.POST.get('password', False)
     clave2 = request.POST.get('password2',False)
     nickname_U = request.POST.get('usuario', False)
     telefono_U = request.POST.get('telefono', False)
+
     linkInstagram_U = ''
     linkTwitch_U = ''
     linkTwitter_U = ''
@@ -44,24 +47,28 @@ def RegistroUsuarios(request):
         corr = Usuario.objects.get( correo = correo_U)
     except Usuario.DoesNotExist:
         corr = None
-    if clave_U == clave2:
-        if nombre is None:
-            if corr is None:
-                Usuario.objects.create(nombreCompleto = nombreCompleto_U, correo = correo_U,clave = clave_U,
-                nickname = nickname_U,telefono = telefono_U,linkInstagram = linkInstagram_U, linkTwitch = linkTwitch_U,
-                linkTwitter= linkTwitter_U, rol = rol_u)
-                
-                return redirect('LoginUsuario')
+
+
+    if clave2 is None:
+        if clave_U == clave2:
+            if nombre is None:
+                if corr is None:
+                    Usuario.objects.create(nombreCompleto = nombreCompleto_U, correo = correo_U,clave = clave_U,
+                    nickname = nickname_U,telefono = telefono_U,linkInstagram = linkInstagram_U, linkTwitch = linkTwitch_U,
+                    linkTwitter= linkTwitter_U, rol = rol_u)
+                    
+                    return redirect('LoginUsuario')
+                else:
+                    messages.error(request, "El correo ya esta vinculado a una cuenta")
+                    return redirect('Formulario')
             else:
-                messages.error(request, "El correo ya esta vinculado a una cuenta")
+                messages.error(request, "El usuario ya existe")
                 return redirect('Formulario')
         else:
-            messages.error(request, "El usuario ya existe")
-            return redirect('Formulario')
+            messages.error(request, "Las contraseñas no coinciden")
+            return redirect('Formulario') 
     else:
-        messages.error(request, "Las contraseñas no coinciden")
         return redirect('Formulario') 
-
 
 def LoginUsuario(request):
 	if request.method == "POST":
