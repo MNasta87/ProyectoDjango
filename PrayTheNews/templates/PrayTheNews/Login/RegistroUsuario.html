@@ -19,10 +19,10 @@
 		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 
-
 	
+	<!--<script src="{% static 'PrayTheNews/js/RegistroUsu/ValidacionRegistro.js'%}"></script>  -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="{% static 'PrayTheNews/js/contra/Vconstrasenas.js'%}"></script>
+
 	
 </head>
 
@@ -92,17 +92,18 @@
 	<div class="container" style="margin-bottom: 70px;">
 		<div class="row justify-content-center pt-5 mt-5 mr-1">
 			<div class="col-md-12 formulario">
+				<div id="mensaje_error" class="al_error"></div>
+            {% if messages %}
+            {% for x in messages %}
+            <div class="alert alert-danger" role="alert" id="Verde">
+                <center> &#9995;{{ x }}&#10069; </center>
+            </div>
+            {% endfor %}
+			 {% endif %}
+            
 
-				{% if messages %}           
-                	{% for i in messages %}                   
-					<div class "alert alert-success" role = "alert">
-						{{ i }}
-					</div>
-                	{% endfor %}
-            	{% endif %}
 
-
-				<form action="{% url 'RegistroUsuarios' %}" method="POST" enctype="multipart/form-data" class="row g-3 col-lg-6 offset-lg-3" id="formulario" name="formulario">
+				<form action="{% url 'RegistroUsuarios' %}" method="POST"  class="row g-3 col-lg-6 offset-lg-3" id="formulario" name="formulario"> 
 					{% csrf_token %}
 					<div class="form-group text-center">
 						<h1 style="color: #E1E8ED; font-weight: bold;">Registro de Usuario</h1>
@@ -110,16 +111,20 @@
 
 					<div class="col-md-6">
 						<!-- Grupo: Usuario -->
+						
+
 						<div class="formulario__grupo" id="grupo__usuario">
 							<label for="usuario" class="formulario__label">Nombre Usuario</label>
 							<div class="formulario__grupo-input">
-								<input type="text" class="formulario__input" name="usuario" id="usuario"
-									placeholder="john123">
-								<i class="formulario__validacion-estado fas fa-times-circle"></i>
+
+								<input type="text" class="formulario__input" name="usuario" id="usuario" placeholder="ElDonChaparro"
+          						 minlength="4" maxlength="15" required pattern="[A-Za-z0-9_?]+" required />
+
+								
 							</div>
-							<p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede
+							<p >El NickName tiene que ser de 4 a 15 dígitos y solo puede
 								contener
-								numeros, letras y guion bajo.</p>
+								numeros y letras.</p>
 						</div>
 
 
@@ -130,11 +135,11 @@
 						<div class="formulario__grupo" id="grupo__nombre">
 							<label for="nombre" class="formulario__label">Nombre y Apellido</label>
 							<div class="formulario__grupo-input">
-								<input type="text" class="formulario__input" name="nombre" id="nombre"
-									placeholder="John Doe">
-								<i class="formulario__validacion-estado fas fa-times-circle"></i>
+		
+								<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="John Doe"
+								 maxlength="40" required pattern="[A-Za-z ?]+" required />
 							</div>
-							<p class="formulario__input-error">El nombre solo puede contener letras y un maximo de 40 digitos</p>
+							<p>El nombre solo puede contener letras y un maximo de 40 digitos</p>
 						</div>
 
 
@@ -145,24 +150,22 @@
 					<div class="formulario__grupo" id="grupo__correo">
 						<label for="correo" class="formulario__label">Correo Electrónico</label>
 						<div class="formulario__grupo-input">
-							<input type="email" class="formulario__input" name="correo" id="correo"
+							<input type="email" class="formulario__input" name="correo" id="correo" maxlength="40"
 								placeholder="correo@correo.com">
-							<i class="formulario__validacion-estado fas fa-times-circle"></i>
+							
 						</div>
-						<p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos,
-							guiones y
-							guion bajo.</p>
+						<p>El correo solo puede contener 40 caracteres</p>
 					</div>
 
 					<!-- Grupo: Teléfono -->
 					<div class="formulario__grupo" id="grupo__telefono">
-						<label for="telefono" class="formulario__label">Teléfono</label>
+						<label for="telefono" class="formulario__label">Teléfono(Opcional)</label>
 						<div class="formulario__grupo-input">
-							<input type="text" class="formulario__input" name="telefono" id="telefono"
+							<input type="text" class="formulario__input" name="telefono" id="telefono" maxlength="14" required pattern="[0-9]+"
 								placeholder="9491234567">
-							<i class="formulario__validacion-estado fas fa-times-circle"></i>
+							
 						</div>
-						<p class="formulario__input-error">El telefono solo puede contener numeros y el maximo son 14
+						<p >El telefono solo puede contener numeros y el maximo son 14
 							dígitos.
 						</p>
 					</div>
@@ -175,18 +178,10 @@
 						<div class="formulario__grupo" id="grupo__password">
 							<label for="password" class="formulario__label">Contraseña</label>
 							<div class="formulario__grupo-input">
-								<input type="password" class="formulario__input" name="password" id="password">
-								<i class="formulario__validacion-estado fas fa-times-circle"></i>
-								<ul style="color: #E1E8ED; margin-top: 15px;">
-									<li id="mayus"> Al menos 1 letra minuscula</li>
-									<li id="special"> Al menos 1 caracter especial</li>
-									<li id="numbers"> Al menos 1 digito</li>
-									<li id="lower"> Al menos 1 letra minuscula</li>
-									<li id="len"> Minimo 8 caracteres</li>
-
-								</ul>
+								<input type="password" class="formulario__input" name="password" id="password" minlength = "4" maxlength="16" required>
+								
 							</div>
-
+						<p >La Contraseña debe tener como minimo 4 y como maximo 16
 
 						</div>
 
@@ -200,12 +195,12 @@
 						<div class="formulario__grupo" id="grupo__password2">
 							<label for="password2" class="formulario__label">Repetir Contraseña</label>
 							<div class="formulario__grupo-input">
-								<input type="password" class="formulario__input" name="password2" id="password2">
-								<i class="formulario__validacion-estado fas fa-times-circle"></i>
+								<input type="password" class="formulario__input" name="password2" id="password2" required>
+								
 							</div>
 
 
-							<p class="formulario__input-error">Ambas contraseñas deben ser iguales.</p>
+							<p>Ambas contraseñas deben ser iguales.</p>
 						</div>
 
 
@@ -224,7 +219,7 @@
 					<!-- Grupo: Terminos y Condiciones -->
 					<div class="formulario__grupo" id="grupo__terminos">
 						<label class="formulario__label">
-							<input class="formulario__checkbox" type="checkbox" name="terminos" id="terminos">
+							<input class="formulario__checkbox" type="checkbox" name="terminos" id="terminos" required>
 							Acepto los Terminos y Condiciones
 						</label>
 					</div>
@@ -235,21 +230,15 @@
 					</div>
 
 					<div class="formulario__grupo formulario__grupo-btn-enviar">
-						<button type="submit" class="formulario__btn btn-light">Registrarme</button>
+						<button type="submit" class="formulario__btn btn-light" id="submit">Registrarme</button>
 						
 							
 								<p class="formulario__mensaje-exito alert alert-success" id="formulario__mensaje-exito">Formulario enviado
 							exitosamente!</p>
+						
 					</div>
 				</form>
-
-
-
-
-
-
-
-
+				
 			</div>
 		</div>
 	</div>
@@ -365,20 +354,26 @@
 		<!-- Copyright -->
 	</footer>
 	<!-- Footer -->
+	
 
 
-
-
-	<script src="js/RegistroUsu/ValidacionRegistroUsu.js"></script>
+	<!-- <script src="js/RegistroUsu/ValidacionRegistroUsu.js"></script>-->
 	
 
 	<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
-</body>
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+	
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+	
+
+
+	
+</body>
+
+
 
 
 </html>

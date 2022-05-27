@@ -22,9 +22,11 @@ def FormularioUsuarios(request):
 
 
 def RegistroUsuarios(request):
+    print("Llego")
     nombreCompleto_U = request.POST.get('nombre', False)
     correo_U = request.POST.get('correo', False)
     clave_U = request.POST.get('password', False)
+    clave2 = request.POST.get('password2',False)
     nickname_U = request.POST.get('usuario', False)
     telefono_U = request.POST.get('telefono', False)
     linkInstagram_U = ''
@@ -33,12 +35,33 @@ def RegistroUsuarios(request):
 
     rol_u = Rol.objects.get(idRol = 1)
     #1 de rol de usuario
+    
+    try:
+        nombre = Usuario.objects.get( nickname = nickname_U)
+    except Usuario.DoesNotExist:
+        nombre = None
+    try:
+        corr = Usuario.objects.get( correo = correo_U)
+    except Usuario.DoesNotExist:
+        corr = None
+    if clave_U == clave2:
+        if nombre is None:
+            if corr is None:
+                Usuario.objects.create(nombreCompleto = nombreCompleto_U, correo = correo_U,clave = clave_U,
+                nickname = nickname_U,telefono = telefono_U,linkInstagram = linkInstagram_U, linkTwitch = linkTwitch_U,
+                linkTwitter= linkTwitter_U, rol = rol_u)
+                
+                return redirect('LoginUsuario')
+            else:
+                messages.error(request, "El correo ya esta vinculado a una cuenta")
+                return redirect('Formulario')
+        else:
+            messages.error(request, "El usuario ya existe")
+            return redirect('Formulario')
+    else:
+        messages.error(request, "Las contraseñas no coinciden")
+        return redirect('Formulario') 
 
-    Usuario.objects.create(nombreCompleto = nombreCompleto_U, correo = correo_U,clave = clave_U, nickname = nickname_U,telefono = telefono_U,linkInstagram = linkInstagram_U, linkTwitch = linkTwitch_U,linkTwitter= linkTwitter_U, rol = rol_u)
-   
-    messages.success(request, 'Usuario registrado')
-
-    return redirect('Formulario')
 
 def LoginUsuario(request):
     #if request.method == "POST":
