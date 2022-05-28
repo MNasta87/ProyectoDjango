@@ -74,13 +74,13 @@ def LoginUsuario(request):
 	if request.method == "POST":
 		form = AuthenticationForm(request, data=request.POST)
 		if form.is_valid():
-			username = form.cleaned_data.get('username')
-			password = form.cleaned_data.get('password')
-			user = authenticate(username=username, password=password)
+			NickName = form.cleaned_data.get('NickName')
+			Contrasenna = form.cleaned_data.get('Contraseña')
+			user = authenticate(NickName=NickName, Contrasenna=Contrasenna)
 			if user is not None:
 				login(request, user)
-				messages.info(request, f"You are now logged in as {username}.")
-				return redirect("main:homepage")
+				messages.info(request, f"You are now logged in as {NickName}.")
+				return redirect("")
 			else:
 				messages.error(request,"Invalid username or password.")
 		else:
