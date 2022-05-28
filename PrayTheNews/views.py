@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, authenticate  
+from django.contrib import auth 
 from django.contrib import messages
 
 from .models import Usuario,Rol
@@ -71,22 +71,26 @@ def RegistroUsuarios(request):
         return redirect('Formulario') 
 
 def LoginUsuario(request):
-	if request.method == "POST":
-		form = AuthenticationForm(request, data=request.POST)
-		if form.is_valid():
-			NickName = form.cleaned_data.get('NickName')
-			Contrasenna = form.cleaned_data.get('Contraseña')
-			user = authenticate(NickName=NickName, Contrasenna=Contrasenna)
-			if user is not None:
-				login(request, user)
-				messages.info(request, f"You are now logged in as {NickName}.")
-				return redirect("")
-			else:
-				messages.error(request,"Invalid username or password.")
-		else:
-			messages.error(request,"Invalid username or password.")
-	form = AuthenticationForm()
-	return render(request,"PrayTheNews/Login/LoginUsuario.html")
+    if request.method == 'POST':
+        correo = request.POST.get('correo')
+        clave = request.POST.get('clave')
+
+        usuario = auth.authenticate(correo=correo, clave=clave)
+
+        if usuario is not None:
+            auth.login(request, usuario)
+            return redirect('MenuPrincipal')
+        else:
+            messages.info(request, 'Nombre de Usuario o Contraseña invalidos')
+            return redirect('LoginUsuario')
+
+
+
+    else:
+        return render(request, 'PrayTheNews/Login/LoginUsuario.html')
+	
+
+	
 
 def AdministrarUsuario(request):
     return render(request, 'PrayTheNews/Admin/AdministrarUsuario.html')
