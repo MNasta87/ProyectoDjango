@@ -80,7 +80,7 @@ class Publicacion(models.Model):
 
 
     def __str__(self):
-        return self.idPublicacion
+        return self.tituloPubli
 
 # Creacion de Sector de comentarios
 
@@ -95,7 +95,7 @@ class Comentario(models.Model):
     idPublicacion = models.ForeignKey(Publicacion,on_delete= models.CASCADE,verbose_name= "Id publicacion")
 
     def __str__(self):
-        return self.idComentario
+        return self.fechaComentario
 
 # Parrafos de la Publicacion
 
@@ -108,7 +108,7 @@ class Parrafo(models.Model):
 
 
     def __str__(self):
-        return self.idParrafo
+        return self.tituloParrafo
 
 
 

@@ -1,9 +1,12 @@
+import datetime
+from email.message import Message
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate  
 from django.contrib import auth 
 from django.contrib import messages
+from datetime import datetime
 
-from .models import Usuario,Rol
+from .models import Parrafo, Publicacion, Status, TipoPubli, Usuario,Rol
 # Create your views here.
 
 
@@ -19,12 +22,65 @@ def MenuAnalisis(request):
 def FormularioUsuarios(request):
     return render(request,'PrayTheNews/Login/RegistroUsuario.html')
 
+def PublicarNoticia(request):
+    return render(request, 'PrayTheNews/Noticias/PublicarNoticia.html')
+
+def RegistroNoticia(request):
+
+    if request.method == "POST":
+
+        PTitulo = request.POST['TituloPortada']
+        PFoto = request.FILES['formFile']
+        PDescripcion = request.POST['DPortada']
+        fechaActual = datetime.today().strftime('%Y-%m-%d')
+
+        T_Parrafo1 = request.POST['TParrafo1']
+        F_Parrafo1 = request.FILES['FParrafo1']
+        D_Parrafo1 = request.POST['DParrafo1']
+
+        T_Parrafo2 = request.POST['TParrafo2']
+        F_Parrafo2 = request.FILES['FParrafo2']
+        D_Parrafo2 = request.POST['DParrafo2']
+
+        T_Parrafo3 = request.POST['TParrafo3']
+        F_Parrafo3 = request.FILES['FParrafo3']
+        D_Parrafo3 = request.POST['DParrafo3']
+
+        U_usuario = Usuario.objects.get(idUsuario = 141)
+        T_tipo = TipoPubli.objects.get(idTipo = 1)
+        S_status = Status.objects.get(idStatus = 1)
+
+        
+
+        if (PTitulo != '' or PFoto != '' or PDescripcion != '' or T_Parrafo1 != '' or F_Parrafo1 != '' or D_Parrafo1 != '' 
+            or T_Parrafo2 != '' or F_Parrafo2 != '' or D_Parrafo2 != ''or T_Parrafo3 != '' or F_Parrafo3 != '' or D_Parrafo3 != ''):
+            
+            Publicacion.objects.create(fotoPortada = PFoto, tituloPubli = PTitulo, descripcion = PDescripcion, 
+                                        fechaP = fechaActual , usuario = U_usuario ,tipo = T_tipo , status = S_status)
+
+            
+            Parrafo.objects.create( tituloParrafo = T_Parrafo1 ,fotoParrafo =  F_Parrafo1, descripcion = D_Parrafo1 , idPublicacion = Publicacion.objects.get(descripcion = PDescripcion))
+
+            Parrafo.objects.create( tituloParrafo = T_Parrafo2 ,fotoParrafo=  F_Parrafo2, descripcion = D_Parrafo2 , idPublicacion = Publicacion.objects.get(descripcion = PDescripcion))
+
+            Parrafo.objects.create( tituloParrafo = T_Parrafo3 ,fotoParrafo=  F_Parrafo3, descripcion = D_Parrafo3 , idPublicacion = Publicacion.objects.get(descripcion = PDescripcion))
+
+            messages.success(request,'Noticia Registrada!')
+            
+            return redirect('PublicarNoticia')                 
+
+        else:
+            messages.error(request,"Rellena el formulario")
+            return redirect('PublicarNoticia')
+
+    else:
+        print("---------------------------Error en el POST-------------------")
+        return redirect('PublicarNoticia')
+
 
 
 def RegistroUsuarios(request):
-    print("Llego")
-
-
+    
     nombreCompleto_U = request.POST.get('nombre', False)
     correo_U = request.POST.get('correo', False)
     clave_U = request.POST.get('password', False)
@@ -113,8 +169,7 @@ def EditarCuenta(request):
 def PerfilUsuario(request):
     return render(request, 'PrayTheNews/Usuario/PerfilUsuario.html')
 
-def PublicarNoticia(request):
-    return render(request, 'PrayTheNews/Noticias/PublicarNoticia.html')
+
 
 
 def MenuNoticias(request):
