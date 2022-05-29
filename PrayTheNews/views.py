@@ -105,7 +105,7 @@ def RegistroUsuarios(request):
         corr = None
 
 
-    if clave2 is None:
+    if clave2 != False:
         if clave_U == clave2:
             if nombre is None:
                 if corr is None:
@@ -124,6 +124,8 @@ def RegistroUsuarios(request):
             messages.error(request, "Las contraseñas no coinciden")
             return redirect('Formulario') 
     else:
+        print("--------------------------------------------------")
+        print(clave2)
         return redirect('Formulario') 
 
 def LoginUsuario(request):
