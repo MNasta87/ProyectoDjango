@@ -22,6 +22,14 @@ def MenuAnalisis(request):
 def FormularioUsuarios(request):
     return render(request,'PrayTheNews/Login/RegistroUsuario.html')
 
+#Publicar Analisis
+def PublicarAnalisis(request):
+    return render(request, 'PrayTheNews/Analisis/PublicarAnalisis.html') 
+
+def RegistroAnalisis(request):
+    return   
+    
+#Publicar noticia
 def PublicarNoticia(request):
     return render(request, 'PrayTheNews/Noticias/PublicarNoticia.html')
 

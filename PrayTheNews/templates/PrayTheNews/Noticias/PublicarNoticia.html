@@ -97,9 +97,10 @@
       <div class="row justify-content-center pt-5 mt-5 mr-1">
         <div class="col-md-10 formulario" style="margin-bottom: 100px">
           <div class="col-md-12">
-            
-              {% if messages %}
-               {% for x in messages %}
+                    
+            <!-- Menasaje de confirmacion-->
+            {% if messages %}
+              {% for x in messages %}
               <div> 
                 <div class="alert alert-warning" role="alert">
                   <center>{{ x }}</center>
@@ -107,7 +108,19 @@
               </div>
               {% endfor %} 
               
-              {% endif %}
+            {% endif %}
+              
+              
+            <div class="row">
+              <div class="col-sm-4">
+                <a class="btn btn-primary"href="{% url 'PublicarAnalisis' %}">
+                  <-- Volver</a>
+                  
+                
+              </div>
+              <div class="col-sm-4"></div>
+              <div class="col-sm-4"></div>
+            </div>
             <!-- Formulario-->
             <form
               action="{% url 'RegistroNoticia' %}"
@@ -352,17 +365,12 @@
               </div>
 
               <div class="row">
-                <div class="col-sm-4">
-                  <button type="button" class="btn btn-primary">
-                    Cancelar
-                  </button>
-                </div>
                 <div class="col-sm-4"></div>
-                <div class="col-sm-4">
+                <div class="col-sm-4"><center>
                   <button type="submit" class="btn btn-primary" id="submit">
                     Registrar
-                  </button>
-                </div>
+                  </button><center></div>
+                <div class="col-sm-4"></div>
               </div>
             </form>
           </div>
