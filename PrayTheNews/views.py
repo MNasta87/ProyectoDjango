@@ -1,5 +1,6 @@
 import datetime
 from email.message import Message
+import re
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate  
 from django.contrib import auth 
@@ -140,17 +141,15 @@ def LoginUsuario(request):
     if request.method == 'POST':
         correo = request.POST.get('correo')
         clave = request.POST.get('clave')
-
-        usuario = auth.authenticate(correo=correo, clave=clave)
-
+        try:
+            usuario = Usuario.objects.get(correo=correo, clave=clave)
+        except Usuario.DoesNotExist:
+            usuario = None
         if usuario is not None:
-            auth.login(request, usuario)
             return redirect('MenuPrincipal')
         else:
-            messages.info(request, 'Nombre de Usuario o Contraseña invalidos')
+            messages.info(request, "Nombre De Usuario o Contraseña Incorrectos")
             return redirect('LoginUsuario')
-
-
 
     else:
         return render(request, 'PrayTheNews/Login/LoginUsuario.html')
