@@ -180,6 +180,19 @@ def PerfilUsuario(request):
 
 
 
+def PerfilCompleto(request, id):
+
+    Profile = Usuario.objects.get(idUsuario=id)
+    
+    contexto2 = {
+
+        "perfil": Profile
+
+
+    }
+
+    return render(request, "PrayTheNews/Usuario/PerfilRoman.html", contexto2)
+
 
 def MenuNoticias(request):
     Noticia ={"titulo1":" La solución de Riot a los problemas en el Deathmatch de Valorant", 

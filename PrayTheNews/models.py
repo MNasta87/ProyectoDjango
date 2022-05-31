@@ -31,6 +31,7 @@ class Usuario(models.Model):
     correo = models.EmailField(max_length=40, verbose_name="Correo Electronico",null=False, blank=False)
     clave = models.CharField(max_length=200, verbose_name="Contrasenna",null=False, blank=False)
     nickname = models.CharField(max_length=15, verbose_name="NickName",null=False, blank=False)
+    fotoUsuario = models.ImageField(default='media/users/user_default_profile.png',upload_to="Foto de Usuarios")
     telefono = models.CharField(max_length=50,null=True, blank=True)
     linkInstagram = models.CharField(max_length=100, verbose_name="Redes sociales intagram", blank=True)
     linkTwitch = models.CharField(max_length=100, verbose_name="Redes sociales twitch", blank=True)
@@ -40,6 +41,7 @@ class Usuario(models.Model):
 
     def __str__(self):
         return self.nombreCompleto
+        
 
 
 
