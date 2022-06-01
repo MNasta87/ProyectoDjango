@@ -23,6 +23,10 @@ def MenuAnalisis(request):
 def FormularioUsuarios(request):
     return render(request,'PrayTheNews/Login/RegistroUsuario.html')
 
+def EditarCuentaUsuartio(request):
+    return render(request,'PrayTheNews/Usuario/EditarCuentaUsuario.html')
+
+
 #Publicar Analisis
 def PublicarAnalisis(request):
     return render(request, 'PrayTheNews/Analisis/PublicarAnalisis.html') 
