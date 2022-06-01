@@ -27,8 +27,60 @@ def FormularioUsuarios(request):
 def PublicarAnalisis(request):
     return render(request, 'PrayTheNews/Analisis/PublicarAnalisis.html') 
 
+
 def RegistroAnalisis(request):
-    return   
+    if request.method == "POST":
+
+        PTitulo = request.POST['TituloPortada']
+        PFoto = request.FILES['formFile']
+        PDescripcion = request.POST['DPortada']
+        fechaActual = datetime.today().strftime('%Y-%m-%d')
+
+        T_Parrafo1 = request.POST['TParrafo1']
+        F_Parrafo1 = request.FILES['FParrafo1']
+        D_Parrafo1 = request.POST['DParrafo1']
+
+        T_Parrafo2 = request.POST['TParrafo2']
+        F_Parrafo2 = request.FILES['FParrafo2']
+        D_Parrafo2 = request.POST['DParrafo2']
+
+        T_Parrafo3 = request.POST['TParrafo3']
+        F_Parrafo3 = request.FILES['FParrafo3']
+        D_Parrafo3 = request.POST['DParrafo3']
+
+        Conclusion = request.POST['Conclusion']
+
+
+
+        U_usuario = Usuario.objects.get(idUsuario = 141)
+        T_tipo = TipoPubli.objects.get(idTipo = 2)# 2 es tipo conclusion
+        S_status = Status.objects.get(idStatus = 1)
+
+        
+
+        if (PTitulo != '' or PFoto != '' or PDescripcion != '' or T_Parrafo1 != '' or F_Parrafo1 != '' or D_Parrafo1 != '' or Conclusion != ''
+            or T_Parrafo2 != '' or F_Parrafo2 != '' or D_Parrafo2 != ''or T_Parrafo3 != '' or F_Parrafo3 != '' or D_Parrafo3 != ''):
+            
+            Publicacion.objects.create(fotoPortada = PFoto, tituloPubli = PTitulo, descripcion = PDescripcion, 
+                                        fechaP = fechaActual , conclusionP = Conclusion , usuario = U_usuario ,tipo = T_tipo , status = S_status)
+            
+            Parrafo.objects.create( tituloParrafo = T_Parrafo1 ,fotoParrafo =  F_Parrafo1, descripcion = D_Parrafo1 , idPublicacion = Publicacion.objects.get(descripcion = PDescripcion))
+            
+            Parrafo.objects.create( tituloParrafo = T_Parrafo2 ,fotoParrafo=  F_Parrafo2, descripcion = D_Parrafo2 , idPublicacion = Publicacion.objects.get(descripcion = PDescripcion))
+
+            Parrafo.objects.create( tituloParrafo = T_Parrafo3 ,fotoParrafo=  F_Parrafo3, descripcion = D_Parrafo3 , idPublicacion = Publicacion.objects.get(descripcion = PDescripcion))
+
+            messages.success(request,'Analisis registrado!')
+            
+            return redirect('PublicarAnalisis')                 
+
+        else:
+            messages.error(request,"Rellena el formulario")
+            return redirect('PublicarAnalisis')
+
+    else:
+        print("---------------------------Error en el POST-------------------")
+        return redirect('PublicarAnalisis')
     
 #Publicar noticia
 def PublicarNoticia(request):
