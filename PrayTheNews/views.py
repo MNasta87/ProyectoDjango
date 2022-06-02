@@ -172,56 +172,42 @@ def GuardarCuentaAdmin(request):
         Foto = request.FILES['FotoU']
         Correo = request.POST['Correo']
         Nombres = request.POST['Nombres']
+        contra = request.POST['Contra']
 
         Redtwitch = request.POST['Redtwitch']
         RedInsta = request.POST['RedInsta']
         RedTwitter = request.FILES['RedTwitter']
-
-
-
-
-        U_usuario = Usuario.objects.get(idUsuario = 141)
-        T_tipo = TipoPubli.objects.get(idTipo = 2)# 2 es tipo conclusion
-        S_status = Status.objects.get(idStatus = 1)
-
         
 
         try:
-            nombre = Usuario.objects.get( nickname = nickname_U)
+            Existe = Usuario.objects.get( clave = contra,correo = Correo)
         except Usuario.DoesNotExist:
-            nombre = None
+            Existe = None
         try:
-            corr = Usuario.objects.get( correo = correo_U)
+            NickName = Usuario.objects.get( nickname = NickName)
         except Usuario.DoesNotExist:
-            corr = None
+            NickName = None
 
 
-        if clave2 != False:
-            if clave_U == clave2:
-                if nombre is None:
-                    if corr is None:
-                        Usuario.objects.create(nombreCompleto = nombreCompleto_U, correo = correo_U,clave = clave_U,
-                        nickname = nickname_U,telefono = telefono_U,linkInstagram = linkInstagram_U, linkTwitch = linkTwitch_U,
-                        linkTwitter= linkTwitter_U, rol = rol_u)
+        if Existe:
+            if NickName is None:
+                
+                Usuario.objects.create(nombreCompleto = Nombres,
+                nickname = NickName,linkInstagram = RedInsta, linkTwitch = Redtwitch,
+                linkTwitter= RedTwitter)
                         
-                        return redirect('LoginUsuario')
-                    else:
-                        messages.error(request, "El correo ya esta vinculado a una cuenta")
-                        return redirect('Formulario')
-                else:
-                    messages.error(request, "El usuario ya existe")
-                    return redirect('Formulario')
+                return redirect('EditarCuentaAdmin')
+                    
             else:
-                messages.error(request, "Las contraseñas no coinciden")
-                return redirect('Formulario') 
+                messages.error(request, "El Nick Ya existe")
+                return redirect('EditarCuentaAdmin') 
         else:
-            print("--------------------------------------------------")
-            print(clave2)
-            return redirect('Formulario')
+            messages.error(request, "La Contraseña es incorrecta.")
+            return redirect('EditarCuentaAdmin')
 
     else:
         print("---------------------------Error en el POST-------------------")
-        return redirect('PublicarAnalisis')
+        return redirect('EditarCuentaAdmin')
     
 #----------------Fin Cuentas-----------    
 
