@@ -1,8 +1,8 @@
 
 from django.urls import path 
-from .views import EditarCuentaUsuartio, FormularioUsuarios, PerfilCompleto, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,MenuNoticias, NoticiasIndividuales, NoticiaValorant,MenuPrincipal,Catalogo,MenuAnalisis,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarAnalisis,BuscarUsuario,EditarUsuario,CuentaUsuario,EditarCuenta,PerfilUsuario,PublicarNoticia,Logout
+from .views import CambiarContra, EditarCuenta, FormularioUsuarios, GuardarCambiarContra, GuardarCuenta,PerfilCompleto, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,MenuNoticias, NoticiasIndividuales, NoticiaValorant,MenuPrincipal,Catalogo,MenuAnalisis,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarAnalisis,BuscarUsuario,EditarUsuario,CuentaUsuario,PerfilUsuario,PublicarNoticia,Logout
 
-from .views import CambiarContraAdmin, CuentaAdmin, CuentaPerio, EditarCuentaAdmin, EditarCuentaPerio, EditarCuentaU, FormularioUsuarios, GuardarCuentaAdmin, PerfilCompleto, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,MenuNoticias, NoticiasIndividuales, NoticiaValorant,MenuPrincipal,Catalogo,MenuAnalisis,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarAnalisis,BuscarUsuario,EditarUsuario,CuentaUsuario,PerfilUsuario,PublicarNoticia 
+from .views import CuentaAdmin, CuentaPerio, EditarCuentaPerio, EditarCuentaU, FormularioUsuarios, PerfilCompleto, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,MenuNoticias, NoticiasIndividuales, NoticiaValorant,MenuPrincipal,Catalogo,MenuAnalisis,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarAnalisis,BuscarUsuario,EditarUsuario,CuentaUsuario,PerfilUsuario,PublicarNoticia 
                     
 
 
@@ -25,19 +25,22 @@ urlpatterns = [
     path('RegistroAnalisis/',RegistroAnalisis,name="RegistroAnalisis"),
 
     #Perfiles
-    #Admin
-    path('PerfilAdmin/',CuentaAdmin,name="CuentaAdmin"),
-    path('CambiarContraAdmin/',CambiarContraAdmin,name="CambiarContraAdmin"),
+    path('EditarCuenta/',EditarCuenta,name="EditarCuenta"),
+    path('GuardarCuenta/',GuardarCuenta,name="GuardarCuenta"),
     
-    path('EditarCuentaAdmin/',EditarCuentaAdmin,name="EditarCuentaAdmin"),
-    path('GuardarCuentaAdmin/',GuardarCuentaAdmin,name="GuardarCuentaAdmin"),
+    path('CambiarContra/',CambiarContra,name="CambiarContra"),
+    path('GuardarCambiarContra/',GuardarCambiarContra,name="GuardarCambiarContra"),
+
+
+    #Admin
+    path('CuentaAdmin/',CuentaAdmin,name="CuentaAdmin"),
 
     #Usuario
     path('Perfil/',PerfilUsuario,name="PerfilUsuario"),
     path('EditarCuenta/',EditarCuentaU,name="EditarCuentaU"),
     path('CuentaUsuario/',CuentaUsuario,name="CuentaUsuario"),
     #Periodista
-    path('PerfilPeriodista/',CuentaPerio, name = "CuentaPerio"),
+    path('CuentaPeriodista/',CuentaPerio, name = "CuentaPerio"),
     path('EditarCuenta/',EditarCuentaPerio,name="EditarCuentaPerio"),
 
     #-

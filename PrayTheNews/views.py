@@ -156,8 +156,111 @@ def RegistroNoticia(request):
         print("---------------------------Error en el POST-------------------")
         return redirect('PublicarNoticia')
 #------------------Cuentas-----------
+def EditarCuenta(request):
+    return render(request,'PrayTheNews/Usuario/EditarCuenta.html')
 
+def GuardarCuenta(request):
 
+    if request.method == "POST":
+
+        NickName = request.POST['Nick']
+        Foto = request.FILES.get('FotoU','')
+        Correo = request.POST['Correo']
+        Nombres = request.POST['Nombres']
+        contra = request.POST['Contra']
+
+        Redtwitch = request.POST['Redtwitch']
+        RedInsta = request.POST['RedInsta']
+        RedTwitter = request.POST['RedTwitter']
+        
+
+        try:
+            Perfil = Usuario.objects.get( clave = contra,correo = Correo)
+        except Usuario.DoesNotExist:
+            Perfil = None
+            #Comprobar si Cambio su propio nick 
+        try: 
+            CambioNick = Usuario.objects.get( nickname = NickName , correo = Correo)
+        except Usuario.DoesNotExist:
+            CambioNick  = None
+
+        try: 
+            ExisteNick = Usuario.objects.get(nickname = NickName)
+        except Usuario.DoesNotExist:
+            ExisteNick  = None 
+
+        NoGuardo = ""
+
+        if Perfil is not None:
+
+            if CambioNick is None:
+                if ExisteNick is None:
+                    Perfil.nickname = NickName
+                else:
+                    NoGuardo = " Menos el nick. Ya existe"
+                    
+            if Foto != '':
+                Perfil.fotoUsuario = Foto
+            
+            if RedInsta != '':
+                Perfil.linkInstagram = RedInsta
+
+            if Redtwitch != '':
+                Perfil.linkTwitch = Redtwitch
+
+            if RedTwitter != '':
+                Perfil.linkTwitter = RedTwitter
+            
+            if Nombres != '': 
+                Perfil.nombreCompleto = Nombres
+                        
+            Perfil.save()            
+            messages.success(request, "Se Guardaron los datos."+ NoGuardo)            
+            return redirect('EditarCuentaAdmin')             
+
+        else:
+            messages.error(request, "La Contraseña es incorrecta.")
+            return redirect('EditarCuentaAdmin')
+
+    else:
+        print("---------------------------Error en el POST-------------------")
+        return redirect('EditarCuentaAdmin')
+
+def CambiarContra(request):
+    return render(request,'PrayTheNews/Usuario/CambiarContra.html')
+
+def GuardarCambiarContra(request):
+
+    if request.method == "POST":
+        Correo = "AquiCargaCorreo@gmail.com"
+
+        ContraActual = request.POST['contra']
+        Contra1 = request.POST['contra2']
+        Contra2 = request.POST['contra3']
+
+        try:
+            Perfil = Usuario.objects.get( clave = ContraActual ,correo = Correo)
+        except Usuario.DoesNotExist:
+            Perfil = None
+
+    
+        if(Perfil is not None):
+            if(Contra1 == Contra2):
+                Perfil.clave = Contra1
+                Perfil.save()     
+                messages.success(request, "La contraseña a sido modificada")            
+                return redirect('CambiarContra')
+
+            else:
+                messages.success(request, "Las contraseñas nuevas no son iguales.")            
+                return redirect('CambiarContra')
+        else:
+            messages.success(request, "La contraseña Actual es incorrecta.")            
+            return redirect('CambiarContra')
+    else:
+        print("---------------------------Error en el POST-------------------")
+        return redirect('CambiarContra')
+    
 #Periodista
 def CuentaPerio(request):
     return render(request,'PrayTheNews/Periodista/CuentaPeriodista.html')
@@ -175,55 +278,10 @@ def EditarCuentaU(request):
 def CuentaAdmin(request):
     return render(request,'PrayTheNews/Admin/CuentaAdmin.html')
 
-def CambiarContraAdmin(request):
-    return render(request,'PrayTheNews/Admin/CambiarContraAdmin.html')
-
-def EditarCuentaAdmin(request):
-    return render(request,'PrayTheNews/Admin/EditarCuentaAdmin.html')
-
-def GuardarCuentaAdmin(request):
-    if request.method == "POST":
-
-        NickName = request.POST['Nick']
-        Foto = request.FILES['FotoU']
-        Correo = request.POST['Correo']
-        Nombres = request.POST['Nombres']
-        contra = request.POST['Contra']
-
-        Redtwitch = request.POST['Redtwitch']
-        RedInsta = request.POST['RedInsta']
-        RedTwitter = request.FILES['RedTwitter']
-        
-
-        try:
-            Existe = Usuario.objects.get( clave = contra,correo = Correo)
-        except Usuario.DoesNotExist:
-            Existe = None
-        try:
-            NickName = Usuario.objects.get( nickname = NickName)
-        except Usuario.DoesNotExist:
-            NickName = None
 
 
-        if Existe:
-            if NickName is None:
-                
-                Usuario.objects.create(nombreCompleto = Nombres,
-                nickname = NickName,linkInstagram = RedInsta, linkTwitch = Redtwitch,
-                linkTwitter= RedTwitter)
-                        
-                return redirect('EditarCuentaAdmin')
-                    
-            else:
-                messages.error(request, "El Nick Ya existe")
-                return redirect('EditarCuentaAdmin') 
-        else:
-            messages.error(request, "La Contraseña es incorrecta.")
-            return redirect('EditarCuentaAdmin')
 
-    else:
-        print("---------------------------Error en el POST-------------------")
-        return redirect('EditarCuentaAdmin')
+
     
 #----------------Fin Cuentas-----------    
 
@@ -267,7 +325,7 @@ def RegistroUsuarios(request):
                     messages.error(request, "El correo ya esta vinculado a una cuenta")
                     return redirect('Formulario')
             else:
-                messages.error(request, "El usuario ya existe")
+                messages.error(request, "El NickName ya existe")
                 return redirect('Formulario')
         else:
             messages.error(request, "Las contraseñas no coinciden")
