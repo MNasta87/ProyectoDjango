@@ -1,6 +1,6 @@
 import datetime
 from email.message import Message
-import re
+import django.contrib.sessions
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate  
 from django.contrib import auth 
@@ -12,13 +12,29 @@ from .models import Parrafo, Publicacion, Status, TipoPubli, Usuario,Rol
 
 
 def MenuPrincipal(request):
-    return render(request,'PraytheNews/Principal/MenuPrincipal.html')
+    if 'usuario' in request.session:
+        c_usuario = request.session['usuario']
+        contexto = {'c_usuario': c_usuario}
+        return render(request, 'PraytheNews/Principal/MenuPrincipal.html', contexto)
+    else:
+        return render(request, 'PraytheNews/Principal/MenuPrincipal.html')
+    
 
 def Catalogo(request):
-    return render(request,'PrayTheNews/Catalogo/Catalogo.html')
+    if 'usuario' in request.session:
+        c_usuario = request.session['usuario']
+        contexto = {'c_usuario': c_usuario}
+        return render(request, 'PraytheNews/Catalogo/Catalogo.html', contexto)
+    else:
+        return render(request, 'PraytheNews/Catalogo/Catalogo.html')
 
 def MenuAnalisis(request):
-    return render(request,'PrayTheNews/Analisis/MenuAnalisis.html')
+    if 'usuario' in request.session:
+        c_usuario = request.session['usuario']
+        contexto = {'c_usuario': c_usuario}
+        return render(request, 'PraytheNews/Analisis/MenuAnalisis.html', contexto)
+    else:
+        return render(request, 'PraytheNews/Analisis/MenuAnalisis.html')
 
 def FormularioUsuarios(request):
     return render(request,'PrayTheNews/Login/RegistroUsuario.html')
@@ -195,13 +211,14 @@ def RegistroUsuarios(request):
 
 def LoginUsuario(request):
     if request.method == 'POST':
-        correo = request.POST.get('correo')
+        nickname = request.POST.get('nickname')
         clave = request.POST.get('clave')
         try:
-            usuario = Usuario.objects.get(correo=correo, clave=clave)
+            usuario = Usuario.objects.filter(nickname=nickname, clave=clave)
         except Usuario.DoesNotExist:
             usuario = None
-        if usuario is not None:
+        if usuario:
+            request.session['usuario']= nickname
             return redirect('MenuPrincipal')
         else:
             messages.info(request, "Nombre De Usuario o Contraseña Incorrectos")
@@ -211,7 +228,12 @@ def LoginUsuario(request):
         return render(request, 'PrayTheNews/Login/LoginUsuario.html')
 	
 
-	
+def Logout(request):
+    try:
+        del request.session['usuario']
+    except:
+        return redirect('LoginUsuario')
+    return redirect('LoginUsuario')	
 
 def AdministrarUsuario(request):
     return render(request, 'PrayTheNews/Admin/AdministrarUsuario.html')
@@ -251,6 +273,7 @@ def PerfilCompleto(request, id):
 
 
 def MenuNoticias(request):
+   
     Noticia ={"titulo1":" La solución de Riot a los problemas en el Deathmatch de Valorant", 
                 "contenido1":"  Hace unos días Riot Games lanzó de manera oficial el Parche 4.03 de Valorant, y con él una nueva serie de ajustes a Agentes, modos de juego y errores que van surgiendo actualización tras actualización. La salida de este nuevo parche trajo consigo una nueva problemática, esta vez en el modo de juego Deathmatch.", 
                 "miniatura1":"/static/PrayTheNews/img_noticia/img/Valorant-Two-German-leagues-coming-next-year.jpg",
@@ -268,8 +291,12 @@ def MenuNoticias(request):
                 "contenido5":"Las ventas conseguidas por Horizon Forbidden West en cada país no son muy alentadoras. Y es que lo último de Guerrilla se ha colocado como el segundo mayor lanzamiento de PS5 en el mercado británico mientras que los resultados desde Japón nos gritan que Horizon Forbidden West es un fracaso, al menos en las primeras estimaciones de venta de sus copias físicas.",
                 "miniatura5":"static/PrayTheNews/img_noticia/img/horizon-forbidden-west-ps5-playstation-5-1.webp"}
                               
-    
-    return render(request, 'PrayTheNews/Noticias/MenuNoticias.html', Noticia)
+    if 'usuario' in request.session:
+        c_usuario = request.session['usuario']
+        contexto = {'c_usuario': c_usuario}
+        return render(request, 'PraytheNews/Noticias/MenuNoticias.html',Noticia)
+    else:
+        return render(request, 'PraytheNews/Noticias/MenuNoticias.html',Noticia )
 
 def NoticiasIndividuales(request):
 

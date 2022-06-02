@@ -42,27 +42,30 @@
           </li>
 
 
-
+        {%if c_usuario %}
           <li class="nav-item dropdown">
+            
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                   style="padding-right: 70px;">
-                  Perfil
+                   {{c_usuario}}
               </a>
               <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="{% url 'LoginUsuario' %}">Conectate</a></li>
-                  <li><a class="dropdown-item" href="{% url 'RegistroUsuarios'%}">Registrate</a></li>
                   <li><a class="dropdown-item" href="{% url 'CuentaUsuario' %}">Ver Perfil</a></li>
-                  <li>
-                      <hr class="dropdown-divider">
-                  </li>
-                  <li><a class="dropdown-item" href="{% url 'EditarUsuario' %}">Administrador</a></li>
-
-
-
-
+                  <li><a class="dropdown-item" href="{% url 'Logout' %}">Desconectarse</a></li>
               </ul>
           </li>
-
+        {% else %}
+          <li class="nav-item dropdown">  
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+            style="padding-right: 70px;">
+            Conectate
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'LoginUsuario' %}">Inicia sesion</a></li>
+              <li><a class="dropdown-item" href="{% url 'RegistroUsuarios'%}">Registrate</a></li>
+              </ul>
+          </li>
+        {%endif%}
 
       </ul>
 
