@@ -39,8 +39,6 @@ def MenuAnalisis(request):
 def FormularioUsuarios(request):
     return render(request,'PrayTheNews/Login/RegistroUsuario.html')
 
-def EditarCuentaUsuartio(request):
-    return render(request,'PrayTheNews/Usuario/EditarCuentaUsuario.html')
 
 
 #Publicar Analisis
@@ -157,11 +155,95 @@ def RegistroNoticia(request):
     else:
         print("---------------------------Error en el POST-------------------")
         return redirect('PublicarNoticia')
+#------------------Cuentas-----------
+
+
+#Periodista
+def CuentaPerio(request):
+    return render(request,'PrayTheNews/Periodista/CuentaPeriodista.html')
+def EditarCuentaPerio(request):
+    return
+
+#Usuario Normal
+def PerfilUsuario(request):
+    return render(request, 'PrayTheNews/Usuario/PerfilUsuario.html')
+
+def EditarCuentaU(request):
+    return render(request,'PrayTheNews/Usuario/EditarCuentaUsuario.html')
+
+#Cuenta Admin
+def CuentaAdmin(request):
+    return render(request,'PrayTheNews/Admin/CuentaAdmin.html')
+
+def CambiarContraAdmin(request):
+    return render(request,'PrayTheNews/Admin/CambiarContraAdmin.html')
+
+def EditarCuentaAdmin(request):
+    return render(request,'PrayTheNews/Admin/EditarCuentaAdmin.html')
+
+def GuardarCuentaAdmin(request):
+    if request.method == "POST":
+
+        NickName = request.POST['Nick']
+        Foto = request.FILES['FotoU']
+        Correo = request.POST['Correo']
+        Nombres = request.POST['Nombres']
+
+        Redtwitch = request.POST['Redtwitch']
+        RedInsta = request.POST['RedInsta']
+        RedTwitter = request.FILES['RedTwitter']
 
 
 
-def RegistroUsuarios(request):
+
+        U_usuario = Usuario.objects.get(idUsuario = 141)
+        T_tipo = TipoPubli.objects.get(idTipo = 2)# 2 es tipo conclusion
+        S_status = Status.objects.get(idStatus = 1)
+
+        
+
+        try:
+            nombre = Usuario.objects.get( nickname = nickname_U)
+        except Usuario.DoesNotExist:
+            nombre = None
+        try:
+            corr = Usuario.objects.get( correo = correo_U)
+        except Usuario.DoesNotExist:
+            corr = None
+
+
+        if clave2 != False:
+            if clave_U == clave2:
+                if nombre is None:
+                    if corr is None:
+                        Usuario.objects.create(nombreCompleto = nombreCompleto_U, correo = correo_U,clave = clave_U,
+                        nickname = nickname_U,telefono = telefono_U,linkInstagram = linkInstagram_U, linkTwitch = linkTwitch_U,
+                        linkTwitter= linkTwitter_U, rol = rol_u)
+                        
+                        return redirect('LoginUsuario')
+                    else:
+                        messages.error(request, "El correo ya esta vinculado a una cuenta")
+                        return redirect('Formulario')
+                else:
+                    messages.error(request, "El usuario ya existe")
+                    return redirect('Formulario')
+            else:
+                messages.error(request, "Las contraseñas no coinciden")
+                return redirect('Formulario') 
+        else:
+            print("--------------------------------------------------")
+            print(clave2)
+            return redirect('Formulario')
+
+    else:
+        print("---------------------------Error en el POST-------------------")
+        return redirect('PublicarAnalisis')
     
+#----------------Fin Cuentas-----------    
+
+# Registro nuevo Usuario
+def RegistroUsuarios(request):
+    # aqui no va el if del post porque daba errores
     nombreCompleto_U = request.POST.get('nombre', False)
     correo_U = request.POST.get('correo', False)
     clave_U = request.POST.get('password', False)
@@ -250,11 +332,7 @@ def EditarUsuario(request):
 def CuentaUsuario(request):
     return render(request, 'PrayTheNews/Usuario/CuentaUsuario.html')
 
-def EditarCuenta(request):
-    return render(request, 'PrayTheNews/Usuario/EditarCuenta.html')
 
-def PerfilUsuario(request):
-    return render(request, 'PrayTheNews/Usuario/PerfilUsuario.html')
 
 
 
