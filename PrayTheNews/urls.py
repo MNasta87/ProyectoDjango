@@ -1,7 +1,10 @@
 
-from django.urls import path
+from django.urls import path 
+from .views import EditarCuentaUsuartio, FormularioUsuarios, PerfilCompleto, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,MenuNoticias, NoticiasIndividuales, NoticiaValorant,MenuPrincipal,Catalogo,MenuAnalisis,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarAnalisis,BuscarUsuario,EditarUsuario,CuentaUsuario,EditarCuenta,PerfilUsuario,PublicarNoticia,Logout
+
 from .views import CambiarContraAdmin, CuentaAdmin, CuentaPerio, EditarCuentaAdmin, EditarCuentaPerio, EditarCuentaU, FormularioUsuarios, GuardarCuentaAdmin, PerfilCompleto, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,MenuNoticias, NoticiasIndividuales, NoticiaValorant,MenuPrincipal,Catalogo,MenuAnalisis,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarAnalisis,BuscarUsuario,EditarUsuario,CuentaUsuario,PerfilUsuario,PublicarNoticia 
                     
+
 
 
 
@@ -39,6 +42,7 @@ urlpatterns = [
 
     #-
     path('Login/',LoginUsuario,name="LoginUsuario"), 
+    path('Logout/',Logout,name="Logout"),
     path('AdministrarUsuario/',AdministrarUsuario,name="AdministrarUsuario"), 
     path('BuscarAnalisis/',BuscarAnalisis,name="BuscarAnalisis"),
     path('BuscarUsuario/',BuscarUsuario,name="BuscarUsuario"),
