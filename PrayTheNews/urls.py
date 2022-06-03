@@ -37,7 +37,6 @@ urlpatterns = [
 
     #Usuario
     path('Perfil/',PerfilUsuario,name="PerfilUsuario"),
-    path('EditarCuenta/',EditarCuentaU,name="EditarCuentaU"),
     path('CuentaUsuario/',CuentaUsuario,name="CuentaUsuario"),
     #Periodista
     path('CuentaPeriodista/',CuentaPerio, name = "CuentaPerio"),

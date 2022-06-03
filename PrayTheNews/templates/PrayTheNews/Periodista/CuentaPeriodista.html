@@ -5,7 +5,7 @@
   {% load static %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Bootstrap Accordion Menu for All Purpose</title>
+  <title>Cuenta Periodista</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="{% static 'PrayTheNews/css/estilosRegistro.css'%} ">
@@ -208,41 +208,17 @@
                         data-parent="#accordionExample">
                         <div class="card-body">
                           <ul class="list-group">
-                            <li class="list-group-item"><a href="Cuenta-perfil-usuario.html"><i
-                                  class="fa fa-solid fa-address-card"></i>Ver Perfil</a></li>
-                            <li class="list-group-item"><a href="Cuenta-Editar-usuario.html"><i
-                                  class="fa fa-pencil-square"></i>Editar Perfil</a></li>
-                            <li class="list-group-item"><a href="Cuenta-CambiarContra-usuario.html"><i class="fa fa-key"></i>
-                                Cambiar Contraseña</a></li>
+                            
+                            <li class="list-group-item"><a href={% url "EditarCuenta" %}><i
+                              class="fa fa-pencil-square"></i>Editar Perfil</a></li>
+                        <li class="list-group-item"><a href={% url "CambiarContra" %}><i class="fa fa-key"></i>
+                            Cambiar Contraseña</a></li>
 
                           </ul>
                         </div>
                       </div>
                     </div>
-                    <div class="card">
-                      <div class="card-header" id="headingTwo">
-                        <h2 class="mb-0">
-                          <a data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
-                            aria-controls="collapseTwo">
-                            <span><i class="fa fa-users"></i> Administrar</span>
-                            <i class="fa fa-chevron-down toggle rotate"></i>
-                          </a>
-                        </h2>
-                      </div>
-                      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                        data-parent="#accordionExample">
-                        <div class="card-body">
-                          <ul class="list-group">
-                            <li class="list-group-item"><a href="CuentaAdmin-EditarUsuarios.html"><i
-                                  class="fa fa-inbox"></i> Administrar Usuarios <span
-                                  class="badge badge-pill badge-primary"></span></a>
-                            </li>
-
-
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
+                    
 
                     <div class="card">
                       <div class="card-header" id="headingFour">
@@ -258,16 +234,12 @@
                         data-parent="#accordionExample">
                         <div class="card-body">
                           <ul class="list-group">
-                            <li class="list-group-item"><a href="CuentaAdmin-BuscarUsuarios.html"><i
-                                  class="fa fa-search"></i>
-                                Buscar Notica</a></li>
+                            
+                            <li class="list-group-item"><a href={% url "PublicarNoticia" %}><i class="fa fa-newspaper-o"></i>
+                                Publicar Noticia</a></li>
 
-
-                            <li class="list-group-item"><a href="CuentaAdmin-BuscarAnalisis.html"><i
-                                  class="fa fa-search-plus"></i>
-                                Buscar Analisis</a></li>
-                            <li class="list-group-item"><a href="#"><i class="fa fa-newspaper-o"></i>
-                                Publicar Post</a></li>
+                            <li class="list-group-item"><a href={% url "PublicarAnalisis" %}><i class="fa fa-newspaper-o"></i>
+                                Publicar Analisis</a></li>
 
                           </ul>
                         </div>
