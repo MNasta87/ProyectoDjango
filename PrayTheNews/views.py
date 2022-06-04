@@ -14,6 +14,7 @@ from .models import Parrafo, Publicacion, Status, TipoPubli, Usuario,Rol
 def MenuPrincipal(request):
     if 'usuario' in request.session:
         c_usuario = request.session['usuario']
+        
         contexto = {'c_usuario': c_usuario}
         return render(request, 'PraytheNews/Principal/MenuPrincipal.html', contexto)
     else:
@@ -101,7 +102,7 @@ def RegistroAnalisis(request):
         return redirect('PublicarAnalisis')
     
 #Publicar noticia
-def PublicarNoticia(request):
+def PublicarNoticia(request):  
     return render(request, 'PrayTheNews/Noticias/PublicarNoticia.html')
 
 def RegistroNoticia(request):
@@ -156,6 +157,53 @@ def RegistroNoticia(request):
         print("---------------------------Error en el POST-------------------")
         return redirect('PublicarNoticia')
 #------------------Cuentas-----------
+
+def PerfilConf(request):
+    c_usuario = request.session['usuario']
+    try:
+        U_usuario = Usuario.objects.get(nickname = c_usuario)
+    except Usuario.DoesNotExist:
+        U_usuario = None
+
+    try:
+        Admin = Usuario.objects.get(nickname = c_usuario,rol = 3)#"Administrador"
+    except Usuario.DoesNotExist:
+        Admin = None
+
+    try:
+        Usu = Usuario.objects.get(nickname = c_usuario,rol = 1 )#"Usuario"
+    except Usuario.DoesNotExist:
+        Usu = None
+
+    try:
+        Perio = Usuario.objects.get(nickname = c_usuario,rol = 2)#"Periodista"
+    except Usuario.DoesNotExist:
+        Perio = None
+
+    
+    if(U_usuario is not None):
+        if(Admin is not None):
+            print("------------------------------Admin--------------------------------")
+            return redirect('CuentaAdmin')
+
+        if(Usu is not None):
+            print("------------------------------Usu--------------------------------")
+            return redirect('CuentaUsuario')
+            
+        elif(Perio is not None):
+            print("------------------------------Perio--------------------------------")
+            return redirect('CuentaPerio')
+
+        else:
+            print("--------------------------------------------------------------")
+            print("------------ERROR EN EL USUARIO---------")
+            return redirect('MenuPrincipal')  
+    
+    else:
+        print("--------------------------------------------------------------")
+        print("------------ERROR EN EL USUARIO 11---------")
+        return redirect('MenuPrincipal')   
+
 def EditarCuenta(request):
     return render(request,'PrayTheNews/Usuario/EditarCuenta.html')
 
@@ -264,19 +312,15 @@ def GuardarCambiarContra(request):
 #Periodista
 def CuentaPerio(request):
     return render(request,'PrayTheNews/Periodista/CuentaPeriodista.html')
-def EditarCuentaPerio(request):
-    return
 
 #Usuario Normal
-def PerfilUsuario(request):
-    return render(request, 'PrayTheNews/Usuario/PerfilUsuario.html')
-
-def EditarCuentaU(request):
-    return render(request,'PrayTheNews/Usuario/EditarCuentaUsuario.html')
+def CuentaUsuario(request):
+    return render(request,'PrayTheNews/Usuario/CuentaUsuario.html')
 
 #Cuenta Admin
 def CuentaAdmin(request):
     return render(request,'PrayTheNews/Admin/CuentaAdmin.html')
+
 
 
 

@@ -1,8 +1,8 @@
 
 from django.urls import path 
-from .views import CambiarContra, EditarCuenta, FormularioUsuarios, GuardarCambiarContra, GuardarCuenta,PerfilCompleto, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,MenuNoticias, NoticiasIndividuales, NoticiaValorant,MenuPrincipal,Catalogo,MenuAnalisis,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarAnalisis,BuscarUsuario,EditarUsuario,CuentaUsuario,PerfilUsuario,PublicarNoticia,Logout
+from .views import CambiarContra, EditarCuenta, FormularioUsuarios, GuardarCambiarContra, GuardarCuenta,PerfilCompleto, PerfilConf, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,MenuNoticias, NoticiasIndividuales, NoticiaValorant,MenuPrincipal,Catalogo,MenuAnalisis,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarAnalisis,BuscarUsuario,EditarUsuario,CuentaUsuario,PublicarNoticia,Logout
 
-from .views import CuentaAdmin, CuentaPerio, EditarCuentaPerio, EditarCuentaU, FormularioUsuarios, PerfilCompleto, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,MenuNoticias, NoticiasIndividuales, NoticiaValorant,MenuPrincipal,Catalogo,MenuAnalisis,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarAnalisis,BuscarUsuario,EditarUsuario,CuentaUsuario,PerfilUsuario,PublicarNoticia 
+from .views import CuentaAdmin, CuentaPerio,FormularioUsuarios, PerfilCompleto, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,MenuNoticias, NoticiasIndividuales, NoticiaValorant,MenuPrincipal,Catalogo,MenuAnalisis,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarAnalisis,BuscarUsuario,EditarUsuario,CuentaUsuario,PublicarNoticia 
                     
 
 
@@ -31,16 +31,16 @@ urlpatterns = [
     path('CambiarContra/',CambiarContra,name="CambiarContra"),
     path('GuardarCambiarContra/',GuardarCambiarContra,name="GuardarCambiarContra"),
 
-
+    path('PerfilConf/',PerfilConf,name="PerfilConf"),
+    
     #Admin
     path('CuentaAdmin/',CuentaAdmin,name="CuentaAdmin"),
 
     #Usuario
-    path('Perfil/',PerfilUsuario,name="PerfilUsuario"),
     path('CuentaUsuario/',CuentaUsuario,name="CuentaUsuario"),
     #Periodista
     path('CuentaPeriodista/',CuentaPerio, name = "CuentaPerio"),
-    path('EditarCuenta/',EditarCuentaPerio,name="EditarCuentaPerio"),
+    
 
     #-
     path('Login/',LoginUsuario,name="LoginUsuario"), 
