@@ -1,8 +1,8 @@
 
 from django.urls import path 
-from .views import CambiarContra, EditarCuenta, FormularioUsuarios, GuardarCambiarContra, GuardarCuenta,PerfilCompleto, PerfilConf, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,MenuNoticias, NoticiasIndividuales, NoticiaValorant,MenuPrincipal,Catalogo,MenuAnalisis,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarAnalisis,BuscarUsuario,EditarUsuario,CuentaUsuario,PublicarNoticia,Logout
+from .views import CambiarContra, EditarCuenta, FormularioUsuarios, GuardarCambiarContra, GuardarCuenta,PerfilCompleto, PerfilConf, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,MenuNoticias, NoticiasIndividuales, NoticiaValorant,MenuPrincipal,Catalogo,MenuAnalisis,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarPublicacion,BuscarUsuario,EditarUsuario,CuentaUsuario,PublicarNoticia,Logout
 
-from .views import CuentaAdmin, CuentaPerio,FormularioUsuarios, PerfilCompleto, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,MenuNoticias, NoticiasIndividuales, NoticiaValorant,MenuPrincipal,Catalogo,MenuAnalisis,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarAnalisis,BuscarUsuario,EditarUsuario,CuentaUsuario,PublicarNoticia 
+from .views import CuentaAdmin, CuentaPerio,FormularioUsuarios, PerfilCompleto, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,MenuNoticias, NoticiasIndividuales, NoticiaValorant,MenuPrincipal,Catalogo,MenuAnalisis,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarPublicacion,BuscarUsuario,EditarUsuario,CuentaUsuario,PublicarNoticia 
                     
 
 
@@ -46,7 +46,7 @@ urlpatterns = [
     path('Login/',LoginUsuario,name="LoginUsuario"), 
     path('Logout/',Logout,name="Logout"),
     path('AdministrarUsuario/',AdministrarUsuario,name="AdministrarUsuario"), 
-    path('BuscarAnalisis/',BuscarAnalisis,name="BuscarAnalisis"),
+    path('BuscarPublicacion/',BuscarPublicacion,name="BuscarPublicacion"),
     path('BuscarUsuario/',BuscarUsuario,name="BuscarUsuario"),
     path('EditarUsuario/',EditarUsuario,name="EditarUsuario"),
     

@@ -5,7 +5,7 @@
     {% load static %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Bootstrap Accordion Menu for All Purpose</title>
+    <title>Buscar Usuario</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'PrayTheNews/css/estilosRegistro.css'%} ">
@@ -143,75 +143,74 @@
 
     <!-- BARRA NAVEGACIÓN -->
     
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark border-primary">
-        <div class="container-fluid">
-            <a href="#" class="navbar-brand"><img src="{%static 'PrayTheNews/img_noticia/img/logo_small.png'%}" alt="" width="100"></a>
-            <button type="button"
-                class="navbar-toggler"
-                data-bs-toggle="collapse"
-                data-bs-target="#MenuNavegacion">
-                    <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-      
-      <div id="MenuNavegacion" class="collapse navbar-collapse">
-      <ul class="navbar-nav ms-3">
-      <li class="nav-item">
-                    <a class="nav-link active" href="{% url 'MenuPrincipal' %}">Inicio</a>
-                </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="{% url 'MenuNoticias' %}">Noticias</a>
-                </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="{% url 'MenuAnalisis' %}">Analisis</a>
-                    
-                </li>
-      
-      
-                
-      
-                <li class="nav-item">
-                  <a class="nav-link" href="Lanzamientos.html">Lanzamientos</a>
-                </li>
-      
-                <li class="nav-item">
-                    <a class="nav-link" href="catalogoPS.html">Catalogo</a>
-                </li>
-      
-      
-      
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" style="padding-right: 70px;">
-                      Perfil
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="LoginUsuario.html">Conectate</a></li>
-                      <li><a class="dropdown-item" href="Registro de usuario(Listo).html">Registrate</a></li>
-                      <li><a class="dropdown-item" href="Cuenta-perfil-usuario.html">Ver Perfil</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="CuentaAdmin-EditarUsuarios.html">Administrador</a></li>
-                      
-      
-                      
-                      
-                    </ul>
-                </li>
-      
-      
-      </ul>
-            
-      </div>
-      </nav>
-
-
-
-
+    <div id="MenuNavegacion" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-3">
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'MenuPrincipal'  %}">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'MenuNoticias'%}">Noticias</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'MenuAnalisis'%}">Analisis</a>
+    
+            </li>
+    
+            <li class="nav-item">
+                <a class="nav-link" href="{%url 'Catalogo'%}">Catalogo</a>
+            </li>
+    
+    
+          {%if c_usuario %}
+            <li class="nav-item dropdown">
+              
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    style="padding-right: 70px;">
+                     {{c_usuario}}
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'CuentaUsuario' %}">Ver Perfil</a></li>
+    
+                    <li><a class="dropdown-item" href="{% url 'Logout' %}">Desconectarse</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="{% url 'CuentaAdmin' %}">Administrador</a></li>
+    
+    
+    
+    
+                </ul>
+            </li>
+          {% else %}
+            <li class="nav-item dropdown">  
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+              style="padding-right: 70px;">
+              Conectate
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'LoginUsuario' %}">Inicia sesion</a></li>
+                <li><a class="dropdown-item" href="{% url 'RegistroUsuarios'%}">Registrate</a></li>
+                </ul>
+            </li>
+          {%endif%}
+    
+        </ul>
+    
+    </div>
+    </nav>
+    
+    
+    
+    
+    
+    
     <div class="container" style="margin-bottom: 70px;">
         <div class="row justify-content-center pt-5 mt-5 mr-1">
             <div class="col-md-12 formulario3">
-
-
-
+    
+    
+    
                 <div class="container-lg mt-5">
                     <div class="row">
                         <div class="container-lg mt-5">
@@ -243,7 +242,7 @@
                                                         <li class="list-group-item"><a href="Cuenta-CambiarContra-usuario.html"><i
                                                                     class="fa fa-key"></i>
                                                                 Cambiar Contraseña</a></li>
-
+    
                                                     </ul>
                                                 </div>
                                             </div>
@@ -267,13 +266,13 @@
                                                                     class="fa fa-inbox"></i> Administrar Usuarios <span
                                                                     class="badge badge-pill badge-primary"></span></a>
                                                         </li>
-
-
+    
+    
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
-
+    
                                         <div class="card">
                                             <div class="card-header" id="headingFour">
                                                 <h2 class="mb-0">
@@ -292,8 +291,8 @@
                                                                 href="CuentaAdmin-BuscarUsuarios.html"><i
                                                                     class="fa fa-search"></i>
                                                                 Buscar Notica</a></li>
-
-
+    
+    
                                                         <li class="list-group-item"><a
                                                                 href="CuentaAdmin-BuscarAnalisis.html"><i
                                                                     class="fa fa-search-plus"></i>
@@ -301,7 +300,7 @@
                                                         <li class="list-group-item"><a href="#"><i
                                                                     class="fa fa-newspaper-o"></i>
                                                                 Publicar Post</a></li>
-
+    
                                                     </ul>
                                                 </div>
                                             </div>
@@ -315,14 +314,14 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
-
-
+    
+    
+    
+    
+    
+    
                                 <!--PERFIL USUARIO-->
-
+    
                                 <div class="col">
                                     <div class="row">
                                         <div class="col mb-3">
@@ -331,138 +330,89 @@
                                                     <div class="e-profile">
                                                         <div class="row">
                                                             <div class="col-12 col-sm-auto mb-3">
-
+    
                                                                 <header style="margin-bottom: 10px;">
-                                                                    <h3>Buscar Noticia</h3>
-
-
+                                                                    <h3>Buscar Publicacion</h3>
+    
+    
                                                                 </header>
-
-                                                                <div class="d-flex justify-content-end"
-                                                                    style="margin-bottom: 40px">
-                                                                    <input type="text" id="age" name="age" class="form-control"
-                                                                        id="myInput" onkeyup="myFunction()"
-                                                                        placeholder="Buscar por id..."
-                                                                        title="Type in a name">
-
-                                                                </div>
-
-
-
-
-
-
-
-
-
-
-
+                                                                
+                                                                <form method="GET" action=".">
+                                                                    <div class="form-row">
+                                                                        <div class="form-group col-12">
+                                                                            <div class="input-group">
+                                                                                <input class="form-control py-2 border-right-0 border" type="search" name="tipo_usuario" placeholder="Ingresar Tipo de Publicacion" />
+                                                                                <span class="input-group-append">
+                                                                                    <div class="input-group-text bg-transparent">
+                                                                                        <i class="fa fa-search"></i>
+                                                                                    </div>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>        
+                                                                    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
                                                                 <div class="main-wrapper">
                                                                     <div class="responsive-table">
                                                                         <table class="table">
                                                                             <thead>
                                                                                 <tr>
-                                                                                    <th scope="col">Nº </th>
-                                                                                    <th scope="col">ID Noticia</th>
-                                                                                    <th scope="col">Fecha Noticia</th>
-                                                                                    <th scope="col">Usuario</th>
-                                                                                    <th scope="col">Ver Noticia</th>
-
-
-
+                                                                                    <th scope="col">Rol</th>
+                                                                                    <th scope="col">ID Usuario</th>
+                                                                                    <th scope="col">Nombre Completo</th>
+                                                                                    <th scope="col">Correo</th>
+                                                                                    <th scope="col">Ver Publicacion</th>
+    
+    
+    
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody>
+                                                                                {% for user  in lista_usuario %}
                                                                                 <tr>
-                                                                                    <th scope="row">1</th>
-                                                                                    <td>1234</td>
-                                                                                    <td>23-04-2022</td>
-                                                                                    <td>Jose Perez</td>
+                                                                                    <td>{{user.rol}}</td>
+                                                                                    <td>{{user.idUsuario}}</td>
+                                                                                    <td>{{user.nombreCompleto}}</td>
+                                                                                    <td>{{user.correo}}</td>
                                                                                     <td>
-
-                                                                                        <a href="NoticiaEldenRing.html"
-                                                                                            target="_blank">
-                                                                                            <button type="button"
-                                                                                                class="btn btn-primary">
-
-                                                                                                <i class="far fa-eye">
-                                                                                                </i>
-                                                                                            </button>
-
-                                                                                        </a>
-
+                                                                                        
+                                                                                        
+                                                                                        
+                                                                                        <a href="PaginaAnalisis-Blasphemous .html"
+                                                                                        target="_blank">
                                                                                         <button type="button"
-                                                                                            class="btn btn-dark"
-                                                                                            class="btn btn btn-dark ms-1"
-                                                                                            data-href="/delete.php?id=54"
-                                                                                            data-toggle="modal"
-                                                                                            data-target="#confirm-delete"><i
-                                                                                                class=" far fa-trash-alt"></i></button>
-                                                                                    </td>
-
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <th scope="row">2</th>
-                                                                                    <td>1235</td>
-                                                                                    <td>21-04-2022</td>
-                                                                                    <td>Pablo Perez</td>
-                                                                                    <td>
-
-                                                                                        <a href="NoticiaEldenRing.html"
-                                                                                            target="_blank">
-                                                                                            <button type="button"
-                                                                                                class="btn btn-primary">
-
-                                                                                                <i class="far fa-eye">
-                                                                                                </i>
-                                                                                            </button>
-
-                                                                                        </a>
-
-                                                                                        <button type="button"
-                                                                                            class="btn btn-dark"
-                                                                                            class="btn btn btn-dark ms-1"
-                                                                                            data-href="/delete.php?id=54"
-                                                                                            data-toggle="modal"
-                                                                                            data-target="#confirm-delete"><i
-                                                                                                class=" far
-                                                                                        fa-trash-alt"></i></button>
-                                                                                    </td>
-
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <th scope="row">3</th>
-                                                                                    <td>1236</td>
-                                                                                    <td>19-04-2022</td>
-                                                                                    <td>Roman Rojas</td>
-                                                                                    <td>
-
-
-                                                                                        <a href="NoticiaEldenRing.html"
-                                                                                            target="_blank">
-                                                                                            <button type="button"
-                                                                                                class="btn btn-primary">
-
-                                                                                                <i class="far fa-eye">
-                                                                                                </i>
-                                                                                            </button>
-
-                                                                                        </a>
-
-                                                                                        <button type="button"
-                                                                                            class="btn btn-dark"
-                                                                                            class="btn btn btn-dark ms-1"
-                                                                                            data-href="/delete.php?id=54"
-                                                                                            data-toggle="modal"
-                                                                                            data-target="#confirm-delete"><i
-                                                                                                class=" far
-                                                                                        fa-trash-alt"></i></button>
-                                                                                    </td>
-
-                                                                                </tr>
-
-
-
+                                                                                        class="btn btn-primary">
+                                                                                        
+                                                                                        <i class="far fa-eye">
+                                                                                        </i>
+                                                                                    </button>
+                                                                                    
+                                                                                </a>
+                                                                                
+                                                                                <button type="button"
+                                                                                class="btn btn-dark"
+                                                                                class="btn btn btn-dark ms-1"
+                                                                                data-href="/delete.php?id=54"
+                                                                                data-toggle="modal"
+                                                                                data-target="#confirm-delete"><i
+                                                                                class=" far
+                                                                                fa-trash-alt"></i></button>
+                                                                            </td>
+                                                                            
+                                                                        </tr>
+                                                                        {% endfor %}
+                                                                                
+    
+    
                                                                             </tbody>
                                                                         </table>
                                                                     </div>
@@ -475,44 +425,52 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
-
+    
+    
+    
+    
+    
+    
                             </div>
                         </div>
                     </div>
-
-
-
-
+                    <script>
+                        $('#confirm-delete').on('show.bs.modal', function (e) {
+                            $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    
+                            $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
+                        });
+                    </script>
+    
+    
+    
+    
                     <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog"
                         aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-
+    
                                 <div class="d-flex justify-content-between">
                                     <div class="modal-header">
-
-                                        <h4 class="modal-title wtitulos" id="myModalLabel">Eliminar Noticia</h4>
+    
+                                        <h4 class="modal-title wtitulos" id="myModalLabel">Eliminar Analisis</h4>
                                     </div>
-
+    
                                 </div>
-
+    
                                 <div class="modal-body ">
                                     <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
-                                    <p class="p1">Está a punto de eliminar la Noticia de este usuario, este
+                                    <p class="p1">Está a punto de eliminar un Analisis de este usuario, este
                                         procedimiento es irreversible.
                                         Estas seguro que
-                                        deseas ELIMINAR esta Noticia?</p>
-
-
-                                    <p class="p3">Noticia ID: <a href="NoticiaEldenRing.html" target="_black">1235</a>
-                                    </p>
-
+                                        deseas ELIMINAR este Analisis?</p>
+    
+    
+                                    <p class="p3">Analisis ID: <a href="Noticia elden ring.html"
+                                            target="_black">2224</a></p>
+    
                                 </div>
-
+    
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                     <a class="btn btn-dark btn-ok" style="color: white;">Eliminar</a>
@@ -520,21 +478,20 @@
                             </div>
                         </div>
                     </div>
-
-
+    
+    
                 </div>
-
-
-
+    
+    
+    
             </div>
-
-
-
+    
+    
+    
         </div>
-
-
-   </div>
-
+    </div>
+    
+    
 
  <!-- Footer -->
     <footer class="text-center text-lg-start bg-dark text-muted">
