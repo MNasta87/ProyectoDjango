@@ -204,8 +204,19 @@ def PerfilConf(request):
         print("------------ERROR EN EL USUARIO 11---------")
         return redirect('MenuPrincipal')   
 
+
 def EditarCuenta(request):
-    return render(request,'PrayTheNews/Usuario/EditarCuenta.html')
+    Nick = request.session['usuario']
+    try:
+        InfoUsuario = Usuario.objects.get(nickname = Nick)
+    except Usuario.DoesNotExist:
+        InfoUsuario = None
+    
+    
+    contexto = {'nombreCompleto': InfoUsuario.nombreCompleto,'correo': InfoUsuario.correo,'nickname': InfoUsuario.nickname,'fotoUsuario': InfoUsuario.fotoUsuario,
+    'linkInstagram': InfoUsuario.linkInstagram,'linkTwitch': InfoUsuario.linkTwitch,'linkTwitter': InfoUsuario.linkTwitter,'rol': InfoUsuario.rol}
+    return render(request,'PrayTheNews/Usuario/EditarCuenta.html', contexto)
+
 
 def GuardarCuenta(request):
 
@@ -264,15 +275,15 @@ def GuardarCuenta(request):
                         
             Perfil.save()            
             messages.success(request, "Se Guardaron los datos."+ NoGuardo)            
-            return redirect('EditarCuentaAdmin')             
+            return redirect('EditarCuenta')             
 
         else:
             messages.error(request, "La Contraseña es incorrecta.")
-            return redirect('EditarCuentaAdmin')
+            return redirect('EditarCuenta')
 
     else:
         print("---------------------------Error en el POST-------------------")
-        return redirect('EditarCuentaAdmin')
+        return redirect('EditarCuenta')
 
 def CambiarContra(request):
     return render(request,'PrayTheNews/Usuario/CambiarContra.html')
@@ -337,7 +348,6 @@ def RegistroUsuarios(request):
     clave_U = request.POST.get('password', False)
     clave2 = request.POST.get('password2',False)
     nickname_U = request.POST.get('usuario', False)
-    telefono_U = request.POST.get('telefono', False)
 
     linkInstagram_U = ''
     linkTwitch_U = ''
@@ -361,7 +371,7 @@ def RegistroUsuarios(request):
             if nombre is None:
                 if corr is None:
                     Usuario.objects.create(nombreCompleto = nombreCompleto_U, correo = correo_U,clave = clave_U,
-                    nickname = nickname_U,telefono = telefono_U,linkInstagram = linkInstagram_U, linkTwitch = linkTwitch_U,
+                    nickname = nickname_U,linkInstagram = linkInstagram_U, linkTwitch = linkTwitch_U,
                     linkTwitter= linkTwitter_U, rol = rol_u)
                     
                     return redirect('LoginUsuario')

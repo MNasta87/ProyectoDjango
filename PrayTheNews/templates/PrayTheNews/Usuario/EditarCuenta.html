@@ -240,10 +240,10 @@
                                                                                     <div class="text-center text-sm-left mb-2 mb-sm-0">
                                                                                         <h4
                                                                                             class="pt-sm-2 pb-1 mb-0 text-nowrap">
-                                                                                            Deberia cagar su Nombre</h4>
+                                                                                            {{nombreCompleto}}</h4>
                                                                                         <p class="mb-0"
                                                                                             style="color: #007bff;">
-                                                                                            @Deberia cargar su nick</p>
+                                                                                            @{{nickname}}</p>
 
                                                                                                                                                                              
                                                                                             
@@ -251,7 +251,7 @@
                                                                                 </div>
                                                                                 <div class="col-12 col-sm-6 col-mb-4">  
                                                                                     <div class="text-center text-sm-right">
-                                                                                        <span class="badge badge-secondary">Aqui iria el rol</span>
+                                                                                        <span class="badge badge-secondary">Rol: {{rol}}</span>
                         
                                                                                     </div>
                                                                                 </div>
@@ -278,7 +278,7 @@
                                                                                                                 name="Nick" id ='Nick'
                                                                                                                 minlength="4" maxlength="15" required pattern="[A-Za-z0-9_?]+" required 
                                                                                                                 
-                                                                                                                value="AquiCargaElNick">
+                                                                                                                value="{{nickname}}">
                                                                                                                 <p style="color: black">El NickName tiene que ser de 4 a 15 dígitos. Solo puede
                                                                                                                     contener
                                                                                                                     numeros y letras.</p>
@@ -296,7 +296,7 @@
                                                                                                                 name="Correo"
                                                                                                                 id = "Correo"
                                                                                                                 readonly
-                                                                                                                value="AquiCargaCorreo@gmail.com">
+                                                                                                                value="{{correo}}">
                                                                                                         </div>
                                                                                                         <p style="color: black">El Correo no se puede editar.</p>
                                                                                                     </div>
@@ -312,8 +312,10 @@
                                                                                                                 name = "Nombres"
                                                                                                                 id = "Nombres"
                                                                                                                 type="text"
-                                                                                                                value="Debe cargar su nombre"
-                                                                                                                maxlength="40" required pattern="[A-Za-z ?]+" required>
+                                                                                                                
+                                                                                                                maxlength="40" required pattern="[A-Za-z ?]+" required
+                                                                                                                value="{{nombreCompleto}}"
+                                                                                                                >
                                                                                                         </div>
                                                                                                         <p style="color: black">El nombre solo puede contener letras y un maximo de 40 digitos.</p>
                                                                                                     </div>
@@ -358,13 +360,12 @@
                                                                                                                 <input
                                                                                                                     type="text"
                                                                                                                     class="form-control"
-                                                                                                                    placeholder="https://www.twitch.com"
                                                                                                                     maxlength="20"
                                                                                                                     name = "Redtwitch"
                                                                                                                     id= "Redtwitch"
                                                                                                                     aria-label="Linkedin"
-                                                                                                                    
-                                                                                                                    style="margin-bottom: 20px;">
+                                                                                                                    style="margin-bottom: 20px;"
+                                                                                                                    value="{{linkTwitch}}">
                                                                                                             </div>
                                                                                                             <!-- Instragram -->
                                                                                                             <div
@@ -380,9 +381,10 @@
                                                                                                                     class="form-control"
                                                                                                                     name = "RedInsta"
                                                                                                                     id = "RedInsta"
-                                                                                                                    placeholder="https://cl.linkedin.com"
+                                                                                                                    
                                                                                                                     maxlength="20"
                                                                                                                     aria-label="Instragram"
+                                                                                                                    value="{{linkInstagram}}"
                                                                                                                     >
                                                                                                             </div>
                                                                                                             <div
@@ -397,7 +399,7 @@
                                                                                                                     id = "RedTwitter"
                                                                                                                     class="form-control"
                                                                                                                     maxlength="20"
-                                                                                                                    placeholder="http://www.twitter.com"
+                                                                                                                    value="{{linkTwitter}}"
                                                                                                                     >
                                                                                                             </div>
                                                                                                         </div>
