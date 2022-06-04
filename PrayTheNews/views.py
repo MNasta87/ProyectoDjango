@@ -381,14 +381,15 @@ def RegistroUsuarios(request):
 
 def LoginUsuario(request):
     if request.method == 'POST':
-        nickname = request.POST.get('nickname')
+        Correo = request.POST.get('Correo')
         clave = request.POST.get('clave')
         try:
-            usuario = Usuario.objects.filter(nickname=nickname, clave=clave)
+            usuario = Usuario.objects.get(correo=Correo, clave=clave)
         except Usuario.DoesNotExist:
             usuario = None
         if usuario:
-            request.session['usuario']= nickname
+            nick = usuario.nickname
+            request.session['usuario']= nick
             return redirect('MenuPrincipal')
         else:
             messages.info(request, "Nombre De Usuario o Contraseña Incorrectos")
