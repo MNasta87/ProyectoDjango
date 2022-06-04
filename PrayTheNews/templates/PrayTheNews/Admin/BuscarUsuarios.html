@@ -143,215 +143,221 @@
 
     <!-- BARRA NAVEGACIÓN -->
     
-    <div id="MenuNavegacion" class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-3">
-            <li class="nav-item">
-                <a class="nav-link active" href="{% url 'MenuPrincipal'  %}">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'MenuNoticias'%}">Noticias</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'MenuAnalisis'%}">Analisis</a>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark border-primary">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand"><img src="{% static 'PrayTheNews/img/logo_small.png'%}" alt="" width="100"></a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#MenuNavegacion">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+      
+        <div id="MenuNavegacion" class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-3">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'MenuPrincipal'  %}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'MenuNoticias'%}">Noticias</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'MenuAnalisis'%}">Analisis</a>
+      
+                </li>
+      
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'Catalogo'%}">Catalogo</a>
+                </li>
+      
+      
+              {%if c_usuario %}
+                <li class="nav-item dropdown">
+                  
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        style="padding-right: 70px;">
+                         {{c_usuario}}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'CuentaUsuario' %}">Ver Perfil</a></li>
+      
+                        <li><a class="dropdown-item" href="{% url 'Logout' %}">Desconectarse</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'CuentaAdmin' %}">Administrador</a></li>
+      
+      
+      
+      
+                    </ul>
+                </li>
+              {% else %}
+                <li class="nav-item dropdown">  
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  style="padding-right: 70px;">
+                  Conectate
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'LoginUsuario' %}">Inicia sesion</a></li>
+                    <li><a class="dropdown-item" href="{% url 'RegistroUsuarios'%}">Registrate</a></li>
+                    </ul>
+                </li>
+              {%endif%}
+      
+            </ul>
+      
+        </div>
+      </nav>
+      
     
-            </li>
-    
-            <li class="nav-item">
-                <a class="nav-link" href="{%url 'Catalogo'%}">Catalogo</a>
-            </li>
-    
-    
-          {%if c_usuario %}
-            <li class="nav-item dropdown">
-              
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    style="padding-right: 70px;">
-                     {{c_usuario}}
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{% url 'CuentaUsuario' %}">Ver Perfil</a></li>
-    
-                    <li><a class="dropdown-item" href="{% url 'Logout' %}">Desconectarse</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="{% url 'CuentaAdmin' %}">Administrador</a></li>
     
     
     
     
-                </ul>
-            </li>
-          {% else %}
-            <li class="nav-item dropdown">  
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-              style="padding-right: 70px;">
-              Conectate
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'LoginUsuario' %}">Inicia sesion</a></li>
-                <li><a class="dropdown-item" href="{% url 'RegistroUsuarios'%}">Registrate</a></li>
-                </ul>
-            </li>
-          {%endif%}
-    
-        </ul>
-    
-    </div>
-    </nav>
+        <div class="container" style="margin-bottom: 70px;">
+            <div class="row justify-content-center pt-5 mt-5 mr-1">
+                <div class="col-md-12 formulario3">
     
     
     
+                    <div class="container-lg mt-5">
+                        <div class="row">
+                            <div class="container-lg mt-5">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <div class="accordion mb-2" id="accordionExample">
+                                            <div class="card">
+                                                <div class="card-header" id="headingOne">
+                                                    <h2 class="mb-0">
+                                                        <a data-toggle="collapse" data-target="#collapseOne"
+                                                            aria-expanded="false" aria-controls="collapseOne">
+                                                            <span><i class="fa fa-user"></i> Cuenta</span>
+                                                            <i class="fa fa-chevron-down toggle"></i>
+                                                        </a>
+                                                    </h2>
+                                                </div>
+                                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                                    data-parent="#accordionExample">
+                                                    <div class="card-body">
+                                                        <ul class="list-group">
+                                                            <li class="list-group-item"><a
+                                                                    href="Cuenta-perfil-usuario.html"><i
+                                                                        class="fa fa-solid fa-address-card"></i>Ver
+                                                                    Perfil</a></li>
+                                                            <li class="list-group-item"><a
+                                                                    href="Cuenta-Editar-usuario.html"><i
+                                                                        class="fa fa-pencil-square"></i>Editar Perfil</a>
+                                                            </li>
+                                                            <li class="list-group-item"><a href="Cuenta-CambiarContra-usuario.html"><i
+                                                                        class="fa fa-key"></i>
+                                                                    Cambiar Contraseña</a></li>
     
-    
-    
-    <div class="container" style="margin-bottom: 70px;">
-        <div class="row justify-content-center pt-5 mt-5 mr-1">
-            <div class="col-md-12 formulario3">
-    
-    
-    
-                <div class="container-lg mt-5">
-                    <div class="row">
-                        <div class="container-lg mt-5">
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    <div class="accordion mb-2" id="accordionExample">
-                                        <div class="card">
-                                            <div class="card-header" id="headingOne">
-                                                <h2 class="mb-0">
-                                                    <a data-toggle="collapse" data-target="#collapseOne"
-                                                        aria-expanded="false" aria-controls="collapseOne">
-                                                        <span><i class="fa fa-user"></i> Cuenta</span>
-                                                        <i class="fa fa-chevron-down toggle"></i>
-                                                    </a>
-                                                </h2>
-                                            </div>
-                                            <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
-                                                data-parent="#accordionExample">
-                                                <div class="card-body">
-                                                    <ul class="list-group">
-                                                        <li class="list-group-item"><a
-                                                                href="Cuenta-perfil-usuario.html"><i
-                                                                    class="fa fa-solid fa-address-card"></i>Ver
-                                                                Perfil</a></li>
-                                                        <li class="list-group-item"><a
-                                                                href="Cuenta-Editar-usuario.html"><i
-                                                                    class="fa fa-pencil-square"></i>Editar Perfil</a>
-                                                        </li>
-                                                        <li class="list-group-item"><a href="Cuenta-CambiarContra-usuario.html"><i
-                                                                    class="fa fa-key"></i>
-                                                                Cambiar Contraseña</a></li>
-    
-                                                    </ul>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="card">
-                                            <div class="card-header" id="headingTwo">
-                                                <h2 class="mb-0">
-                                                    <a data-toggle="collapse" data-target="#collapseTwo"
-                                                        aria-expanded="false" aria-controls="collapseTwo">
-                                                        <span><i class="fa fa-users"></i> Administrar</span>
-                                                        <i class="fa fa-chevron-down toggle rotate"></i>
-                                                    </a>
-                                                </h2>
-                                            </div>
-                                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                                data-parent="#accordionExample">
-                                                <div class="card-body">
-                                                    <ul class="list-group">
-                                                        <li class="list-group-item"><a
-                                                                href="CuentaAdmin-EditarUsuarios.html"><i
-                                                                    class="fa fa-inbox"></i> Administrar Usuarios <span
-                                                                    class="badge badge-pill badge-primary"></span></a>
-                                                        </li>
+                                            <div class="card">
+                                                <div class="card-header" id="headingTwo">
+                                                    <h2 class="mb-0">
+                                                        <a data-toggle="collapse" data-target="#collapseTwo"
+                                                            aria-expanded="false" aria-controls="collapseTwo">
+                                                            <span><i class="fa fa-users"></i> Administrar</span>
+                                                            <i class="fa fa-chevron-down toggle rotate"></i>
+                                                        </a>
+                                                    </h2>
+                                                </div>
+                                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                                    data-parent="#accordionExample">
+                                                    <div class="card-body">
+                                                        <ul class="list-group">
+                                                            <li class="list-group-item"><a
+                                                                    href="CuentaAdmin-EditarUsuarios.html"><i
+                                                                        class="fa fa-inbox"></i> Administrar Usuarios <span
+                                                                        class="badge badge-pill badge-primary"></span></a>
+                                                            </li>
     
     
-                                                    </ul>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
     
-                                        <div class="card">
-                                            <div class="card-header" id="headingFour">
-                                                <h2 class="mb-0">
-                                                    <a data-toggle="collapse" data-target="#collapseFour"
-                                                        aria-expanded="false" aria-controls="collapseFour">
-                                                        <span><i class="fa fa-cog"></i> Publicaciones</span>
-                                                        <i class="fa fa-chevron-down toggle"></i>
-                                                    </a>
-                                                </h2>
-                                            </div>
-                                            <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
-                                                data-parent="#accordionExample">
-                                                <div class="card-body">
-                                                    <ul class="list-group">
-                                                        <li class="list-group-item"><a
-                                                                href="CuentaAdmin-BuscarUsuarios.html"><i
-                                                                    class="fa fa-search"></i>
-                                                                Buscar Notica</a></li>
+                                            <div class="card">
+                                                <div class="card-header" id="headingFour">
+                                                    <h2 class="mb-0">
+                                                        <a data-toggle="collapse" data-target="#collapseFour"
+                                                            aria-expanded="false" aria-controls="collapseFour">
+                                                            <span><i class="fa fa-cog"></i> Publicaciones</span>
+                                                            <i class="fa fa-chevron-down toggle"></i>
+                                                        </a>
+                                                    </h2>
+                                                </div>
+                                                <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                                                    data-parent="#accordionExample">
+                                                    <div class="card-body">
+                                                        <ul class="list-group">
+                                                            <li class="list-group-item"><a
+                                                                    href="CuentaAdmin-BuscarUsuarios.html"><i
+                                                                        class="fa fa-search"></i>
+                                                                    Buscar Notica</a></li>
     
     
-                                                        <li class="list-group-item"><a
-                                                                href="CuentaAdmin-BuscarAnalisis.html"><i
-                                                                    class="fa fa-search-plus"></i>
-                                                                Buscar Analisis</a></li>
-                                                        <li class="list-group-item"><a href="#"><i
-                                                                    class="fa fa-newspaper-o"></i>
-                                                                Publicar Post</a></li>
+                                                            <li class="list-group-item"><a
+                                                                    href="CuentaAdmin-BuscarAnalisis.html"><i
+                                                                        class="fa fa-search-plus"></i>
+                                                                    Buscar Analisis</a></li>
+                                                            <li class="list-group-item"><a href="#"><i
+                                                                        class="fa fa-newspaper-o"></i>
+                                                                    Publicar Post</a></li>
     
-                                                    </ul>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="card">
-                                            <div class="card-header" id="headingFive">
-                                                <h2 class="mb-0"><a href="LoginUsuario.html"><i
-                                                            class="fa fa-power-off"></i> Cerrar Sesion</a>
-                                                </h2>
+                                            <div class="card">
+                                                <div class="card-header" id="headingFive">
+                                                    <h2 class="mb-0"><a href="LoginUsuario.html"><i
+                                                                class="fa fa-power-off"></i> Cerrar Sesion</a>
+                                                    </h2>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
     
     
     
     
     
     
-                                <!--PERFIL USUARIO-->
+                                    <!--PERFIL USUARIO-->
     
-                                <div class="col">
-                                    <div class="row">
-                                        <div class="col mb-3">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <div class="e-profile">
-                                                        <div class="row">
-                                                            <div class="col-12 col-sm-auto mb-3">
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col mb-3">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="e-profile">
+                                                            <div class="row">
+                                                                <div class="col-12 col-sm-auto mb-3">
     
-                                                                <header style="margin-bottom: 10px;">
-                                                                    <h3>Buscar Publicacion</h3>
-    
-    
-                                                                </header>
-                                                                
-                                                                <form method="GET" action=".">
-                                                                    <div class="form-row">
-                                                                        <div class="form-group col-12">
-                                                                            <div class="input-group">
-                                                                                <input class="form-control py-2 border-right-0 border" type="search" name="tipo_usuario" placeholder="Ingresar Tipo de Publicacion" />
-                                                                                <span class="input-group-append">
-                                                                                    <div class="input-group-text bg-transparent">
-                                                                                        <i class="fa fa-search"></i>
-                                                                                    </div>
-                                                                                </span>
-                                                                            </div>
-                                                                        </div>        
-                                                                    </div>
+                                                                    <header style="margin-bottom: 10px;">
+                                                                        <h3>Buscar Usuario</h3>
     
     
+                                                                    </header>
+                                                                    
+                                                                    <form method="GET" action=".">
+                                                                        <div class="form-row">
+                                                                            <div class="form-group col-12">
+                                                                                <div class="input-group">
+                                                                                    <input class="form-control py-2 border-right-0 border" type="search" name="tipo_usuario" placeholder="Ingresar Tipo de Usuario" />
+                                                                                    <span class="input-group-append">
+                                                                                        <div class="input-group-text bg-transparent">
+                                                                                            <i class="fa fa-search"></i>
+                                                                                        </div>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>        
+                                                                        </div>
     
     
     
@@ -361,60 +367,63 @@
     
     
     
-                                                                <div class="main-wrapper">
-                                                                    <div class="responsive-table">
-                                                                        <table class="table">
-                                                                            <thead>
-                                                                                <tr>
-                                                                                    <th scope="col">Rol</th>
-                                                                                    <th scope="col">ID Usuario</th>
-                                                                                    <th scope="col">Nombre Completo</th>
-                                                                                    <th scope="col">Correo</th>
-                                                                                    <th scope="col">Ver Publicacion</th>
+    
+    
+                                                                    <div class="main-wrapper">
+                                                                        <div class="responsive-table">
+                                                                            <table class="table">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th scope="col">Tipo Usuario</th>
+                                                                                        <th scope="col">ID Usuario</th>
+                                                                                        <th scope="col">Nombre Completo</th>
+                                                                                        <th scope="col">Correo</th>
+                                                                                        <th scope="col">Ver Usuario</th>
     
     
     
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tbody>
-                                                                                {% for user  in lista_usuario %}
-                                                                                <tr>
-                                                                                    <td>{{user.rol}}</td>
-                                                                                    <td>{{user.idUsuario}}</td>
-                                                                                    <td>{{user.nombreCompleto}}</td>
-                                                                                    <td>{{user.correo}}</td>
-                                                                                    <td>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    {% for user  in lista_usuario %}
+                                                                                    <tr>
+                                                                                        <td>{{user.rol}}</td>
+                                                                                        <td>{{user.idUsuario}}</td>
+                                                                                        <td>{{user.nombreCompleto}}</td>
+                                                                                        <td>{{user.correo}}</td>
+                                                                                        <td>
+                                                                                            
+                                                                                            
+                                                                                            
+                                                                                            <a href="PaginaAnalisis-Blasphemous .html"
+                                                                                            target="_blank">
+                                                                                            <button type="button"
+                                                                                            class="btn btn-primary">
+                                                                                            
+                                                                                            <i class="far fa-eye">
+                                                                                            </i>
+                                                                                        </button>
                                                                                         
-                                                                                        
-                                                                                        
-                                                                                        <a href="PaginaAnalisis-Blasphemous .html"
-                                                                                        target="_blank">
-                                                                                        <button type="button"
-                                                                                        class="btn btn-primary">
-                                                                                        
-                                                                                        <i class="far fa-eye">
-                                                                                        </i>
-                                                                                    </button>
+                                                                                    </a>
                                                                                     
-                                                                                </a>
+                                                                                    <button type="button"
+                                                                                    class="btn btn-dark"
+                                                                                    class="btn btn btn-dark ms-1"
+                                                                                    data-href="/delete.php?id=54"
+                                                                                    data-toggle="modal"
+                                                                                    data-target="#confirm-delete"><i
+                                                                                    class=" far
+                                                                                    fa-trash-alt"></i></button>
+                                                                                </td>
                                                                                 
-                                                                                <button type="button"
-                                                                                class="btn btn-dark"
-                                                                                class="btn btn btn-dark ms-1"
-                                                                                data-href="/delete.php?id=54"
-                                                                                data-toggle="modal"
-                                                                                data-target="#confirm-delete"><i
-                                                                                class=" far
-                                                                                fa-trash-alt"></i></button>
-                                                                            </td>
-                                                                            
-                                                                        </tr>
-                                                                        {% endfor %}
-                                                                                
+                                                                            </tr>
+                                                                            {% endfor %}
+                                                                                    
     
     
-                                                                            </tbody>
-                                                                        </table>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -424,60 +433,63 @@
                                             </div>
                                         </div>
                                     </div>
+    
+    
+    
+    
+    
+    
                                 </div>
-    
-    
-    
-    
-    
-    
                             </div>
                         </div>
-                    </div>
-                    <script>
-                        $('#confirm-delete').on('show.bs.modal', function (e) {
-                            $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+                        <script>
+                            $('#confirm-delete').on('show.bs.modal', function (e) {
+                                $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
     
-                            $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
-                        });
-                    </script>
-    
+                                $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
+                            });
+                        </script>
     
     
     
-                    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog"
-                        aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
     
-                                <div class="d-flex justify-content-between">
-                                    <div class="modal-header">
+                        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog"
+                            aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
     
-                                        <h4 class="modal-title wtitulos" id="myModalLabel">Eliminar Analisis</h4>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="modal-header">
+    
+                                            <h4 class="modal-title wtitulos" id="myModalLabel">Eliminar Analisis</h4>
+                                        </div>
+    
                                     </div>
     
-                                </div>
-    
-                                <div class="modal-body ">
-                                    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
-                                    <p class="p1">Está a punto de eliminar un Analisis de este usuario, este
-                                        procedimiento es irreversible.
-                                        Estas seguro que
-                                        deseas ELIMINAR este Analisis?</p>
+                                    <div class="modal-body ">
+                                        <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+                                        <p class="p1">Está a punto de eliminar un Analisis de este usuario, este
+                                            procedimiento es irreversible.
+                                            Estas seguro que
+                                            deseas ELIMINAR este Analisis?</p>
     
     
-                                    <p class="p3">Analisis ID: <a href="Noticia elden ring.html"
-                                            target="_black">2224</a></p>
+                                        <p class="p3">Analisis ID: <a href="Noticia elden ring.html"
+                                                target="_black">2224</a></p>
     
-                                </div>
+                                    </div>
     
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                    <a class="btn btn-dark btn-ok" style="color: white;">Eliminar</a>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                        <a class="btn btn-dark btn-ok" style="color: white;">Eliminar</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+    
+    
                     </div>
+    
     
     
                 </div>
@@ -485,13 +497,8 @@
     
     
             </div>
-    
-    
-    
         </div>
-    </div>
-    
-    
+
 
  <!-- Footer -->
     <footer class="text-center text-lg-start bg-dark text-muted">
