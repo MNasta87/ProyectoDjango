@@ -322,15 +322,10 @@ def GuardarCambiarContra(request):
 #Periodista
 def CuentaPerio(request):
     return render(request,'PrayTheNews/Periodista/CuentaPeriodista.html')
-def EditarCuentaPerio(request):
-    return
 
 #Usuario Normal
-def PerfilUsuario(request):
-    return render(request, 'PrayTheNews/Usuario/PerfilUsuario.html')
-
-def EditarCuentaU(request):
-    return render(request,'PrayTheNews/Usuario/EditarCuentaUsuario.html')
+def CuentaUsuario(request):
+    return render(request,'PrayTheNews/Usuario/CuentaUsuario.html')
 
 #Cuenta Admin
 def CuentaAdmin(request):
@@ -394,17 +389,18 @@ def RegistroUsuarios(request):
 
 def LoginUsuario(request):
     if request.method == 'POST':
-        nickname = request.POST.get('nickname')
+        Correo = request.POST.get('Correo')
         clave = request.POST.get('clave')
         try:
-            usuario = Usuario.objects.filter(nickname=nickname, clave=clave)
+            usuario = Usuario.objects.get(correo=Correo, clave=clave)
         except Usuario.DoesNotExist:
             usuario = None
         if usuario:
-            request.session['usuario']= nickname
+            nick = usuario.nickname
+            request.session['usuario']= nick
             return redirect('MenuPrincipal')
         else:
-            messages.info(request, "Nombre De Usuario o Contraseña Incorrectos")
+            messages.info(request, "El correo o Contraseña Son Incorrectos")
             return redirect('LoginUsuario')
 
     else:
