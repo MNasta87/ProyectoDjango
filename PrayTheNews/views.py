@@ -14,7 +14,6 @@ from .models import Parrafo, Publicacion, Status, TipoPubli, Usuario,Rol
 def MenuPrincipal(request):
     if 'usuario' in request.session:
         c_usuario = request.session['usuario']
-        
         contexto = {'c_usuario': c_usuario}
         return render(request, 'PraytheNews/Principal/MenuPrincipal.html', contexto)
     else:
@@ -102,7 +101,7 @@ def RegistroAnalisis(request):
         return redirect('PublicarAnalisis')
     
 #Publicar noticia
-def PublicarNoticia(request):  
+def PublicarNoticia(request):
     return render(request, 'PrayTheNews/Noticias/PublicarNoticia.html')
 
 def RegistroNoticia(request):
@@ -323,15 +322,19 @@ def GuardarCambiarContra(request):
 #Periodista
 def CuentaPerio(request):
     return render(request,'PrayTheNews/Periodista/CuentaPeriodista.html')
+def EditarCuentaPerio(request):
+    return
 
 #Usuario Normal
-def CuentaUsuario(request):
-    return render(request,'PrayTheNews/Usuario/CuentaUsuario.html')
+def PerfilUsuario(request):
+    return render(request, 'PrayTheNews/Usuario/PerfilUsuario.html')
+
+def EditarCuentaU(request):
+    return render(request,'PrayTheNews/Usuario/EditarCuentaUsuario.html')
 
 #Cuenta Admin
 def CuentaAdmin(request):
     return render(request,'PrayTheNews/Admin/CuentaAdmin.html')
-
 
 
 
@@ -391,15 +394,14 @@ def RegistroUsuarios(request):
 
 def LoginUsuario(request):
     if request.method == 'POST':
-        Correo = request.POST.get('Correo')
+        nickname = request.POST.get('nickname')
         clave = request.POST.get('clave')
         try:
-            usuario = Usuario.objects.get(correo=Correo, clave=clave)
+            usuario = Usuario.objects.filter(nickname=nickname, clave=clave)
         except Usuario.DoesNotExist:
             usuario = None
         if usuario:
-            nick = usuario.nickname
-            request.session['usuario']= nick
+            request.session['usuario']= nickname
             return redirect('MenuPrincipal')
         else:
             messages.info(request, "Nombre De Usuario o Contraseña Incorrectos")
@@ -416,14 +418,31 @@ def Logout(request):
         return redirect('LoginUsuario')
     return redirect('LoginUsuario')	
 
+def is_valid_queryparam(param):
+    return param != '' and param is not None
+
 def AdministrarUsuario(request):
     return render(request, 'PrayTheNews/Admin/AdministrarUsuario.html')
 
-def BuscarAnalisis(request):
-    return render(request, 'PrayTheNews/Admin/BuscarAnalisis.html')
+def BuscarPublicacion(request):
+    lista_Publicacion = Publicacion.objects.all()
+    tipo_publicacion = request.GET.get('tipo_publicacion')
+    if  is_valid_queryparam(tipo_publicacion):
+        lista_Publicacion = lista_Publicacion.filter(tipo = tipo_publicacion)
+        return render(request, 'PraytheNews/Admin/BuscarPublicacion.html',{'lista_Publicacion': lista_Publicacion})
+    else: 
+        return render(request, 'PraytheNews/Admin/BuscarPublicacion.html', {'lista_Publicacion': lista_Publicacion})
 
 def BuscarUsuario(request):
-    return render(request, 'PrayTheNews/Admin/BuscarUsuarios.html')
+    lista_usuario = Usuario.objects.all()
+    rol_usuario = request.GET.get('tipo_usuario')
+
+    if is_valid_queryparam(rol_usuario):
+        lista_usuario = lista_usuario.filter(rol = rol_usuario)
+        return render(request, 'PraytheNews/Admin/BuscarUsuarios.html', {'lista_usuario': lista_usuario})
+    else:
+        return render(request, 'PraytheNews/Admin/BuscarUsuarios.html', {'lista_usuario': lista_usuario})
+    
 
 def EditarUsuario(request):
     return render(request, 'PrayTheNews/Admin/EditarUsuarios.html')
