@@ -68,9 +68,9 @@ def RegistroAnalisis(request):
 
         Conclusion = request.POST['Conclusion']
 
+        c_usuario = request.session['usuario']
 
-
-        U_usuario = Usuario.objects.get(idUsuario = 141)
+        U_usuario = Usuario.objects.get(nickname = c_usuario)
         T_tipo = TipoPubli.objects.get(idTipo = 2)# 2 es tipo conclusion
         S_status = Status.objects.get(idStatus = 1)
 
@@ -125,7 +125,9 @@ def RegistroNoticia(request):
         F_Parrafo3 = request.FILES['FParrafo3']
         D_Parrafo3 = request.POST['DParrafo3']
 
-        U_usuario = Usuario.objects.get(idUsuario = 141)
+        c_usuario = request.session['usuario']
+
+        U_usuario = Usuario.objects.get(nickname = c_usuario)
         T_tipo = TipoPubli.objects.get(idTipo = 1)
         S_status = Status.objects.get(idStatus = 1)
 
@@ -181,18 +183,19 @@ def PerfilConf(request):
 
     
     if(U_usuario is not None):
+
         if(Admin is not None):
             print("------------------------------Admin--------------------------------")
             return redirect('CuentaAdmin')
 
-        if(Usu is not None):
-            print("------------------------------Usu--------------------------------")
-            return redirect('CuentaUsuario')
-            
-        elif(Perio is not None):
+        if(Perio is not None):
             print("------------------------------Perio--------------------------------")
             return redirect('CuentaPerio')
 
+        if(Usu is not None):
+            print("------------------------------Usu--------------------------------")
+            return redirect('CuentaUsuario1')
+            
         else:
             print("--------------------------------------------------------------")
             print("------------ERROR EN EL USUARIO---------")
@@ -215,7 +218,6 @@ def EditarCuenta(request):
     contexto = {'nombreCompleto': InfoUsuario.nombreCompleto,'correo': InfoUsuario.correo,'nickname': InfoUsuario.nickname,'fotoUsuario': InfoUsuario.fotoUsuario,
     'linkInstagram': InfoUsuario.linkInstagram,'linkTwitch': InfoUsuario.linkTwitch,'linkTwitter': InfoUsuario.linkTwitter,'rol': InfoUsuario.rol}
     return render(request,'PrayTheNews/Usuario/EditarCuenta.html', contexto)
-
 
 def GuardarCuenta(request):
 
@@ -290,7 +292,11 @@ def CambiarContra(request):
 def GuardarCambiarContra(request):
 
     if request.method == "POST":
-        Correo = "AquiCargaCorreo@gmail.com"
+
+        c_usuario = request.session['usuario']
+
+        U_usuario = Usuario.objects.get(nickname = c_usuario)
+        Correo = U_usuario.correo
 
         ContraActual = request.POST['contra']
         Contra1 = request.POST['contra2']
@@ -321,15 +327,42 @@ def GuardarCambiarContra(request):
     
 #Periodista
 def CuentaPerio(request):
-    return render(request,'PrayTheNews/Periodista/CuentaPeriodista.html')
+    Nick = request.session['usuario']
+    try:
+        InfoUsuario = Usuario.objects.get(nickname = Nick)
+    except Usuario.DoesNotExist:
+        InfoUsuario = None
 
-#Usuario Normal
-def CuentaUsuario(request):
-    return render(request,'PrayTheNews/Usuario/CuentaUsuario.html')
+    contexto = {'nombreCompleto': InfoUsuario.nombreCompleto,'correo': InfoUsuario.correo,'nickname': InfoUsuario.nickname,'fotoUsuario': InfoUsuario.fotoUsuario,
+    'linkInstagram': InfoUsuario.linkInstagram,'linkTwitch': InfoUsuario.linkTwitch,'linkTwitter': InfoUsuario.linkTwitter,'rol': InfoUsuario.rol}
+
+    return render(request,'PrayTheNews/Usuario/CuentaUsuario.html', contexto)
+#Usuario Normal 
+def CuentaUsuario1(request):
+    Nick = request.session['usuario']
+    try:
+        InfoUsuario = Usuario.objects.get(nickname = Nick)
+    except Usuario.DoesNotExist:
+        InfoUsuario = None
+
+    contexto = {'nombreCompleto': InfoUsuario.nombreCompleto,'correo': InfoUsuario.correo,'nickname': InfoUsuario.nickname,'fotoUsuario': InfoUsuario.fotoUsuario,
+    'linkInstagram': InfoUsuario.linkInstagram,'linkTwitch': InfoUsuario.linkTwitch,'linkTwitter': InfoUsuario.linkTwitter,'rol': InfoUsuario.rol}
+
+    return render(request,'PrayTheNews/Usuario/CuentaUsuario.html', contexto)
+
 
 #Cuenta Admin
 def CuentaAdmin(request):
-    return render(request,'PrayTheNews/Admin/CuentaAdmin.html')
+    Nick = request.session['usuario']
+    try:
+        InfoUsuario = Usuario.objects.get(nickname = Nick)
+    except Usuario.DoesNotExist:
+        InfoUsuario = None
+
+    contexto = {'nombreCompleto': InfoUsuario.nombreCompleto,'correo': InfoUsuario.correo,'nickname': InfoUsuario.nickname,'fotoUsuario': InfoUsuario.fotoUsuario,
+    'linkInstagram': InfoUsuario.linkInstagram,'linkTwitch': InfoUsuario.linkTwitch,'linkTwitter': InfoUsuario.linkTwitter,'rol': InfoUsuario.rol}
+
+    return render(request,'PrayTheNews/Admin/CuentaAdmin.html', contexto)
 
 
 
@@ -442,13 +475,6 @@ def BuscarUsuario(request):
 
 def EditarUsuario(request):
     return render(request, 'PrayTheNews/Admin/EditarUsuarios.html')
-
-def CuentaUsuario(request):
-    return render(request, 'PrayTheNews/Usuario/CuentaUsuario.html')
-
-
-
-
 
 def PerfilCompleto(request, id):
 

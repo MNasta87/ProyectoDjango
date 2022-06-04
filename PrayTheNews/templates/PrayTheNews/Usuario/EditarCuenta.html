@@ -125,13 +125,11 @@
 
 <body>
 
-
-    <!-- BARRA NAVEGACIÓN -->
-    
+<!--navbar-->
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark border-primary">
     <div class="container-fluid">
-        <a href="#" class="navbar-brand"><img src="{% static 'PrayTheNews/img/logo_small.png'%}" alt="" width="100"></a>
+        <a href="{% url 'MenuPrincipal'  %}" class="navbar-brand"><img src="{% static 'PrayTheNews/img/logo_small.png'%}" alt="" width="100"></a>
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#MenuNavegacion">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -154,33 +152,16 @@
                 <a class="nav-link" href="{%url 'Catalogo'%}">Catalogo</a>
             </li>
   
-  
-  
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    style="padding-right: 70px;">
-                    Perfil
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{% url 'LoginUsuario' %}">Conectate</a></li>
-                    <li><a class="dropdown-item" href="{% url 'RegistroUsuarios'%}">Registrate</a></li>
-                    <li><a class="dropdown-item" href="{% url 'CuentaUsuario' %}">Ver Perfil</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="{% url 'EditarUsuario' %}">Administrador</a></li>
-  
-  
-  
-  
-                </ul>
+            <li class="nav-item">
+                <a class="nav-link" href="{%url 'PerfilConf'%}">Perfil</a>
             </li>
-  
   
         </ul>
   
     </div>
-</nav>
+  </nav>
+  
+      
   
 
 

@@ -247,7 +247,7 @@
                     </div>
                     <div class="card">
                       <div class="card-header" id="headingFive">
-                        <h2 class="mb-0"><a href="LoginUsuario.html"><i class="fa fa-power-off"></i> Cerrar Sesion</a>
+                        <h2 class="mb-0"><a href={%url "Logout"%}><i class="fa fa-power-off"></i> Cerrar Sesion</a>
                         </h2>
                       </div>
                     </div>
@@ -275,10 +275,10 @@
                                       <div class="col-lg-4">
                                         <div class="card mb-4 border-dark">
                                           <div class="card-body text-center">
-                                            <img src="img/usuarios/D9x4CHMM_400x400.jpg" alt="avatar"
-                                              class="rounded-circle img-fluid" style="width: 150px;">
-                                            <h5 class="my-3">Roman Rojas</h5>
-                                            <p class="text-muted mb-1">Periodista/Analista</p>
+                                            <img src="{{fotoUsuario}}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;"><!-- Imagen-->
+                                            
+                                            <h5 class="my-3">{{nickname}}</h5>
+                                            <p class="text-muted mb-1">{{rol}}</p>
                                             <div class="d-flex justify-content-center mb-2">
 
                                               <button type="button" class="btn btn btn-dark ms-1"
@@ -294,12 +294,12 @@
                                                 class="list-group-item d-flex justify-content-between align-items-center p-3">
                                                 <i class="fa fa-twitter"></i>
                                                 <p class="mb-0"><a
-                                                    href="https://twitter.com/spaceronin7?lang=es">Twitter</a></p>
+                                                    href="{{linkTwitter}}">Twitter</a></p>
                                               </li>
                                               <li
                                                 class="list-group-item d-flex justify-content-between align-items-center p-3">
                                                 <i class="fa fa-twitch" style="color: #ac2bac;"></i>
-                                                <p class="mb-0"><a href="https://www.twitch.tv/spaceronin7">Twitch</a>
+                                                <p class="mb-0"><a href="{{linkTwitch}}">Twitch</a>
                                                 </p>
                                               </li>
                                             </ul>
@@ -314,7 +314,7 @@
                                                 <p class="mb-0" id="p_colorAdmin">Nombre de usuario</p>
                                               </div>
                                               <div class="col-sm-7">
-                                                <p class="text-muted mb-0">SpaceRonin7</p>
+                                                <p class="text-muted mb-0">{{nombreCompleto}}</p>
                                               </div>
                                             </div>
                                             <hr>
@@ -323,7 +323,7 @@
                                                 <p class="mb-0" id="p_colorAdmin">Correo Electronico</p>
                                               </div>
                                               <div class="col-sm-7">
-                                                <p class="text-muted mb-0">romanrojas25@gmail.com</p>
+                                                <p class="text-muted mb-0">{{correo}}</p>
                                               </div>
                                             </div>
                                             <hr>
@@ -332,7 +332,7 @@
                                                 <p class="mb-0" id="p_colorAdmin">Tipo de usuario</p>
                                               </div>
                                               <div class="col-sm-7">
-                                                <p class="text-muted mb-0">Administrador</p>
+                                                <p class="text-muted mb-0">{{rol}}</p>
                                               </div>
                                             </div>
                                           </div>
@@ -341,7 +341,7 @@
                                           <div class="col-md-6">
                                             <div class="card mb-4 mb-md-0 border-dark">
                                               <div class="card-body">
-                                                <p class="mb-4" id="p_colorAdmin">Noticias
+                                                <p class="mb-4" id="p_colorAdmin">Noticias(No terminados)
                                                 </p>
                                                 <p class="text-muted mb-1" style="font-size: .77rem;" id="p_color">
                                                   Cantidad

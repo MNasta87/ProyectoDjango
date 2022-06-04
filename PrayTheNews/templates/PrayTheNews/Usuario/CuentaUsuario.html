@@ -120,63 +120,42 @@
 <body>
 
 
-  <!-- BARRA NAVEGACIÓN -->
-    
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark border-primary">
-    <div class="container-fluid">
-        <a href="#" class="navbar-brand"><img src="{% static 'PrayTheNews/img/logo_small.png' %}" alt="" width="100"></a>
-        <button type="button"
-            class="navbar-toggler"
-            data-bs-toggle="collapse"
-            data-bs-target="#MenuNavegacion">
-                <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-  
-  <div id="MenuNavegacion" class="collapse navbar-collapse">
-  <ul class="navbar-nav ms-3">
-  <li class="nav-item">
-                <a class="nav-link" href="{% url 'MenuPrincipal'%}">Inicio</a>
-            </li>
-                <li class="nav-item">
-                <a class="nav-link" href="{% url 'MenuNoticias' %}">Noticias</a>
-            </li>
-                <li class="nav-item">
-                <a class="nav-link" href="{% url 'MenuAnalisis' %}">Analisis</a>
-                
-            </li>
-  
-  
-  
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'Catalogo' %}">Catalogo</a>
-            </li>
-  
-  
-  
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" style="padding-right: 70px;">
-                  Perfil
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="LoginUsuario.html">Conectate</a></li>
-                  <li><a class="dropdown-item" href="Registro de usuario(Listo).html">Registrate</a></li>
-                  <li><a class="dropdown-item" href="Cuenta-perfil-usuario.html">Ver Perfil</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="CuentaAdmin-EditarUsuarios.html">Administrador</a></li>
-                  
-  
-                  
-                  
-                </ul>
-            </li>
-  
-  
-  </ul>
-        
-  </div>
-  </nav>
+<!--navbar-->
 
+<nav class="navbar navbar-expand-md navbar-dark bg-dark border-primary">
+  <div class="container-fluid">
+      <a href="{% url 'MenuPrincipal'  %}" class="navbar-brand"><img src="{% static 'PrayTheNews/img/logo_small.png'%}" alt="" width="100"></a>
+      <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#MenuNavegacion">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+  </div>
+
+  <div id="MenuNavegacion" class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-3">
+          <li class="nav-item">
+              <a class="nav-link active" href="{% url 'MenuPrincipal'  %}">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'MenuNoticias'%}">Noticias</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'MenuAnalisis'%}">Analisis</a>
+
+          </li>
+
+          <li class="nav-item">
+              <a class="nav-link" href="{%url 'Catalogo'%}">Catalogo</a>
+          </li>
+
+
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'PerfilConf'%}">Perfil</a>
+        </li>
+
+      </ul>
+
+  </div>
+</nav>
 
 
 
@@ -221,7 +200,7 @@
 
                     <div class="card">
                       <div class="card-header" id="headingFive">
-                        <h2 class="mb-0"><a href="LoginUsuario.html"><i class="fa fa-power-off"></i> Cerrar Sesion</a>
+                        <h2 class="mb-0"><a href={%url "Logout"%}><i class="fa fa-power-off"></i> Cerrar Sesion</a>
                         </h2>
                       </div>
                     </div>
@@ -237,22 +216,24 @@
                         <div class="card-body ">
                           <div class="e-profile">
                             <div class="row">
-                              <div class="col-12 col-sm-auto mb-3">
+                              <div class="col-12 col-sm-12 mb-12">
 
                                 <!--PERFIL USUARIO-->
 
 
 
                                 <section>
-                                  <div class="container py-5">
+                                  <div class="container py-12">
                                     <div class="row">
-                                      <div class="col-lg-4">
+                                      <div class="col-lg-6">
                                         <div class="card mb-4 border-dark">
-                                          <div class="card-body text-center">
+                                          <div class="card-body text-center" style="
+                                          height: 315px;
+                                          width: 315px;">
                                             <img src="img/usuarios/D9x4CHMM_400x400.jpg" alt="avatar"
                                               class="rounded-circle img-fluid" style="width: 150px;">
-                                            <h5 class="my-3">Roman Rojas</h5>
-                                            <p class="text-muted mb-1">Periodista/Analista</p>
+                                              <h5 class="my-3">{{nickname}}</h5>
+                                              <p class="text-muted mb-1">{{rol}}</p>
                                             <div class="d-flex justify-content-center mb-2">
 
                                               <button type="button" class="btn btn btn-dark ms-1"
@@ -268,19 +249,19 @@
                                                 class="list-group-item d-flex justify-content-between align-items-center p-3">
                                                 <i class="fa fa-twitter"></i>
                                                 <p class="mb-0"><a
-                                                    href="https://twitter.com/spaceronin7?lang=es">Twitter</a></p>
+                                                  href="{{linkTwitter}}">Twitter</a></p>
                                               </li>
                                               <li
                                                 class="list-group-item d-flex justify-content-between align-items-center p-3">
                                                 <i class="fa fa-twitch" style="color: #ac2bac;"></i>
-                                                <p class="mb-0"><a href="https://www.twitch.tv/spaceronin7">Twitch</a>
+                                                <p class="mb-0"><a href="{{linkTwitch}}">Twitch</a>
                                                 </p>
                                               </li>
                                             </ul>
                                           </div>
                                         </div>
                                       </div>
-                                      <div class="col-lg-8">
+                                      <div class="col-lg-6">
                                         <div class="card mb-4 border-dark">
                                           <div class="card-body">
                                             <div class="row">
@@ -288,7 +269,7 @@
                                                 <p class="mb-0" id="p_colorAdmin">Nombre de usuario</p>
                                               </div>
                                               <div class="col-sm-7">
-                                                <p class="text-muted mb-0">SpaceRonin7</p>
+                                                <p class="text-muted mb-0">{{nombreCompleto}}</p>
                                               </div>
                                             </div>
                                             <hr>
@@ -297,7 +278,7 @@
                                                 <p class="mb-0" id="p_colorAdmin">Correo Electronico</p>
                                               </div>
                                               <div class="col-sm-7">
-                                                <p class="text-muted mb-0">romanrojas25@gmail.com</p>
+                                                <p class="text-muted mb-0">{{correo}}</p>
                                               </div>
                                             </div>
                                             <hr>
@@ -306,71 +287,14 @@
                                                 <p class="mb-0" id="p_colorAdmin">Tipo de usuario</p>
                                               </div>
                                               <div class="col-sm-7">
-                                                <p class="text-muted mb-0">Administrador</p>
+                                                <p class="text-muted mb-0">{{rol}}</p>
                                               </div>
                                             </div>
                                           </div>
                                         </div>
-                                        <div class="row">
-                                          <div class="col-md-6">
-                                            <div class="card mb-4 mb-md-0 border-dark">
-                                              <div class="card-body">
-                                                <p class="mb-4" id="p_colorAdmin">Noticias
-                                                </p>
-                                                <p class="text-muted mb-1" style="font-size: .77rem;" id="p_color">
-                                                  Cantidad
-                                                  de Noticias: 34</p>
-                                                <div class="progress rounded" style="height: 5px;">
-                                                  <div class="progress-bar" role="progressbar" style="width: 34%"
-                                                    aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                                <p class="text-muted mt-4 mb-1" style="font-size: .77rem;" id="p_color">
-                                                  Numero de visitas: 1023</p>
-                                                <div class="progress rounded" style="height: 5px;">
-                                                  <div class="progress-bar" role="progressbar" style="width: 35%"
-                                                    aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                                <p class="text-muted mt-4 mb-1" style="font-size: .77rem;" id="p_color">
-                                                  Comentarios: 96</p>
-                                                <div class="progress rounded" style="height: 5px;">
-                                                  <div class="progress-bar" role="progressbar" style="width: 86%"
-                                                    aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-
-                                              </div>
-                                            </div>
-                                          </div>
-                                          <div class="col-md-6">
-                                            <div class="card mb-4 mb-md-0 border-dark">
-                                              <div class="card-body">
-                                                <p class="mb-4" id="p_colorAdmin">Analisis
-                                                </p>
-                                                <p class="mb-1 text-muted" style="font-size: .77rem;" id="p_color">
-                                                  Cantidad
-                                                  de Analisis: 24</p>
-                                                <div class="progress rounded" style="height: 5px;">
-                                                  <div class="progress-bar" role="progressbar" style="width: 24%"
-                                                    aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                                <p class="text-muted mt-4 mb-1" style="font-size: .77rem;" id="p_color">
-                                                  Numero de visitas: 820</p>
-
-                                                <div class="progress rounded" style="height: 5px;">
-                                                  <div class="progress-bar" role="progressbar" style="width: 30%"
-                                                    aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                                <p class="text-muted mt-4 mb-1" style="font-size: .77rem;" id="p_color">
-                                                  Comentarios: 44</p>
-                                                <div class="progress rounded" style="height: 5px;">
-                                                  <div class="progress-bar" role="progressbar" style="width: 44%"
-                                                    aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-
-                                              </div>
-                                            </div>
-                                          </div>
                                         </div>
                                       </div>
+
                                     </div>
                                   </div>
                                 </section>
