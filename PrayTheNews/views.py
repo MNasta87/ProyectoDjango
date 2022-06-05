@@ -14,15 +14,6 @@ from .models import Parrafo, Publicacion, Status, TipoPubli, Usuario,Rol
 # Create your views here.
 
 
-def MenuPrincipal(request):
-    if 'usuario' in request.session:
-        c_usuario = request.session['usuario']
-        contexto = {'c_usuario': c_usuario}
-        return render(request, 'PraytheNews/MenuPrincipal/indexMenu.html', contexto)
-    else:
-        return render(request, 'PraytheNews/MenuPrincipal/indexMenu.html')
-    
-
 def Catalogo(request):
     if 'usuario' in request.session:
         c_usuario = request.session['usuario']
@@ -670,15 +661,27 @@ def indexMenuPrincipal(request):
 
     template = loader.get_template('PrayTheNews/MenuPrincipal/indexMenu.html')
 
-    context = {
+    if 'usuario' in request.session:
+        c_usuario = request.session['usuario']
+        context = {
         'articlesM': articles_paginator,
         'articuloMP': articles_paginatorP,
         'articuloP1': articles_paginatorP1,
-        
+        'c_usuario': c_usuario,
 
     }
+        return HttpResponse(template.render(context, request))
 
-    return HttpResponse(template.render(context, request))
+    else:
+        context = {
+        'articlesM': articles_paginator,
+        'articuloMP': articles_paginatorP,
+        'articuloP1': articles_paginatorP1,
+    }
+        return HttpResponse(template.render(context, request))
+
+    
+
 
 
 
