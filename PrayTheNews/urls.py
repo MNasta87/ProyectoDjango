@@ -1,8 +1,8 @@
 
 from django.urls import path 
-from .views import AnalisisCompleto, AutorPerfil, CambiarContra, CuentaUsuario1, EditarCuenta, FormularioUsuarios, GuardarCambiarContra, GuardarCuenta, NoticiaCompleto,PerfilCompleto, PerfilConf, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,NoticiasIndividuales, NoticiaValorant,Catalogo,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarPublicacion,BuscarUsuario,EditarUsuario,PublicarNoticia,Logout, index, indexMenuPrincipal, indexNoticia
+from .views import AnalisisCompleto, AutorPerfil, CambiarContra, CuentaUsuario1, EditarCuenta, FormularioUsuarios, GuardarCambiarContra, GuardarCuenta, NoticiaCompleto,PerfilCompleto, PerfilConf, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,Catalogo,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarPublicacion,BuscarUsuario,EditarUsuario,PublicarNoticia,Logout, index, indexMenuPrincipal, indexNoticia
 
-from .views import CuentaAdmin, CuentaPerio,FormularioUsuarios, PerfilCompleto, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,MenuNoticias, NoticiasIndividuales, NoticiaValorant,Catalogo,MenuAnalisis,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarPublicacion,BuscarUsuario,EditarUsuario,PublicarNoticia 
+from .views import CuentaAdmin, CuentaPerio,FormularioUsuarios, PerfilCompleto, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,Catalogo,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarPublicacion,BuscarUsuario,EditarUsuario,PublicarNoticia 
                     
 
 
@@ -67,12 +67,5 @@ urlpatterns = [
     
     path('PerfilRoman/<int:id>/',PerfilCompleto),
 
-
-
-
-    #Paginas Normales
-    path('NoticiasIndividuales/',NoticiasIndividuales, name="NoticiasIndividuales"), 
-    path('NoticiaValorant/',NoticiaValorant, name="NoticiaValorant"),
-    
     
 ]

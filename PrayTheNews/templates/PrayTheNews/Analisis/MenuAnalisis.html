@@ -19,62 +19,68 @@
 <body>
 
 
-  <!-- BARRA NAVEGACIÓN -->
 
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark border-primary">
-    <div class="container-fluid">
-      <a href="#" class="navbar-brand"><img src="{% static 'noticias/img/logo_small.png' %}" alt="" width="100"></a>
+<!--navbar-->
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark border-primary">
+  <div class="container-fluid">
+      <a href="{% url 'MenuPrincipal'  %}" class="navbar-brand"><img src="{% static 'PrayTheNews/img/logo_small.png'%}" alt="" width="100"></a>
       <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#MenuNavegacion">
-        <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
       </button>
-    </div>
+  </div>
 
-    <div id="MenuNavegacion" class="collapse navbar-collapse">
+  <div id="MenuNavegacion" class="collapse navbar-collapse">
       <ul class="navbar-nav ms-3">
-        <li class="nav-item">
-          <a class="nav-link">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="">Noticias</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="">Analisis</a>
+          <li class="nav-item">
+              <a class="nav-link active" href="{% url 'MenuPrincipal'  %}">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'MenuNoticias'%}">Noticias</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'MenuAnalisis'%}">Analisis</a>
 
-        </li>
+          </li>
 
-
-
-        <li class="nav-item">
-          <a class="nav-link" href="">Catalogo</a>
-        </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{%url 'Catalogo'%}">Catalogo</a>
+          </li>
 
 
+        {%if c_usuario %}
+          <li class="nav-item dropdown">
+            
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  style="padding-right: 70px;margin-right: 20px;">
+                   {{c_usuario}}
+              </a>
+              <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'PerfilConf' %}">Ver Perfil</a></li>
 
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-            style="padding-right: 70px;">
-            Perfil
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="LoginUsuario.html">Conectate</a></li>
-            <li><a class="dropdown-item" href="Registro de usuario(Listo).html">Registrate</a></li>
-            <li><a class="dropdown-item" href="Cuenta-perfil-usuario.html">Ver Perfil</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="CuentaAdmin-EditarUsuarios.html">Administrador</a></li>
-
-
-
-
-          </ul>
-        </li>
-
+                  <li><a class="dropdown-item" href="{% url 'Logout' %}">Desconectarse</a></li>
+                  <li>
+                      <hr class="dropdown-divider">
+                  </li>
+              </ul>
+          </li>
+        {% else %}
+          <li class="nav-item dropdown">  
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+            style="padding-right: 70px;margin-right: 20px;">
+            Conectate
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'LoginUsuario' %}">Inicia sesion</a></li>
+              <li><a class="dropdown-item" href="{% url 'RegistroUsuarios'%}">Registrate</a></li>
+              </ul>
+          </li>
+        {%endif%}
 
       </ul>
 
-    </div>
-  </nav>
+  </div>
+</nav>
 
   <!--NOTICIAS SEMANALES-->
   <div class="container">
