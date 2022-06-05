@@ -1,0 +1,90 @@
+{% extends 'PrayTheNews/Autor/PlantillaAutor.html' %}
+
+{% load static %}
+
+
+
+
+{% block FotoAutor %}
+
+
+<img src="{{ us.fotoUsuario.url }}" alt="..." width="130" class="rounded mb-2 img-thumbnail">
+
+
+{% endblock %}
+
+
+
+{% block autor %}
+
+{{ us.nombreCompleto }}
+
+{% endblock %}
+
+
+
+
+{% block rol %}
+
+{{ us.rol }}
+
+{% endblock %}
+
+
+{% block CantAnalisis %}
+{{ count }}
+{% endblock %}
+
+{% block CantNoticias %}
+{{ countN }}
+{% endblock %}
+
+
+
+{% block linkTwitch %}
+
+href="{{ us.linkTwitch }}"
+
+{% endblock %}
+
+
+{% block linkTwitter %}
+
+href="{{ us.linkTwitter }}"
+
+{% endblock %}
+
+
+
+{% block content %}
+
+{% for article in articlesA %}
+
+
+<div class="col-md-6 mb-2 pr-lg-1">
+    <div class="card" style="width: 16rem;">
+
+        {% if article.fotoPortada %}
+        <img src="{{ article.fotoPortada.url }}" alt="Responsive image" class="img-fluid" >
+
+        {% endif %}
+
+        <div class="card-body">
+            <h5 class="card-title" style="color: #1DA1F2;">{{ article.tituloPubli |truncatechars:35 | safe }}</h5>
+            <p class="card-text" style="color: black;">{{ article.descripcion |truncatechars:50 | safe }}.</p>
+            <a href="{{ article.get_absolute_url }}" class="btn btn-secondary btn-sm">Ver Publicacion</a>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+
+
+{% endblock %}
+
+
+
+
+
+
+

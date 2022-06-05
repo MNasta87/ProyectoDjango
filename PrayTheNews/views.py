@@ -4,6 +4,9 @@ import django.contrib.sessions
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate  
 from django.contrib import auth 
+from django.core.paginator import Paginator
+from django.template import loader
+from django.http import HttpResponse
 from django.contrib import messages
 from datetime import datetime
 
@@ -563,4 +566,167 @@ def NoticiaValorant(request):
 
 
 
+
+# MENU ANALISIS, PLANTILLA ANALISIS
+
+
+
+def index(request): 
+    articles = Publicacion.objects.filter(status='1',tipo='3').order_by('-fechaP')
+    articlesP = Publicacion.objects.filter(status='1',tipo='3').order_by('fechaP')
     
+    
+
+    # Pagination
+    paginator = Paginator(articles, 3)
+    page_number = request.GET.get('page')
+    articles_paginator = paginator.get_page(page_number)
+
+    paginator = Paginator(articlesP, 1)
+    page_number = request.GET.get('page')
+    articles_paginatorP = paginator.get_page(page_number)
+
+    template = loader.get_template('PrayTheNews/Analisis/indexMenuAnalisis.html')
+
+    context = {
+        'articles': articles_paginator,
+        'articuloP': articles_paginatorP,
+        
+
+    }
+
+    return HttpResponse(template.render(context, request))
+
+
+
+
+# ANALISIS INDIVIDUAL
+
+
+def AnalisisCompleto(request, id):
+
+    analisis = Publicacion.objects.get(idPublicacion=id)
+    parrafos = Parrafo.objects.filter(idPublicacion=analisis)
+    
+
+    contexto2 = {
+
+        'analis': analisis,
+        'P1': parrafos,
+
+
+
+    }
+
+    return render(request, "PrayTheNews/Analisis/individual/indexAnalisis.html", contexto2)
+
+
+# PERFIL AUTOR
+
+
+
+def AutorPerfil(request, id):
+
+    user = Usuario.objects.get(idUsuario=id)
+    articles = Publicacion.objects.filter(usuario=user)
+    countA = Publicacion.objects.filter(usuario=user, tipo='4').count()
+    countN = Publicacion.objects.filter(usuario=user, tipo='3').count()
+    
+
+    paginator = Paginator(articles, 4)
+    page_number = request.GET.get('page')
+    articles_paginator = paginator.get_page(page_number)
+
+
+
+    return render(request, 'PrayTheNews/Autor/PerfilAutor.html', {'us': user,'articlesA': articles_paginator, 'count': countA,'countN':countN})
+
+
+# MENU PRINCIPAL
+
+
+def indexMenuPrincipal(request): 
+    articles1 = Publicacion.objects.filter(status='1',tipo='3').order_by('-fechaP')
+
+    
+    articles2 = Publicacion.objects.filter(status='1',tipo='4').order_by('-fechaP')
+
+    articles3 = Publicacion.objects.filter(status='1',tipo='4').order_by('fechaP')
+    
+    
+
+    # Pagination
+    paginator = Paginator(articles1, 3)
+    page_number = request.GET.get('page')
+    articles_paginator = paginator.get_page(page_number)
+
+    paginator = Paginator(articles2, 2)
+    page_number = request.GET.get('page')
+    articles_paginatorP = paginator.get_page(page_number)
+
+    paginator = Paginator(articles3, 1)
+    page_number = request.GET.get('page')
+    articles_paginatorP1 = paginator.get_page(page_number)
+
+    template = loader.get_template('PrayTheNews/MenuPrincipal/indexMenu.html')
+
+    context = {
+        'articlesM': articles_paginator,
+        'articuloMP': articles_paginatorP,
+        'articuloP1': articles_paginatorP1,
+        
+
+    }
+
+    return HttpResponse(template.render(context, request))
+
+
+
+# MENU NOTICIAS 
+
+def indexNoticia(request): 
+    articles = Publicacion.objects.filter(status='1',tipo='4').order_by('-fechaP')
+    articlesP = Publicacion.objects.filter(status='1',tipo='4').order_by('fechaP')
+    
+    
+
+    # Pagination
+    paginator = Paginator(articles, 3)
+    page_number = request.GET.get('page')
+    articles_paginator = paginator.get_page(page_number)
+
+    paginator = Paginator(articlesP, 1)
+    page_number = request.GET.get('page')
+    articles_paginatorP = paginator.get_page(page_number)
+
+    template = loader.get_template('PrayTheNews/NoticiasListo/indexMenuNoticia.html')
+
+    context = {
+        'noticia': articles_paginator,
+        'noticiaP': articles_paginatorP,
+        
+
+    }
+
+    return HttpResponse(template.render(context, request))
+
+
+# NOTICIAS INDIVIDUAL
+
+
+def NoticiaCompleto(request, id):
+
+    noticias = Publicacion.objects.get(idPublicacion=id, tipo='4')
+    parrafos = Parrafo.objects.filter(idPublicacion=noticias)
+    
+
+    contexto2 = {
+
+        'noticia': noticias,
+        'P2': parrafos,
+
+
+
+    }
+
+    return render(request, "PrayTheNews/NoticiasListo/Individual/indexNoticia.html", contexto2)
