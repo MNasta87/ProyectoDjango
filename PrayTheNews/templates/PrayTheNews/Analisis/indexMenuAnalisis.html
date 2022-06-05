@@ -1,0 +1,122 @@
+{% extends 'PrayTheNews/Analisis/MenuAnalisis.html' %}
+
+{% load static %}
+
+
+{% block contentPrincipal %}
+
+{% for article in articuloP %}
+
+<div class="col-md-6 n-body">
+
+  <a href="{{ article.get_absolute_url }}" style="color: #1DA1F2;">
+    <h2 class="colorTituloAnalisis"> {{ article.tituloPubli }} </h2>
+  </a>
+  <p>
+    {{ article.descripcion |truncatechars:400 | safe }}
+  </p>
+
+
+
+</div>
+
+<div class="col-md-6">
+      
+{% if article.fotoPortada %}
+
+
+
+<img src="{{ article.fotoPortada.url }}" alt="Responsive image" class="img-fluid" style="width: 500px;">
+
+</div>
+
+{% endif %}
+
+<p class="card-text"> <small style=" font-size: 18px; color:#1DA1F2 ">{{ article.fechaP }}</small></p>
+
+
+
+
+</div>
+{% endfor %}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+{% block content %}
+
+
+{% for article in articles %}
+
+<div class="col-md-3">
+
+    <p class="card-text fechas2"> <small style="font-size: 18px;">{{ article.fechaP }} </small></p>
+
+</div>
+
+
+
+<div class="col-md-5">
+    <a href="{{ article.get_absolute_url }}" style="color: #1DA1F2;">
+        <h3>
+            {{ article.tituloPubli }}
+        </h3>
+    </a>
+
+    <p>{{ article.descripcion |truncatechars:200 | safe }}</p>
+
+</div>
+
+{% if article.fotoPortada %}
+<div class="col-md-4">
+
+    <img src="{{ article.fotoPortada.url }}" alt="Responsive image" class="img-fluid">
+
+</div>
+
+
+<div class="sep-md"></div>
+{% else %}
+<img src="{% static 'img/Tunic 3.jpg' %}">
+{% endif %}
+<div class="card-action">
+    
+
+</div>
+{% endfor %}
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+{% block pagination %}
+  <ul class="pagination center-align">
+    {% if articles.has_previous %}
+      <a href="?page={{ articles.previous_page_number }}" class="waves-effect waves-light btn" style="color: #1DA1F2;"><i class="material-icons left" style="color: #1DA1F2;">arrow_back</i>   Volver</a>
+    {% endif %}
+
+{% if articles.has_next %}
+<a href="?page={{ articles.next_page_number }}" class="waves-effect waves-light btn" style="color: #1DA1F2;"><i class="material-icons right" style="color: #1DA1F2;">add</i>  Cargar mas analisis</a>
+  </ul>
+{% endif %} 
+
+{% endblock %}
