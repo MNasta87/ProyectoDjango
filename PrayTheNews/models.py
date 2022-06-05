@@ -42,7 +42,9 @@ class Usuario(models.Model):
     def __str__(self):
         return self.nombreCompleto
         
-
+    def get_absolute_url(self):
+        
+        return f"/Autor/{self.idUsuario}"
 
 
 
@@ -83,6 +85,19 @@ class Publicacion(models.Model):
 
     def __str__(self):
         return self.tituloPubli
+
+    def get_absolute_url(self):
+        
+        return f"/AnalisisTunic/{self.idPublicacion}"
+
+    def get_absolute_url2(self):
+        
+        return f"/Autor/{self.usuario.idUsuario}"
+
+    def get_absolute_urlN(self):
+        
+        return f"/Noticia/{self.idPublicacion}"
+
 
 # Creacion de Sector de comentarios
 

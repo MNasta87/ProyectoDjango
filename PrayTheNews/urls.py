@@ -1,6 +1,6 @@
 
 from django.urls import path 
-from .views import CambiarContra, CuentaUsuario1, EditarCuenta, FormularioUsuarios, GuardarCambiarContra, GuardarCuenta,PerfilCompleto, PerfilConf, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,MenuNoticias, NoticiasIndividuales, NoticiaValorant,MenuPrincipal,Catalogo,MenuAnalisis,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarPublicacion,BuscarUsuario,EditarUsuario,PublicarNoticia,Logout
+from .views import AnalisisCompleto, AutorPerfil, CambiarContra, CuentaUsuario1, EditarCuenta, FormularioUsuarios, GuardarCambiarContra, GuardarCuenta, NoticiaCompleto,PerfilCompleto, PerfilConf, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,MenuNoticias, NoticiasIndividuales, NoticiaValorant,MenuPrincipal,Catalogo,MenuAnalisis,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarPublicacion,BuscarUsuario,EditarUsuario,PublicarNoticia,Logout, index, indexMenuPrincipal, indexNoticia
 
 from .views import CuentaAdmin, CuentaPerio,FormularioUsuarios, PerfilCompleto, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,MenuNoticias, NoticiasIndividuales, NoticiaValorant,MenuPrincipal,Catalogo,MenuAnalisis,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarPublicacion,BuscarUsuario,EditarUsuario,PublicarNoticia 
                     
@@ -10,10 +10,23 @@ from .views import CuentaAdmin, CuentaPerio,FormularioUsuarios, PerfilCompleto, 
 
 urlpatterns = [
     #Paginas Principales
-    path('',MenuPrincipal,name="MenuPrincipal"),
-    path('Noticias/',MenuNoticias,name="MenuNoticias"),
+    path('',indexMenuPrincipal,name="MenuPrincipal"),
+    path('MenuNoticias/', indexNoticia,name="MenuNoticias"),
     path('Catalogo/',Catalogo,name="Catalogo"),
-    path('Analisis/',MenuAnalisis,name="MenuAnalisis"),
+    path('MenuAnalisis/', index, name='MenuAnalisis'),
+    
+
+    #AUTOR
+
+    path('Autor/<int:id>/',AutorPerfil), 
+
+    #ANALISIS Y NOTICIAS INDIVIDUAL
+
+    path('AnalisisTunic/<int:id>/',AnalisisCompleto),
+    path('Noticia/<int:id>/',NoticiaCompleto),
+
+
+    
     #P
     path('Formulario/',FormularioUsuarios,name="Formulario"),
     path('Registro/',RegistroUsuarios,name="RegistroUsuarios"),   
