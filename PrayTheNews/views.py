@@ -18,9 +18,9 @@ def MenuPrincipal(request):
     if 'usuario' in request.session:
         c_usuario = request.session['usuario']
         contexto = {'c_usuario': c_usuario}
-        return render(request, 'PraytheNews/Principal/MenuPrincipal.html', contexto)
+        return render(request, 'PraytheNews/MenuPrincipal/indexMenu.html', contexto)
     else:
-        return render(request, 'PraytheNews/Principal/MenuPrincipal.html')
+        return render(request, 'PraytheNews/MenuPrincipal/indexMenu.html')
     
 
 def Catalogo(request):
