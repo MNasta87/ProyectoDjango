@@ -15,83 +15,41 @@
     <link rel="stylesheet" href="{% static 'PrayTheNews/css/register.css'%}" />
   </head>
   <body>
-    <!-- BARRA NAVEGACIÓN -->
-
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark border-primary">
-      <div class="container-fluid">
-        <a href="#" class="navbar-brand"
-          ><img
-            src="{% static 'PrayTheNews/img/logo_small.png'%}"
-            alt=""
-            width="100"
-        /></a>
-        <button
-          type="button"
-          class="navbar-toggler"
-          data-bs-toggle="collapse"
-          data-bs-target="#MenuNavegacion"
-        >
-          <span class="navbar-toggler-icon"></span>
+    <!--Subnavbar-->
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark border-primary">
+    <div class="container-fluid">
+        <a href="{% url 'MenuPrincipal'  %}" class="navbar-brand"><img src="{% static 'PrayTheNews/img/logo_small.png'%}" alt="" width="100"></a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#MenuNavegacion">
+            <span class="navbar-toggler-icon"></span>
         </button>
-      </div>
-
-      <div id="MenuNavegacion" class="collapse navbar-collapse">
+    </div>
+  
+    <div id="MenuNavegacion" class="collapse navbar-collapse">
         <ul class="navbar-nav ms-3">
-          <li class="nav-item">
-            <a class="nav-link active" href="{% url 'MenuPrincipal'  %}"
-              >Inicio</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'MenuNoticias'%}">Noticias</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'MenuAnalisis'%}">Analisis</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="{%url 'Catalogo'%}">Catalogo</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-              style="padding-right: 70px"
-            >
-              Perfil
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <a class="dropdown-item" href="{% url 'LoginUsuario' %}"
-                  >Conectate</a
-                >
-              </li>
-              <li>
-                <a class="dropdown-item" href="{% url 'RegistroUsuarios'%}"
-                  >Registrate</a
-                >
-              </li>
-              <li>
-                <a class="dropdown-item" href="{% url 'CuentaUsuario' %}"
-                  >Ver Perfil</a
-                >
-              </li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
-              <li>
-                <a class="dropdown-item" href="{% url 'EditarUsuario' %}"
-                  >Administrador</a
-                >
-              </li>
-            </ul>
-          </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'MenuPrincipal'  %}">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'MenuNoticias'%}">Noticias</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'MenuAnalisis'%}">Analisis</a>
+  
+            </li>
+  
+            <li class="nav-item">
+                <a class="nav-link" href="{%url 'Catalogo'%}">Catalogo</a>
+            </li>
+  
+  
+            <li class="nav-item">
+                <a class="nav-link" href="{%url 'PerfilConf'%}">Perfil</a>
+            </li>
+  
         </ul>
-      </div>
-    </nav>
+  
+    </div>
+  </nav>
 
     <div class="container">
       <div class="row justify-content-center pt-5 mt-5 mr-1">
@@ -135,7 +93,7 @@
               
 
               <div class="form-group">
-                <label for="TituloPortada">Titulo Noticia</label>
+                <label for="TituloPortada">Titulo del Analisis</label>
                 <input
                   type="text"
                   class="form-control"
@@ -148,7 +106,7 @@
               </div>
 
               <div class="form-group">
-                <label for="exampleFormControlInput1">Portada de Noticia</label>
+                <label for="exampleFormControlInput1">Portada del Analisis</label>
                 <input
                   class="form-control"
                   type="file"
@@ -379,7 +337,7 @@
               <div class="row">
                 <div class="col-sm-4"></div>
                 <div class="col-sm-4"><center>
-                  <button type="submit" class="btn btn-primary" id="submit">
+                  <button type="submit" class="btn btn-secondary" id="submit">
                     Registrar
                   </button><center></div>
                 <div class="col-sm-4"></div>

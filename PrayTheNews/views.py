@@ -336,7 +336,7 @@ def CuentaPerio(request):
     contexto = {'nombreCompleto': InfoUsuario.nombreCompleto,'correo': InfoUsuario.correo,'nickname': InfoUsuario.nickname,'fotoUsuario': InfoUsuario.fotoUsuario,
     'linkInstagram': InfoUsuario.linkInstagram,'linkTwitch': InfoUsuario.linkTwitch,'linkTwitter': InfoUsuario.linkTwitter,'rol': InfoUsuario.rol}
 
-    return render(request,'PrayTheNews/Usuario/CuentaUsuario.html', contexto)
+    return render(request,'PrayTheNews/Periodista/CuentaPeriodista.html', contexto)
 #Usuario Normal 
 def CuentaUsuario1(request):
     Nick = request.session['usuario']
