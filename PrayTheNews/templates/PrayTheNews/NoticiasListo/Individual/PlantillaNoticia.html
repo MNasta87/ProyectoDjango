@@ -22,67 +22,66 @@
 </head>
 
 <body>
-    <!-- BARRA NAVEGACIÓN -->
-
     <nav class="navbar navbar-expand-md navbar-dark bg-dark border-primary">
         <div class="container-fluid">
-            <a href="#" class="navbar-brand"><img src="img/logo_small.png" alt="" width="100"></a>
+            <a href="{% url 'MenuPrincipal'  %}" class="navbar-brand"><img src="{% static 'PrayTheNews/img/logo_small.png'%}" alt="" width="100"></a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#MenuNavegacion">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
-
+      
         <div id="MenuNavegacion" class="collapse navbar-collapse">
             <ul class="navbar-nav ms-3">
                 <li class="nav-item">
-                    <a class="nav-link active" href="MenuPrincipalTerminado.html">Inicio</a>
+                    <a class="nav-link active" href="{% url 'MenuPrincipal'  %}">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="MenuNoticias.html">Noticias</a>
+                  <a class="nav-link" href="{% url 'MenuNoticias'%}">Noticias</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="MenuAnalisis.html">Analisis</a>
-
+                    <a class="nav-link" href="{% url 'MenuAnalisis'%}">Analisis</a>
+      
                 </li>
-
-
-
-
+      
                 <li class="nav-item">
-                    <a class="nav-link" href="Lanzamientos.html">Lanzamientos</a>
+                    <a class="nav-link" href="{%url 'Catalogo'%}">Catalogo</a>
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="catalogoPS.html">Catalogo</a>
-                </li>
-
-
-
+      
+      
+              {%if c_usuario %}
                 <li class="nav-item dropdown">
+                  
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        style="padding-right: 70px;">
-                        Perfil
+                        style="padding-right: 70px;margin-right: 20px;">
+                         {{c_usuario}}
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="LoginUsuario.html">Conectate</a></li>
-                        <li><a class="dropdown-item" href="Registro de usuario(Listo).html">Registrate</a></li>
-                        <li><a class="dropdown-item" href="Cuenta-perfil-usuario.html">Ver Perfil</a></li>
+                        <li><a class="dropdown-item" href="{% url 'PerfilConf' %}">Ver Perfil</a></li>
+      
+                        <li><a class="dropdown-item" href="{% url 'Logout' %}">Desconectarse</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="CuentaAdmin-EditarUsuarios.html">Administrador</a></li>
-
-
-
-
                     </ul>
                 </li>
-
-
+              {% else %}
+                <li class="nav-item dropdown">  
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  style="padding-right: 70px;margin-right: 20px;">
+                  Conectate
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'LoginUsuario' %}">Inicia sesion</a></li>
+                    <li><a class="dropdown-item" href="{% url 'RegistroUsuarios'%}">Registrate</a></li>
+                    </ul>
+                </li>
+              {%endif%}
+      
             </ul>
-
+      
         </div>
-    </nav>
+      </nav>
+
     <div class="container">
         <div class="row justify-content-center pt-5 mt-5 mr-1">
             <div class="col-md-10, NoticiasRelevantes">
@@ -130,13 +129,16 @@
                     </div>
                     <div class="row">
                         
-                        <form action="" method="POST" id="FormComentario" name="FormComentario">
+                        <form action="{% url 'publicarComentario' %}" method="POST" id="FormComentario" name="FormComentario">
                             {% csrf_token %} 
+
+                            <input id="idPubli" name="idPubli" type="hidden" value={{id_Publi}}>
+                                
                         <div class="col-md-6">
                            
                                 <div class="form-group">
                                     <label> Nombre</label>
-                                    <input class="form-control"  type="text" name = "nick" id="nick" >
+                                    <input class="form-control"  type="text" name = "nick" id="nick" readonly value = {{c_usuario}}>
                                 </div>
                         </div>
                         <div class="row">

@@ -794,33 +794,38 @@ def indexNoticia(request):
 
     
 #Comentarios
-def publicarComentario(request,id):
+def publicarComentario(request):
 
     
     if request.method == "POST":
 
         nick = request.POST['nick']
-        comentario = request.POST['comentario']
+        comen = request.POST['comentario']
+        idPubli = request.POST['idPubli']
         fechaComentario = datetime.today().strftime('%Y-%m-%d')
 
+        publi = Publicacion.objects.get(idPublicacion = idPubli)
         S_status = Status.objects.get(idStatus = 1)
-
+        
         try:
             nombre = Usuario.objects.get( nickname = nick)
         except Usuario.DoesNotExist:
             nombre = None
+        
+        if (nick != '' and comen != '' and nombre is not None):
 
-        if (nick != '' and comentario != '' and nombre is not None):
+            Comentario.objects.create(descripcion = comen, fechaComentario = fechaComentario, status = S_status, 
+                                        usuario = nombre , idPublicacion = publi)
 
-            Comentario.objects.create(descripcion = comentario, fechaComentario = fechaComentario, status = S_status, 
-                                        usuario = nombre , idPublicacion = "Aqui va el id de la publi")# cristooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooeeeeeeeeveeeee
+            return redirect('NoticiaCompleto',idPubli)
+
         else:
             print("Error en el usaurio----------")
-            return redirect('NoticiaCompleto')	
+            return redirect('NoticiaCompleto',idPubli)
 
     else:
         print(" Error en el póst---------------------------")
-        return redirect('NoticiaCompleto')	#/
+        return redirect('NoticiaCompleto',idPubli)
 
 # NOTICIAS INDIVIDUAL
 
@@ -837,6 +842,7 @@ def NoticiaCompleto(request, id):
         'noticia': noticias,
         'P2': parrafos,
         'nick': c_usuario,
+        'c_usuario': c_usuario,
   
     }
 
@@ -855,6 +861,8 @@ def NoticiaCompleto2(request, id):
     page_number = request.GET.get('page')
     articles_paginator = paginator.get_page(page_number)
 
+    c_usuario = request.session['usuario']
+    idPubli = noticias.idPublicacion
 
 
     template = loader.get_template('PrayTheNews/NoticiasListo/Individual/indexNoticia.html')
@@ -863,7 +871,8 @@ def NoticiaCompleto2(request, id):
         'noticia': noticias,
         'P2': parrafos,
         'comentario': articles_paginator,
-
+        'id_Publi' : idPubli,
+        'c_usuario': c_usuario
 
     }
 
