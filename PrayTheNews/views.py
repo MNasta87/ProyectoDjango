@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.contrib import messages
 from datetime import datetime
 
-from .models import Parrafo, Publicacion, Status, TipoPubli, Usuario,Rol
+from .models import Comentario, Parrafo, Publicacion, Status, TipoPubli, Usuario,Rol
 # Create your views here.
 
 
@@ -793,24 +793,50 @@ def indexNoticia(request):
         return HttpResponse(template.render(context, request))
 
     
+#Comentarios
+def publicarComentario(request,id):
+    
+    if request.method == "POST":
 
+        nick = request.POST['nick']
+        comentario = request.POST['comentario']
+        fechaComentario = datetime.today().strftime('%Y-%m-%d')
+
+        S_status = Status.objects.get(idStatus = 1)
+
+        try:
+            nombre = Usuario.objects.get( nickname = nick)
+        except Usuario.DoesNotExist:
+            nombre = None
+
+        if (nick != '' and comentario != '' and nombre is not None):
+
+            Comentario.objects.create(descripcion = comentario, fechaComentario = fechaComentario, status = S_status, 
+                                        usuario = nombre , idPublicacion = "Aqui va el id de la publi")# cristooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooeeeeeeeeveeeee
+        else:
+            print("Error en el usaurio----------")
+            return redirect('NoticiaCompleto')	
+
+    else:
+        print(" Error en el póst---------------------------")
+        return redirect('NoticiaCompleto')	
 
 # NOTICIAS INDIVIDUAL
 
 
 def NoticiaCompleto(request, id):
-
+    
     noticias = Publicacion.objects.get(idPublicacion=id, tipo='4')
     parrafos = Parrafo.objects.filter(idPublicacion=noticias)
-    
+
+    c_usuario = request.session['usuario']
 
     contexto2 = {
 
         'noticia': noticias,
         'P2': parrafos,
-
-
-
+        'nick': c_usuario,
+  
     }
 
     return render(request, "PrayTheNews/NoticiasListo/Individual/indexNoticia.html", contexto2)

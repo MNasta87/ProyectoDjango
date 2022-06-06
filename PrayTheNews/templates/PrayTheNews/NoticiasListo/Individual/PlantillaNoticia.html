@@ -129,12 +129,14 @@
 
                     </div>
                     <div class="row">
-
+                        
+                        <form action="{% url 'publicarComentario' %}" method="POST" id="FormComentario" name="FormComentario">
+                            {% csrf_token %} 
                         <div class="col-md-6">
-                            <form>
+                           
                                 <div class="form-group">
                                     <label> Nombre</label>
-                                    <input class="form-control" type="text" id="name">
+                                    <input class="form-control"  type="text" name = "nick" id="nick" readonly value = {nick}>
                                 </div>
                         </div>
                         <div class="row">
@@ -142,8 +144,8 @@
                                 <div class="form-group">
                                     
                                     <label>Comentario</label>
-                                    <textarea id="comment" class="form-control" rows="4"
-                                        maxlength="45"></textarea></label>
+                                    <textarea id="comentario" name = "comentario" class="form-control" 
+                                        maxlength="550"></textarea></label>
                                 </div>
                             </div>
                             <div class="col-md-12"></div>
@@ -152,7 +154,7 @@
                             <div class="col-md-2" style="margin-top: 50px;">
 
 
-                                <button type="button" class="btn btn-primary" onclick="commentBox();">Enviar</button>
+                                <button type="submit" class="btn btn-primary">Comentar</button>
                             </div>
                         </div>
                         </form>

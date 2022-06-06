@@ -22,8 +22,8 @@ urlpatterns = [
 
     #ANALISIS Y NOTICIAS INDIVIDUAL
 
-    path('AnalisisTunic/<int:id>/',AnalisisCompleto),
-    path('Noticia/<int:id>/',NoticiaCompleto),
+    path('AnalisisTunic/<int:id>/',AnalisisCompleto,name= "AnalisisCompleto"),
+    path('Noticia/<int:id>/',NoticiaCompleto, name= "NoticiaCompleto"),
 
 
     
