@@ -1,6 +1,6 @@
 
 from django.urls import path 
-from .views import AnalisisCompleto, AutorPerfil, BuscarUsuarios, CambiarContra, CuentaUsuario1, EditarCuenta, FormularioUsuarios, GuardarCambiarContra, GuardarCuenta, NoticiaCompleto,PerfilCompleto, PerfilConf, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,Catalogo,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarPublicacion,BuscarUsuario,EditarUsuario,PublicarNoticia,Logout, index, indexMenuPrincipal, indexNoticia
+from .views import AnalisisCompleto, AutorPerfil, BuscarUsuarios, CambiarContra, CuentaUsuario1, EditarCuenta, FormularioUsuarios, GuardarCambiarContra, GuardarCuenta, GuardarCuentaUsuarios, NoticiaCompleto,PerfilCompleto, PerfilConf, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,Catalogo,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarPublicacion,BuscarUsuario,EditarUsuario,PublicarNoticia,Logout, eliminar_Usuario, index, indexMenuPrincipal, indexNoticia, modificar_Usuario
 
 from .views import CuentaAdmin, CuentaPerio,FormularioUsuarios, PerfilCompleto, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,Catalogo,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarPublicacion,BuscarUsuario,EditarUsuario,PublicarNoticia 
                     
@@ -48,6 +48,13 @@ urlpatterns = [
     
     #Buscar 
     path('BuscarUsuarios',BuscarUsuarios,name="BuscarUsuarios"),
+
+    
+
+    path('GuardarCuentaUsuarios',GuardarCuentaUsuarios,name="GuardarCuentaUsuarios"),
+    
+    path('eliminar_Usuario/<int:id>',eliminar_Usuario, name="eliminar_Usuario"),
+    path('modificar_Usuario/<int:id>',modificar_Usuario,name="modificar_Usuario"),
 
     #Admin
     path('CuentaAdmin/',CuentaAdmin,name="CuentaAdmin"),

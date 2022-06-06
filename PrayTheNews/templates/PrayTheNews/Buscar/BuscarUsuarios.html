@@ -201,7 +201,13 @@
                                     <div class="e-profile">
                                         
                                             <div class="col-12 col-sm-auto mb-3">
-
+                                                {% if messages %}
+                                                    <div>
+                                                        {% for i in messages %}
+                                                        <p style="color: red;">{{ i }}</p>
+                                                        {% endfor %}
+                                                    </div>
+                                                {% endif %}
                                                 
 
                                                 <div class="d-flex justify-content-end"
@@ -240,31 +246,8 @@
                                                                     <td>{{U.rol}}</td>
                                                                     <td>
 
-                                                                        <a href=""
-                                                                            target="_blank">
-                                                                            <button type="button"
-                                                                                class="btn btn-primary">
-
-                                                                                <i class="far fa-eye">
-                                                                                </i>
-                                                                            </button>
-
-                                                                        </a>
-                                                                        </button>
-
-                                                                        <button type="button"
-                                                                            class="btn btn-secondary open-modal"><i
-                                                                                class="fas fa-edit"></i>
-                                                                        </button>
-
-                                                                        <button type="button"
-                                                                            class="btn btn-dark"
-                                                                            class="btn btn btn-dark ms-1"
-                                                                            data-href="/delete.php?id=54"
-                                                                            data-toggle="modal"
-                                                                            data-target="#confirm-delete"><i
-                                                                            class=" far
-                                                                            fa-trash-alt"></i></button>
+                                                                        <a class="btn btn-secondary" href="{% url 'modificar_Usuario' U.idUsuario  %}">Modificar</a>
+                                                                        <a class="btn btn-secondary" href="{% url 'eliminar_Usuario' U.idUsuario  %}">Eliminar</a><br>
                                                                     </td>
 
                                                                 </tr>

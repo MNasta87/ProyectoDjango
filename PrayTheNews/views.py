@@ -29,10 +29,7 @@ def MenuAnalisis(request):
 def FormularioUsuarios(request):
     return render(request,'PrayTheNews/Login/RegistroUsuario.html')
 
-#BuscarUsuarios
-def BuscarUsuarios(request):
-    Usuarios = Usuario.objects.all()
-    return render(request, 'PrayTheNews/Buscar/BuscarUsuarios.html', {"Usuarios" : Usuarios}) 
+
 
 
 
@@ -346,8 +343,8 @@ def CuentaUsuario1(request):
 
     return render(request,'PrayTheNews/Usuario/CuentaUsuario.html', contexto)
 
-
-#Cuenta Admin
+#Cosas de Admin------------------------------
+#Cuenta Admin 
 def CuentaAdmin(request):
     Nick = request.session['usuario']
     try:
@@ -362,8 +359,104 @@ def CuentaAdmin(request):
 
 
 
+#Eliminar Usuarios
+def eliminar_Usuario (request, id):
+    usuario = Usuario.objects.get(idUsuario = id)
+    
+    usuario.delete() #elimina el registro
+    messages.success(request,'Usuario Eliminado')
+
+    return redirect('BuscarUsuarios')
+    
+#BuscarUsuarios
+def BuscarUsuarios(request):
+    Usuarios = Usuario.objects.all()
+    contexto ={"Usuarios" : Usuarios}
+    return render(request, 'PrayTheNews/Buscar/BuscarUsuarios.html',contexto ) 
 
 
+#Modificar Usuarios
+def modificar_Usuario(request, id):
+    InfoUsuario = Usuario.objects.get(idUsuario = id)
+    Roles = Rol.objects.all() #obtener todas los roles para llenar el combobox
+
+    contexto = {
+        'nombreCompleto': InfoUsuario.nombreCompleto,'correo': InfoUsuario.correo,'nickname': InfoUsuario.nickname,'fotoUsuario': InfoUsuario.fotoUsuario,
+        'linkInstagram': InfoUsuario.linkInstagram,'linkTwitch': InfoUsuario.linkTwitch,'linkTwitter': InfoUsuario.linkTwitter,'rol': InfoUsuario.rol,
+        "Roles" : Roles
+    }
+
+    return render(request,'PrayTheNews/Buscar/EditarCuentasUsuarios.html',contexto)
+
+# Guardar la Modificacion de Usuarios
+def GuardarCuentaUsuarios(request):
+
+    if request.method == "POST":
+
+        NickName = request.POST['Nick']
+        Foto = request.FILES.get('FotoU','')
+        Correo = request.POST['Correo']
+        Nombres = request.POST['Nombres']
+        rol = request.POST['rol']
+        
+
+        Redtwitch = request.POST['Redtwitch']
+        RedInsta = request.POST['RedInsta']
+        RedTwitter = request.POST['RedTwitter']
+        
+
+        try:
+            Perfil = Usuario.objects.get(correo = Correo)
+        except Usuario.DoesNotExist:
+            Perfil = None
+            #Comprobar si Cambio su propio nick 
+        try: 
+            CambioNick = Usuario.objects.get( nickname = NickName , correo = Correo)
+        except Usuario.DoesNotExist:
+            CambioNick  = None
+
+        try: 
+            ExisteNick = Usuario.objects.get(nickname = NickName)
+        except Usuario.DoesNotExist:
+            ExisteNick  = None 
+
+        NoGuardo = ""
+
+        rol1 = Rol.objects.get(idRol = rol)
+
+        Perfil.rol = rol1
+
+        if CambioNick is None:
+            if ExisteNick is None:
+                Perfil.nickname = NickName
+            else:
+                NoGuardo = " Menos el nick. Ya existe"
+                    
+        if Foto != '':
+            Perfil.fotoUsuario = Foto
+            
+        if RedInsta != '':
+            Perfil.linkInstagram = RedInsta
+
+        if Redtwitch != '':
+            Perfil.linkTwitch = Redtwitch
+
+        if RedTwitter != '':
+            Perfil.linkTwitter = RedTwitter
+            
+        if Nombres != '': 
+            Perfil.nombreCompleto = Nombres
+                        
+        Perfil.save()            
+        messages.success(request, "Se Guardaron los datos."+ NoGuardo)            
+        return redirect('modificar_Usuario',Perfil.idUsuario)             
+
+    else:
+        print("---------------------------Error en el POST-------------------")
+        return redirect('modificar_Usuario',Perfil.idUsuario)
+
+
+#--------Fin Cosas de Admin------------------------------
     
 #----------------Fin Cuentas-----------    
 
