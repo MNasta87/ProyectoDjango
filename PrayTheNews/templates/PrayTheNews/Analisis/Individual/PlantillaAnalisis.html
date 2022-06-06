@@ -20,65 +20,36 @@
 <body>
 
 
-    <!-- BARRA NAVEGACIÓN -->
-
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark border-primary">
-        <div class="container-fluid">
-            <a href="#" class="navbar-brand"><img src="img/logo_small.png" alt="" width="100"></a>
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#MenuNavegacion">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-
-        <div id="MenuNavegacion" class="collapse navbar-collapse">
-            <ul class="navbar-nav ms-3">
-                <li class="nav-item">
-                    <a class="nav-link active" href="MenuPrincipalTerminado.html">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Menú Noticias.html">Noticias</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="MenuAnalisis.html">Analisis</a>
-
-                </li>
-
-
-
-
-                <li class="nav-item">
-                    <a class="nav-link" href="Lanzamientos.html">Lanzamientos</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="catalogoPc.html">Catalogo</a>
-                </li>
-
-
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        style="padding-right: 70px;">
-                        Perfil
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="LoginUsuario.html">Conectate</a></li>
-                        <li><a class="dropdown-item" href="Registro de usuario(Listo).html">Registrate</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item disabled" href="#">Administrador</a></li>
-
-
-
-                    </ul>
-                </li>
-
-
-            </ul>
-
-        </div>
-    </nav>
+  <!--Subnavbar-->
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark border-primary">
+    <div class="container-fluid">
+        <a href="{% url 'MenuPrincipal'  %}" class="navbar-brand"><img src="{% static 'PrayTheNews/img/logo_small.png'%}" alt="" width="100"></a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#MenuNavegacion">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+  
+    <div id="MenuNavegacion" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-3">
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'MenuPrincipal'  %}">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'MenuNoticias'%}">Noticias</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'MenuAnalisis'%}">Analisis</a>
+  
+            </li>
+  
+            <li class="nav-item">
+                <a class="nav-link" href="{%url 'PerfilConf'%}">Perfil</a>
+            </li>
+  
+        </ul>
+  
+    </div>
+  </nav>
 
 
     <!--NOTICIAS SEMANALES-->
