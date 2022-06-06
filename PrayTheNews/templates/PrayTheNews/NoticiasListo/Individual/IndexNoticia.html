@@ -52,3 +52,45 @@
 
 
 {% endblock %}
+
+
+
+{% block comentarios %}
+
+{% for i in comentario %}
+
+<div class="col-md-2">
+
+    <img src="{{ i.usuario.fotoUsuario.url }}" alt="Avatar" class="avatar">
+
+</div>
+
+
+
+<div class="col-md-6">
+
+    <a href="{{ i.get_absolute_url2 }}" class="color_enlace1"
+    style="color: #1DA1F2; font-weight: bold; font-size: 25px;">
+    {{ i.usuario.nombreCompleto }}
+    </a>
+
+
+    <p>{{ i.descripcion |truncatechars:200 | safe }}</p>
+
+</div>
+
+
+<div class="col-md-4">
+
+    <p class="card-text fechas2"> <small style="font-size: 18px;">{{ i.fechaComentario }} </small></p>
+
+</div>
+
+<div class="sep-md"></div>
+
+
+{% endfor %}
+
+
+
+{% endblock %}

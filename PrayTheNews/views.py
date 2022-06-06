@@ -64,7 +64,7 @@ def RegistroAnalisis(request):
         c_usuario = request.session['usuario']
 
         U_usuario = Usuario.objects.get(nickname = c_usuario)
-        T_tipo = TipoPubli.objects.get(idTipo = 2)# 2 es tipo conclusion
+        T_tipo = TipoPubli.objects.get(idTipo = 3)# 2 es tipo conclusion
         S_status = Status.objects.get(idStatus = 1)
 
         
@@ -121,7 +121,7 @@ def RegistroNoticia(request):
         c_usuario = request.session['usuario']
 
         U_usuario = Usuario.objects.get(nickname = c_usuario)
-        T_tipo = TipoPubli.objects.get(idTipo = 1)
+        T_tipo = TipoPubli.objects.get(idTipo = 4)
         S_status = Status.objects.get(idStatus = 1)
 
         
@@ -360,14 +360,14 @@ def CuentaAdmin(request):
 
 #Buscar Analisis
 def BuscarAnalisis(request):
-    lista_Analisis = Publicacion.objects.filter(tipo='2')
+    lista_Analisis = Publicacion.objects.filter(tipo='3')
 
     contexto ={"lista_Publicacion" : lista_Analisis}
     return render(request, 'PraytheNews/Buscar/BuscarAnalisis.html',contexto) 
 
 
 def BuscarNoticia(request):
-    lista_Noticia = Publicacion.objects.filter(tipo='1')
+    lista_Noticia = Publicacion.objects.filter(tipo='4')
 
     contexto ={"lista_Publicacion" : lista_Noticia}
     return render(request, 'PraytheNews/Buscar/BuscarNoticias.html',contexto) 
@@ -764,7 +764,7 @@ def indexNoticia(request):
     
 
     # Pagination
-    paginator = Paginator(articles, 3)
+    paginator = Paginator(articles, 1)
     page_number = request.GET.get('page')
     articles_paginator = paginator.get_page(page_number)
 
@@ -795,6 +795,7 @@ def indexNoticia(request):
     
 #Comentarios
 def publicarComentario(request,id):
+
     
     if request.method == "POST":
 
@@ -819,7 +820,7 @@ def publicarComentario(request,id):
 
     else:
         print(" Error en el póst---------------------------")
-        return redirect('NoticiaCompleto')	
+        return redirect('NoticiaCompleto')	#/
 
 # NOTICIAS INDIVIDUAL
 
@@ -840,3 +841,30 @@ def NoticiaCompleto(request, id):
     }
 
     return render(request, "PrayTheNews/NoticiasListo/Individual/indexNoticia.html", contexto2)
+
+
+def NoticiaCompleto2(request, id): 
+
+    noticias = Publicacion.objects.get(idPublicacion=id, tipo='4')
+    parrafos = Parrafo.objects.filter(idPublicacion=noticias)
+    comentario = Comentario.objects.filter(idPublicacion=noticias)
+    
+
+    # Pagination
+    paginator = Paginator(comentario, 3)
+    page_number = request.GET.get('page')
+    articles_paginator = paginator.get_page(page_number)
+
+
+
+    template = loader.get_template('PrayTheNews/NoticiasListo/Individual/indexNoticia.html')
+
+    context = {
+        'noticia': noticias,
+        'P2': parrafos,
+        'comentario': articles_paginator,
+
+
+    }
+
+    return HttpResponse(template.render(context, request))

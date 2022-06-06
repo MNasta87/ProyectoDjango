@@ -1,6 +1,6 @@
 
 from django.urls import path 
-from .views import AnalisisCompleto, AutorPerfil, BuscarAnalisis, BuscarNoticia, BuscarUsuarios, CambiarContra, CuentaUsuario1, EditarCuenta, FormularioUsuarios, GuardarCambiarContra, GuardarCuenta, GuardarCuentaUsuarios, NoticiaCompleto,PerfilCompleto, PerfilConf, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,Catalogo,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarUsuario,EditarUsuario,PublicarNoticia,Logout, eliminar_Analisis, eliminar_Noticias, eliminar_Usuario, index, indexMenuPrincipal, indexNoticia, modificar_Usuario
+from .views import AnalisisCompleto, AutorPerfil, BuscarAnalisis, BuscarNoticia, BuscarUsuarios, CambiarContra, CuentaUsuario1, EditarCuenta, FormularioUsuarios, GuardarCambiarContra, GuardarCuenta, GuardarCuentaUsuarios, NoticiaCompleto, NoticiaCompleto2,PerfilCompleto, PerfilConf, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,Catalogo,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarUsuario,EditarUsuario,PublicarNoticia,Logout, eliminar_Analisis, eliminar_Noticias, eliminar_Usuario, index, indexMenuPrincipal, indexNoticia, modificar_Usuario
 
 from .views import CuentaAdmin, CuentaPerio,FormularioUsuarios, PerfilCompleto, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,Catalogo,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarUsuario,EditarUsuario,PublicarNoticia 
                     
@@ -23,7 +23,7 @@ urlpatterns = [
     #ANALISIS Y NOTICIAS INDIVIDUAL
 
     path('AnalisisTunic/<int:id>/',AnalisisCompleto,name= "AnalisisCompleto"),
-    path('Noticia/<int:id>/',NoticiaCompleto, name= "NoticiaCompleto"),
+    path('Noticia/<int:id>/',NoticiaCompleto2, name= "NoticiaCompleto"),
 
 
     

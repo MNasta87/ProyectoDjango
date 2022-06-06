@@ -112,7 +112,11 @@ class Comentario(models.Model):
     idPublicacion = models.ForeignKey(Publicacion,on_delete= models.CASCADE,verbose_name= "Id publicacion")
 
     def __str__(self):
-        return self.fechaComentario
+        return self.descripcion
+
+    def get_absolute_url2(self):
+        
+        return f"/Autor/{self.usuario.idUsuario}"
 
 # Parrafos de la Publicacion
 

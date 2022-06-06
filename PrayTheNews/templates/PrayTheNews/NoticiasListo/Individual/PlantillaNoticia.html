@@ -130,13 +130,13 @@
                     </div>
                     <div class="row">
                         
-                        <form action="{% url 'publicarComentario' %}" method="POST" id="FormComentario" name="FormComentario">
+                        <form action="" method="POST" id="FormComentario" name="FormComentario">
                             {% csrf_token %} 
                         <div class="col-md-6">
                            
                                 <div class="form-group">
                                     <label> Nombre</label>
-                                    <input class="form-control"  type="text" name = "nick" id="nick" readonly value = {nick}>
+                                    <input class="form-control"  type="text" name = "nick" id="nick" >
                                 </div>
                         </div>
                         <div class="row">
@@ -159,6 +159,14 @@
                         </div>
                         </form>
                     </div>
+                </div>
+
+                <div class="row">
+                    <div class="sep-md"></div>
+                    {% block comentarios %}
+                    {% endblock %}
+
+
                 </div>
 
 
