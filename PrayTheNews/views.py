@@ -249,6 +249,7 @@ def GuardarCuenta(request):
             if CambioNick is None:
                 if ExisteNick is None:
                     Perfil.nickname = NickName
+                    request.session['usuario'] = NickName
                 else:
                     NoGuardo = " Menos el nick. Ya existe"
                     
@@ -387,16 +388,6 @@ def eliminar_Noticias(request, id):
 def Visualizar_Publicacion():
     return redirect('BuscarAnalisis')
 
-
-
-##def BuscarNoticia(request): codigo original del matias
-    #lista_Publicacion = Publicacion.objects.all()
-    #tipo_publicacion = request.GET.get('tipo_publicacion')
-    #if  is_valid_queryparam(tipo_publicacion):
-        #lista_Publicacion = lista_Publicacion.filter(tipo = tipo_publicacion)
-        #return render(request, 'PraytheNews/Admin/BuscarPublicacion.html',{'lista_Publicacion': lista_Publicacion})
-    ##else: 
-        #return render(request, 'PraytheNews/Admin/BuscarPublicacion.html', {'lista_Publicacion': lista_Publicacion})
 
 #Eliminar Usuarios
 def eliminar_Usuario (request, id):
