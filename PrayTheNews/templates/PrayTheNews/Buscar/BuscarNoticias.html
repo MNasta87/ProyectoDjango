@@ -5,7 +5,7 @@
     {% load static %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Buscar Publicacion</title>
+    <title>Buscar Noticias</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'PrayTheNews/css/estilosRegistro.css'%} ">
@@ -206,6 +206,16 @@
 <div class="container" style="margin-bottom: 70px;">
     <div class="row justify-content-center pt-5 mt-5 mr-1">
         <div class="col-md-12 formulario3">
+            <div class="row">
+                <div class="col-sm-4">
+                  <a class="btn btn-secondary"href="javascript:history.back()">
+                    <-- Volver</a>
+                    
+                  
+                </div>
+                <div class="col-sm-4"><center><h1>Buscar Noticias</h1></center></div>
+                <div class="col-sm-4"></div>
+            </div>
 
 
 
@@ -213,127 +223,28 @@
                 <div class="row">
                     <div class="container-lg mt-5">
                         <div class="row">
-                            <div class="col-lg-3">
-                                <div class="accordion mb-2" id="accordionExample">
-                                    <div class="card">
-                                        <div class="card-header" id="headingOne">
-                                            <h2 class="mb-0">
-                                                <a data-toggle="collapse" data-target="#collapseOne"
-                                                    aria-expanded="false" aria-controls="collapseOne">
-                                                    <span><i class="fa fa-user"></i> Cuenta</span>
-                                                    <i class="fa fa-chevron-down toggle"></i>
-                                                </a>
-                                            </h2>
-                                        </div>
-                                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
-                                            data-parent="#accordionExample">
-                                            <div class="card-body">
-                                                <ul class="list-group">
-                                                    <li class="list-group-item"><a
-                                                            href="Cuenta-perfil-usuario.html"><i
-                                                                class="fa fa-solid fa-address-card"></i>Ver
-                                                            Perfil</a></li>
-                                                    <li class="list-group-item"><a
-                                                            href="Cuenta-Editar-usuario.html"><i
-                                                                class="fa fa-pencil-square"></i>Editar Perfil</a>
-                                                    </li>
-                                                    <li class="list-group-item"><a href="Cuenta-CambiarContra-usuario.html"><i
-                                                                class="fa fa-key"></i>
-                                                            Cambiar Contraseña</a></li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header" id="headingTwo">
-                                            <h2 class="mb-0">
-                                                <a data-toggle="collapse" data-target="#collapseTwo"
-                                                    aria-expanded="false" aria-controls="collapseTwo">
-                                                    <span><i class="fa fa-users"></i> Administrar</span>
-                                                    <i class="fa fa-chevron-down toggle rotate"></i>
-                                                </a>
-                                            </h2>
-                                        </div>
-                                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                            data-parent="#accordionExample">
-                                            <div class="card-body">
-                                                <ul class="list-group">
-                                                    <li class="list-group-item"><a
-                                                            href="CuentaAdmin-EditarUsuarios.html"><i
-                                                                class="fa fa-inbox"></i> Administrar Usuarios <span
-                                                                class="badge badge-pill badge-primary"></span></a>
-                                                    </li>
-
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="card">
-                                        <div class="card-header" id="headingFour">
-                                            <h2 class="mb-0">
-                                                <a data-toggle="collapse" data-target="#collapseFour"
-                                                    aria-expanded="false" aria-controls="collapseFour">
-                                                    <span><i class="fa fa-cog"></i> Publicaciones</span>
-                                                    <i class="fa fa-chevron-down toggle"></i>
-                                                </a>
-                                            </h2>
-                                        </div>
-                                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
-                                            data-parent="#accordionExample">
-                                            <div class="card-body">
-                                                <ul class="list-group">
-                                                    <li class="list-group-item"><a
-                                                            href="CuentaAdmin-BuscarUsuarios.html"><i
-                                                                class="fa fa-search"></i>
-                                                            Buscar Notica</a></li>
-
-
-                                                    <li class="list-group-item"><a
-                                                            href="CuentaAdmin-BuscarAnalisis.html"><i
-                                                                class="fa fa-search-plus"></i>
-                                                            Buscar Analisis</a></li>
-                                                    <li class="list-group-item"><a href="#"><i
-                                                                class="fa fa-newspaper-o"></i>
-                                                            Publicar Post</a></li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header" id="headingFive">
-                                            <h2 class="mb-0"><a href="LoginUsuario.html"><i
-                                                        class="fa fa-power-off"></i> Cerrar Sesion</a>
-                                            </h2>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
-
 
                             <!--PERFIL USUARIO-->
 
                             <div class="col">
                                 <div class="row">
-                                    <div class="col mb-3">
+                                    
+                                    <div class="col mb-12">
+                                        
                                         <div class="card">
                                             <div class="card-body">
+                                                
                                                 <div class="e-profile">
                                                     <div class="row">
+
                                                         <div class="col-12 col-sm-auto mb-3">
-
-                                                            <header style="margin-bottom: 10px;">
-                                                                <h3>Buscar Publicacion</h3>
-
-
-                                                            </header>
+                                                            {% if messages %}
+                                                    <div>
+                                                        {% for i in messages %}
+                                                        <p style="color: red;">{{ i }}</p>
+                                                        {% endfor %}
+                                                    </div>
+                                                {% endif %}
                                                             
                                                             <form method="GET" action=".">
                                                                 <div class="form-row">
@@ -360,7 +271,7 @@
 
 
                                                             <div class="main-wrapper">
-                                                                <div class="responsive-table">
+                                                                
                                                                     <table class="table">
                                                                         <thead>
                                                                             <tr>
@@ -385,37 +296,18 @@
                                                                                 <td>{{Publi.usuario}}</td>
                                                                                 <td>
                                                                                     
-                                                                                    
-                                                                                    
-                                                                                    <a href="PaginaAnalisis-Blasphemous .html"
-                                                                                    target="_blank">
-                                                                                    <button type="button"
-                                                                                    class="btn btn-primary">
-                                                                                    
-                                                                                    <i class="far fa-eye">
-                                                                                    </i>
-                                                                                </button>
-                                                                                
-                                                                            </a>
                                                                             
-                                                                            <button type="button"
-                                                                            class="btn btn-dark"
-                                                                            class="btn btn btn-dark ms-1"
-                                                                            data-href="/delete.php?id=54"
-                                                                            data-toggle="modal"
-                                                                            data-target="#confirm-delete"><i
-                                                                            class=" far
-                                                                            fa-trash-alt"></i></button>
-                                                                        </td>
+                                                                                <a class="btn btn-secondary" href="{% url 'eliminar_Noticias' Publi.idPublicacion  %}">Eliminar</a><br>
+                                                                                </td>
                                                                         
-                                                                    </tr>
-                                                                    {% endfor %}
+                                                                            </tr>
+                                                                            {% endfor %}
                                                                             
 
 
                                                                         </tbody>
                                                                     </table>
-                                                                </div>
+                                                                
                                                             </div>
                                                         </div>
                                                     </div>

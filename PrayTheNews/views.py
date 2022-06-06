@@ -330,6 +330,7 @@ def CuentaPerio(request):
     'linkInstagram': InfoUsuario.linkInstagram,'linkTwitch': InfoUsuario.linkTwitch,'linkTwitter': InfoUsuario.linkTwitter,'rol': InfoUsuario.rol}
 
     return render(request,'PrayTheNews/Periodista/CuentaPeriodista.html', contexto)
+
 #Usuario Normal 
 def CuentaUsuario1(request):
     Nick = request.session['usuario']
@@ -357,7 +358,45 @@ def CuentaAdmin(request):
 
     return render(request,'PrayTheNews/Admin/CuentaAdmin.html', contexto)
 
+#Buscar Analisis
+def BuscarAnalisis(request):
+    lista_Analisis = Publicacion.objects.filter(tipo='2')
 
+    contexto ={"lista_Publicacion" : lista_Analisis}
+    return render(request, 'PraytheNews/Buscar/BuscarAnalisis.html',contexto) 
+
+
+def BuscarNoticia(request):
+    lista_Noticia = Publicacion.objects.filter(tipo='1')
+
+    contexto ={"lista_Publicacion" : lista_Noticia}
+    return render(request, 'PraytheNews/Buscar/BuscarNoticias.html',contexto) 
+
+def eliminar_Analisis(request, id):
+    publi = Publicacion.objects.get(idPublicacion = id)
+    publi.delete() #elimina el registro
+    messages.success(request,'Publicacion Eliminada')
+    return redirect('BuscarAnalisis')
+
+def eliminar_Noticias(request, id):
+    publi = Publicacion.objects.get(idPublicacion = id)
+    publi.delete() #elimina el registro
+    messages.success(request,'Publicacion Eliminada')
+    return redirect('BuscarNoticia')   
+
+def Visualizar_Publicacion():
+    return redirect('BuscarAnalisis')
+
+
+
+##def BuscarNoticia(request): codigo original del matias
+    #lista_Publicacion = Publicacion.objects.all()
+    #tipo_publicacion = request.GET.get('tipo_publicacion')
+    #if  is_valid_queryparam(tipo_publicacion):
+        #lista_Publicacion = lista_Publicacion.filter(tipo = tipo_publicacion)
+        #return render(request, 'PraytheNews/Admin/BuscarPublicacion.html',{'lista_Publicacion': lista_Publicacion})
+    ##else: 
+        #return render(request, 'PraytheNews/Admin/BuscarPublicacion.html', {'lista_Publicacion': lista_Publicacion})
 
 #Eliminar Usuarios
 def eliminar_Usuario (request, id):
@@ -542,14 +581,6 @@ def is_valid_queryparam(param):
 def AdministrarUsuario(request):
     return render(request, 'PrayTheNews/Admin/AdministrarUsuario.html')
 
-def BuscarPublicacion(request):
-    lista_Publicacion = Publicacion.objects.all()
-    tipo_publicacion = request.GET.get('tipo_publicacion')
-    if  is_valid_queryparam(tipo_publicacion):
-        lista_Publicacion = lista_Publicacion.filter(tipo = tipo_publicacion)
-        return render(request, 'PraytheNews/Admin/BuscarPublicacion.html',{'lista_Publicacion': lista_Publicacion})
-    else: 
-        return render(request, 'PraytheNews/Admin/BuscarPublicacion.html', {'lista_Publicacion': lista_Publicacion})
 
 def BuscarUsuario(request):
     lista_usuario = Usuario.objects.all()
