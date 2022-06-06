@@ -17,7 +17,7 @@
 
 {% block autor %}
 
-{{ us.nombreCompleto }}
+{{ us.nickname }}
 
 {% endblock %}
 
@@ -61,8 +61,8 @@ href="{{ us.linkTwitter }}"
 {% for article in articlesA %}
 
 
-<div class="col-md-6 mb-2 pr-lg-1">
-    <div class="card" style="width: 16rem;">
+
+    <div class="card" style="width: 16rem; margin-bottom: 40px;">
 
         {% if article.fotoPortada %}
         <img src="{{ article.fotoPortada.url }}" alt="Responsive image" class="img-fluid" >
@@ -75,7 +75,7 @@ href="{{ us.linkTwitter }}"
             <a href="{{ article.get_absolute_url }}" class="btn btn-secondary btn-sm">Ver Publicacion</a>
         </div>
     </div>
-</div>
+
 
 {% endfor %}
 
