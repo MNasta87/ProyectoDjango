@@ -209,7 +209,7 @@
                         data-parent="#accordionExample">
                         <div class="card-body">
                           <ul class="list-group">
-                            <li class="list-group-item"><a href="CuentaAdmin-EditarUsuarios.html"><i
+                            <li class="list-group-item"><a href={% url "BuscarUsuarios" %}><i
                                   class="fa fa-inbox"></i> Administrar Usuarios <span
                                   class="badge badge-pill badge-primary"></span></a>
                             </li>
@@ -284,7 +284,7 @@
                                       <div class="col-lg-4">
                                         <div class="card mb-4 border-dark">
                                           <div class="card-body text-center">
-                                            <img src="img/usuarios/D9x4CHMM_400x400.jpg" alt="avatar"
+                                            <img src="{{fotoUsuario.url}}" alt="avatar"
                                               class="rounded-circle img-fluid" style="width: 150px;">
                                               <h5 class="my-3">{{nickname}}</h5>
                                               <p class="text-muted mb-1">{{rol}}</p>

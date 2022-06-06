@@ -29,6 +29,12 @@ def MenuAnalisis(request):
 def FormularioUsuarios(request):
     return render(request,'PrayTheNews/Login/RegistroUsuario.html')
 
+#BuscarUsuarios
+def BuscarUsuarios(request):
+    Usuarios = Usuario.objects.all()
+    return render(request, 'PrayTheNews/Buscar/BuscarUsuarios.html', {"Usuarios" : Usuarios}) 
+
+
 
 
 #Publicar Analisis

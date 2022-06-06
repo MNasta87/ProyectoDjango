@@ -1,6 +1,6 @@
 
 from django.urls import path 
-from .views import AnalisisCompleto, AutorPerfil, CambiarContra, CuentaUsuario1, EditarCuenta, FormularioUsuarios, GuardarCambiarContra, GuardarCuenta, NoticiaCompleto,PerfilCompleto, PerfilConf, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,Catalogo,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarPublicacion,BuscarUsuario,EditarUsuario,PublicarNoticia,Logout, index, indexMenuPrincipal, indexNoticia
+from .views import AnalisisCompleto, AutorPerfil, BuscarUsuarios, CambiarContra, CuentaUsuario1, EditarCuenta, FormularioUsuarios, GuardarCambiarContra, GuardarCuenta, NoticiaCompleto,PerfilCompleto, PerfilConf, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,Catalogo,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarPublicacion,BuscarUsuario,EditarUsuario,PublicarNoticia,Logout, index, indexMenuPrincipal, indexNoticia
 
 from .views import CuentaAdmin, CuentaPerio,FormularioUsuarios, PerfilCompleto, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,Catalogo,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarPublicacion,BuscarUsuario,EditarUsuario,PublicarNoticia 
                     
@@ -46,6 +46,9 @@ urlpatterns = [
 
     path('PerfilConf/',PerfilConf,name="PerfilConf"),
     
+    #Buscar 
+    path('BuscarUsuarios',BuscarUsuarios,name="BuscarUsuarios"),
+
     #Admin
     path('CuentaAdmin/',CuentaAdmin,name="CuentaAdmin"),
 
