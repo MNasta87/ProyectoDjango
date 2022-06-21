@@ -28,6 +28,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'PrayTheNews',
+    'rest_framework',
+    'rest_juego',
+    'rest_framework.authtoken',
+
 ]
 
 MIDDLEWARE = [
