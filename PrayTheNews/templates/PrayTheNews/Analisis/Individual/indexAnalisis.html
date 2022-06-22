@@ -112,29 +112,30 @@
 
 
 
-                        <div class="col-md-4 p-2 ">
+                        <div class="row">
 
 
 
                             <!--Perfil Analista-->
+                            
 
-
-                            <div>
+                            <div class "col-md-3 p-3 ">
                                 <h6 class="justify-content-center">
 
 
                                     <img src="{{ analis.usuario.fotoUsuario.url }}" alt="Avatar"
                                         class="avatar">
 
-                                    <a href="{{ analis.get_absolute_url2 }}" class="color_enlace1"
-                                        style="color: #657786; font-weight: bold; font-size: 15px;">
-                                        {{ analis.usuario.nombreCompleto }}
-                                    </a>
-
+                                    
                             </div>
+                            <div class "col-md-3 p-3 ">
 
 
-
+                                <a href="{{ analis.get_absolute_url2 }}" class="color_enlace1"
+                                style="color: #657786; font-weight: bold; font-size: 15px;">
+                                {{ analis.usuario.nombreCompleto }}
+                                    </a>
+                                </div>
 
 
 

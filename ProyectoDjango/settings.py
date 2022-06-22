@@ -28,6 +28,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'PrayTheNews',
+    'rest_framework',
+    'rest_juego',
+    'rest_framework.authtoken',
+
 ]
 
 MIDDLEWARE = [
@@ -60,6 +64,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ProyectoDjango.wsgi.application'
 
+REST_FRAMEWORK={
+    'DEFAULT_AUTHENTICATION_CLASSES':[
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -69,8 +78,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
         'NAME': '127.0.0.1:1521/xe',
-        'USER': 'super',
-        'PASSWORD':'super',
+        'USER': 'AdminGigaChad',
+        'PASSWORD':'Chiste12345',
         'TEST': {
             'USER': 'default_test',
             'TBLSPACE': 'default_test_tbls',
