@@ -1,17 +1,20 @@
 from django.shortcuts import render
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
 from .serializers import JuegoSerializer,JuegoSerializer2
 from PrayTheNews.models import Juego
 
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
 @csrf_exempt
 
 @api_view(['GET','POST'])
+@permission_classes((IsAuthenticated,))
 def lista_juegos(request):
     if request.method == 'GET':
         juegos = Juego.objects.all()
@@ -30,6 +33,7 @@ def lista_juegos(request):
 
 
 @api_view(['POST'])
+@permission_classes((IsAuthenticated,))
 def agregarJ(request):
     if request.method == 'POST':
         data2 = JSONParser().parse(request)
@@ -41,9 +45,10 @@ def agregarJ(request):
             return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET','PUT','DELETE'])
+@permission_classes((IsAuthenticated,))
 def controlJ(request,codigo):
     try:
-        m = Juego.objects.get(codigoChip = codigo)
+        m = Juego.objects.get(idJuego = codigo)
     except Juego.DoesNotExist:
         return Response(status = status.HTTP_404_NOT_FOUND)
     

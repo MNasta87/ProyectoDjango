@@ -18,12 +18,12 @@ def login(request):
     try:
         user1 = User.objects.get(username = usuario)
     except User.DoesNotExist:
-        return Response("Usuario Incorrecto")
+        return Response("Usuario o Contraseña Incorrectos")
 
     pass_valida = check_password(clave, user1.password)
 
     if not pass_valida:
-        return Response("Contraseña Incorrecta")
+        return Response("Usuario o Contraseña Incorrectos")
     
     token, created = Token.objects.get_or_create(user = user1)
     return Response(token.key)
