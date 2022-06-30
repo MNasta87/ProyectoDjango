@@ -514,7 +514,7 @@ def RegistroUsuarios(request):
         corr = Usuario.objects.get( correo = correo_U)
     except Usuario.DoesNotExist:
         corr = None
-
+    print("---------------------------ee-1----------------------")
 
     if clave2 != False:
         if clave_U == clave2:
@@ -535,8 +535,8 @@ def RegistroUsuarios(request):
             messages.error(request, "Las contraseñas no coinciden")
             return redirect('Formulario') 
     else:
-        print("--------------------------------------------------")
-        print(clave2)
+        print("----------------------------1----------------------")
+       
         return redirect('Formulario') 
 
 def LoginUsuario(request):
