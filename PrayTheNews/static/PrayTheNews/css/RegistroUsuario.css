@@ -1,0 +1,85 @@
+
+
+
+
+
+.formulario__grupo-input.falla #password2{
+
+    border: 3px solid;
+    border-color: rgba(255, 2, 2, 0.589);
+
+}
+.formulario__grupo-input.falla p {
+    visibility: visible;
+    color:#e74c3c;
+}
+
+
+
+
+
+
+
+
+
+
+body {
+    background: #00416A !important;
+}
+
+.formulario {
+    background: rgba(0, 0, 0, 0.692);
+    padding: 50px;
+}
+
+h1{
+    color: #E1E8ED;
+    font-weight: bold !important;
+}
+label{
+    color: #1DA1F2;
+}
+
+.formulario__input {
+    width: 100%;
+    background: #fff;
+    border: 3px solid transparent;
+    border-radius: 3px;
+    height: 45px;
+    line-height: 45px;
+    padding: 0 40px 0 10px;
+    transition: .3s ease all;
+}
+
+.formulario__label {
+    display: block;
+    font-weight: 700;
+    padding: 10px;
+    cursor: pointer;
+}
+
+p{
+    color: aliceblue;
+}
+
+.formulario__btn {
+    width: 100%;
+}
+.formulario__btn {
+    height: 45px;
+    line-height: 45px;
+    width: 30%;
+    background: #000;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: .1s ease all;
+}
+
+.formulario__grupo-btn-enviar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
