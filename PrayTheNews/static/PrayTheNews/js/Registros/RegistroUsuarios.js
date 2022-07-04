@@ -1,28 +1,13 @@
-//  window.addEventListener('load',()=> {
-//   const forn = document.getElementById('formulario')
 
-//   const nick = document.getElementById('usuario')
-//   const nombre = document.getElementById('nombre')
-//   const correo = document.getElementById('correo')
-   const contra = document.getElementById('password')
-   const contra2 = document.getElementById('password2')
+const btnEnviar = document.getElementById('submit');
 
-  //  forn.addEventListener('submit',(a) =>{
-  //    a.preventDefault()
-  //    validarContra()
-  //  })
+
+
+
+  const contra = document.getElementById('password')
+  const contra2 = document.getElementById('password2')
+
   
-  function valida(){
-    valido = validarContra()
-
-    if (valido == 0){
-      console.log('aa')
-      return 0;
-    }
-    else{
-       
-    }
-  }
 
   const validarContra = ()=> {
     const contraVa = contra.value.trim() // con el value tomamos el valor y el trim borramos los espacion en blanco del principio
@@ -34,8 +19,9 @@
     }
     else{
       validaOk(contra2,'')
-      return 1;
+      document.formulario.submit();
     }
+    
   }
 
   const validaFalla = (input,mensaje) => {
@@ -59,4 +45,3 @@
 
 
 
-//  })

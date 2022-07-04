@@ -514,7 +514,6 @@ def RegistroUsuarios(request):
         corr = Usuario.objects.get( correo = correo_U)
     except Usuario.DoesNotExist:
         corr = None
-    print("---------------------------ee-1----------------------")
 
     if clave2 != False:
         if clave_U == clave2:
