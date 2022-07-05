@@ -20,144 +20,44 @@
         integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
 
 
-    <style>
-        .accordion .card {
-            color: #424e5d;
-            border: 1px solid #dddddd;
-        }
-
-        .accordion .card a {
-            color: #424e5d;
-            text-decoration: none;
-        }
-
-        .accordion .card-header {
-            background: linear-gradient(#fff, #f1f1f1);
-            padding: .75rem 1rem;
-            position: relative;
-        }
-
-        .accordion .card-header:hover {
-            background: linear-gradient(#f1f1f1, #e8e8e8);
-        }
-
-        .accordion .card-header h2 {
-            font-size: 1rem;
-        }
-
-        .accordion .fa {
-            width: 20px;
-            margin-right: .25rem;
-        }
-
-        .accordion .card-header a {
-            float: left;
-            width: 100%;
-            cursor: pointer;
-        }
-
-        .accordion .toggle {
-            font-size: .8rem;
-            line-height: .8rem;
-            cursor: pointer;
-            opacity: 0.7;
-            position: absolute;
-            right: 16px;
-            top: 16px;
-            width: 14px;
-            margin: 0;
-        }
-
-        .accordion .toggle:hover {
-            opacity: 1;
-        }
-
-        .accordion .card-body {
-            padding: 0;
-        }
-
-        .accordion .list-group-item {
-            border-radius: 0;
-            border-width: 1px 0 1px 0;
-            padding-left: 30px;
-            background: #d6dbe0;
-            font-weight: 500;
-        }
-
-        .accordion .list-group-item:hover {
-            background: #007bff;
-        }
-
-        .accordion .list-group-item:hover a {
-            color: #fff !important;
-        }
-
-        .accordion .list-group-item:hover .badge {
-            background: #fff;
-            color: #007bff;
-        }
-
-        .accordion .list-group-item a {
-            color: #61656b;
-            display: block;
-        }
-
-        .accordion .list-group-item .badge {
-            float: right;
-            min-width: 36px;
-        }
-
-        .accordion .rotate {
-            transform: rotate(180deg);
-        }
-    </style>
-    <script>
-        $(document).ready(function () {
-            // Toggle plus minus icon on show hide of collapse element
-            $(".collapse").on('show.bs.collapse', function () {
-                $(this).parent(".card").find(".toggle").addClass("rotate");
-            }).on('hide.bs.collapse', function () {
-                $(this).parent(".card").find(".toggle").removeClass("rotate");
-            });
-        });
-    </script>
-    </heaºd>
+</head>
 
 <body>
 
-  <!--Subnavbar-->
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark border-primary">
-    <div class="container-fluid">
-        <a href="{% url 'MenuPrincipal'  %}" class="navbar-brand"><img src="{% static 'PrayTheNews/img/logo_small.png'%}" alt="" width="100"></a>
-        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#MenuNavegacion">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-  
-    <div id="MenuNavegacion" class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-3">
-            <li class="nav-item">
-                <a class="nav-link active" href="{% url 'MenuPrincipal'  %}">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'MenuNoticias'%}">Noticias</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'MenuAnalisis'%}">Analisis</a>
-  
-            </li>
-  
-            <li class="nav-item">
-                <a class="nav-link" href="{%url 'PerfilConf'%}">Perfil</a>
-            </li>
-  
-        </ul>
-  
-    </div>
-  </nav>
-  
-      
-  
+    <!--Subnavbar-->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark border-primary">
+        <div class="container-fluid">
+            <a href="{% url 'MenuPrincipal'  %}" class="navbar-brand"><img
+                    src="{% static 'PrayTheNews/img/logo_small.png'%}" alt="" width="100"></a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#MenuNavegacion">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+
+        <div id="MenuNavegacion" class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-3">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'MenuPrincipal'  %}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'MenuNoticias'%}">Noticias</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'MenuAnalisis'%}">Analisis</a>
+
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'PerfilConf'%}">Perfil</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+
+
 
 
 
@@ -165,334 +65,256 @@
     <div class="container" style="margin-bottom: 70px;">
         <div class="row justify-content-center pt-5 mt-5 mr-1">
             <div class="col-md-10 formulario3">
-                
+                <!--PERFIL USUARIO-->
+                <div class="card ">
+                    <div class="card-body">
+
+                        {% if messages %}
+                        {% for x in messages %}
+                        <div class="alert alert-warning" role="alert" id="Verde">
+                            <center> {{ x }} </center>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+
+                        <a class="btn btn btn-dark ms-1" href="javascript:history.back()">
+                            <-- Volver</a>
+
+                                <!--Formulario-->
+                                <form action="{% url 'GuardarCuenta' %}" method="POST" enctype="multipart/form-data"
+                                    id="ForEditarCuenta" name="ForEditarCuenta">
+                                    {% csrf_token %}
 
 
-                                <!--PERFIL USUARIO-->
+                                    <div class="e-profile">
 
-                                        <div class="container">
-                                            
-                                                                <div class="card ">
-                                                                    <div class="card-body">
+                                        <div class="row">
 
-                                                                        {% if messages %}
-                                                                            {% for x in messages %}
-                                                                            <div class="alert alert-warning" role="alert" id="Verde">
-                                                                                <center> {{ x }} </center>
-                                                                            </div>
-                                                                            {% endfor %}
-                                                                        {% endif %}
+                                            <div class="col-12 col-sm-12 col-mb-4">
+                                                <div class="mx-auto" style="width: 140px;">
+                                                    <img src="{{fotoUsuario.url}}" alt="Avatar" class="avatar">
+                                                    <div class="mt-2">
+                                                        <input type="file" id="FotoU" name="FotoU">
 
-                                                                        <a class="btn btn btn-dark ms-1"href="javascript:history.back()">
-                                                                            <-- Volver</a>
-                                                                            
-                                                                        <!--Formulariooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo--> 
-                                                                        <form action="{% url 'GuardarCuenta' %}" method="POST" enctype="multipart/form-data" id="ForEditarCuenta" name="ForEditarCuenta">
-                                                                         {% csrf_token %} 
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                                                         
-                                                                        <div class="e-profile">
+                                            <div class="col-12 col-sm-6 col-mb-4">
+                                                <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                                    <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">
+                                                        {{nombreCompleto}}</h4>
+                                                    <p class="mb-0" style="color: #007bff;">
+                                                        @{{nickname}}</p>
 
-                                                                            <div class="row">
 
-                                                                                <div class="col-12 col-sm-12 col-mb-4">
-                                                                                    <div class="mx-auto"
-                                                                                        style="width: 140px;">
-                                                                                        <img src="{{fotoUsuario.url}}" alt="Avatar"
-                                                                                                            class="avatar">
-                                                                                        <div class="mt-2">
-                                                                                            <input type="file"
-                                                                                            id="FotoU"
-                                                                                            name="FotoU">
-                                                                                        
-                                                                                    </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                 
-                                                                                <div class="col-12 col-sm-6 col-mb-4">
-                                                                                    <div class="text-center text-sm-left mb-2 mb-sm-0">
-                                                                                        <h4
-                                                                                            class="pt-sm-2 pb-1 mb-0 text-nowrap">
-                                                                                            {{nombreCompleto}}</h4>
-                                                                                        <p class="mb-0"
-                                                                                            style="color: #007bff;">
-                                                                                            @{{nickname}}</p>
 
-                                                                                                                                                                             
-                                                                                            
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-12 col-sm-6 col-mb-4">  
-                                                                                    <div class="text-center text-sm-right">
-                                                                                        <span class="badge badge-secondary">Rol: {{rol}}</span>
-                        
-                                                                                    </div>
-                                                                                </div>
-                                                                                    
-                                                                                
-                                                                            </div>
-                                                                            <ul class="nav nav-tabs">
-                                                                                <li class="nav-item"><a class="active nav-link">Perfil</a>
-                                                                                </li>
-                                                                            </ul>
-                                                                            <div class="tab-content pt-3">
-                                                                                <div class="tab-pane active">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-mb-4">
+                                                <div class="text-center text-sm-right">
+                                                    <span class="badge badge-secondary">Rol: {{rol}}</span>
 
-                                                                                        <div class="row">
-                                                                                            <div class="col">
-                                                                                                <div class="row">
-                                                                                                    <div class="col">
-                                                                                                        <div
-                                                                                                            class="form-group">
-                                                                                                            <label>NickName</label>
-                                                                                                            <input
-                                                                                                                class="form-control"
-                                                                                                                type="text"
-                                                                                                                name="Nick" id ='Nick'
-                                                                                                                minlength="4" maxlength="15" required pattern="[A-Za-z0-9_?]+" required 
-                                                                                                                
-                                                                                                                value="{{nickname}}">
-                                                                                                                <p style="color: black">El NickName tiene que ser de 4 a 15 dígitos. Solo puede
-                                                                                                                    contener
-                                                                                                                    numeros y letras.</p>
-                                                                                                                
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                    <div class="col">
-                                                                                                        <div
-                                                                                                            class="form-group">
-                                                                                                            <label>Correo
-                                                                                                                Electronico</label>
-                                                                                                            <input
-                                                                                                                class="form-control"
-                                                                                                                type="text"
-                                                                                                                name="Correo"
-                                                                                                                id = "Correo"
-                                                                                                                readonly
-                                                                                                                value="{{correo}}">
-                                                                                                        </div>
-                                                                                                        <p style="color: black">El Correo no se puede editar.</p>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="row">
-                                                                                                    <div class="col">
-                                                                                                        <div
-                                                                                                            class="form-group">
-                                                                                                            <label>Nombre y Apellido
-                                                                                                                </label>
-                                                                                                            <input
-                                                                                                                class="form-control"
-                                                                                                                name = "Nombres"
-                                                                                                                id = "Nombres"
-                                                                                                                type="text"
-                                                                                                                
-                                                                                                                maxlength="40" required pattern="[A-Za-z ?]+" required
-                                                                                                                value="{{nombreCompleto}}"
-                                                                                                                >
-                                                                                                        </div>
-                                                                                                        <p style="color: black">El nombre solo puede contener letras y un maximo de 40 digitos.</p>
-                                                                                                    </div>
-                                                                                                </div>
+                                                </div>
+                                            </div>
 
-                                                                                            </div>
-                                                                                        </div>
+
+                                        </div>
+                                        <ul class="nav nav-tabs">
+                                            <li class="nav-item"><a class="active nav-link">Perfil</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content pt-3">
+                                            <div class="tab-pane active">
+
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label>NickName</label>
+                                                                    <input class="form-control" type="text" name="Nick"
+                                                                        id='Nick' minlength="4" maxlength="15" required
+                                                                        pattern="[A-Za-z0-9_?]+" required
+                                                                        value="{{nickname}}">
+                                                                    <p style="color: black">El NickName tiene que ser de
+                                                                        4 a 15 dígitos. Solo puede
+                                                                        contener
+                                                                        numeros y letras.</p>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label>Correo
+                                                                        Electronico</label>
+                                                                    <input class="form-control" type="text"
+                                                                        name="Correo" id="Correo" readonly
+                                                                        value="{{correo}}">
+                                                                </div>
+                                                                <p style="color: black">El Correo no se puede editar.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label>Nombre y Apellido
+                                                                    </label>
+                                                                    <input class="form-control" name="Nombres"
+                                                                        id="Nombres" type="text" maxlength="40" required
+                                                                        pattern="[A-Za-z ?]+" required
+                                                                        value="{{nombreCompleto}}">
+                                                                </div>
+                                                                <p style="color: black">El nombre solo puede contener
+                                                                    letras y un maximo de 40 digitos.</p>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
 
 
 
 
-                                                                                        <!-- Redes Sociales -->
-                                                                                        <div class="row mb-5 gx-5">
-                                                                                            <div
-                                                                                                class="col-xxl-6 mb-5 mb-xxl-0">
-                                                                                                <div
-                                                                                                    class="bg-secondary-soft px-4 py-5 rounded">
-                                                                                                    <div
-                                                                                                        class="row g-3">
-                                                                                                        <h4
-                                                                                                            class="mb-4 mt-0">
-                                                                                                            Enlances
-                                                                                                            Perfil
-                                                                                                            *(url)
-                                                                                                        </h4>
+                                                <!-- Redes Sociales -->
+                                                <div class="row mb-5 gx-5">
+                                                    <div class="col-xxl-6 mb-5 mb-xxl-0">
+                                                        <div class="bg-secondary-soft px-4 py-5 rounded">
+                                                            <div class="row g-3">
+                                                                <h4 class="mb-4 mt-0">
+                                                                    Enlances
+                                                                    Perfil
+                                                                    *(url)
+                                                                </h4>
 
-                                                                                                        <div
-                                                                                                            class="row">
-                                                                                                            <!-- Twitter -->
-                                                                                                            
-                                                                                                            <!-- Twitch -->
-                                                                                                            <div
-                                                                                                                class="col-md-6">
-                                                                                                                <label
-                                                                                                                    style="color:  #ac2bac;"
-                                                                                                                    class="form-label"><i
-                                                                                                                        class="fab fa-brands fa-twitch me-2"
-                                                                                                                        style="color:  #ac2bac;">
-                                                                                                                    </i>
-                                                                                                                    Twitch
-                                                                                                                </label>
-                                                                                                                <input
-                                                                                                                    type="text"
-                                                                                                                    class="form-control"
-                                                                                                                    maxlength="20"
-                                                                                                                    name = "Redtwitch"
-                                                                                                                    id= "Redtwitch"
-                                                                                                                    aria-label="Linkedin"
-                                                                                                                    style="margin-bottom: 20px;"
-                                                                                                                    value="{{linkTwitch}}">
-                                                                                                            </div>
-                                                                                                            <!-- Instragram -->
-                                                                                                            <div
-                                                                                                                class="col-md-6">
-                                                                                                                <label
-                                                                                                                    style="color: #0072b1;"
-                                                                                                                    class="form-label"><i
-                                                                                                                        class="fab fa-fw fa-instagram text-instagram me-2"
-                                                                                                                        style="color: #0072b1;"></i>Instragram
-                                                                                                                </label>
-                                                                                                                <input
-                                                                                                                    type="text"
-                                                                                                                    class="form-control"
-                                                                                                                    name = "RedInsta"
-                                                                                                                    id = "RedInsta"
-                                                                                                                    
-                                                                                                                    maxlength="20"
-                                                                                                                    aria-label="Instragram"
-                                                                                                                    value="{{linkInstagram}}"
-                                                                                                                    >
-                                                                                                            </div>
-                                                                                                            <div
-                                                                                                                class="col-md-6">
-                                                                                                                <label
-                                                                                                                    class="form-label"><i
-                                                                                                                        class="fab fa-fw  me-2"></i>Twitter
-                                                                                                                </label>
-                                                                                                                <input
-                                                                                                                    type="text"
-                                                                                                                    name = "RedTwitter"
-                                                                                                                    id = "RedTwitter"
-                                                                                                                    class="form-control"
-                                                                                                                    maxlength="20"
-                                                                                                                    value="{{linkTwitter}}"
-                                                                                                                    >
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                   </div>
-                                                                                                    <!-- Termino Fila -->
-                                                                                                    <div class="row">
-                                                                                                        <div class="col-12">
-                                                                                                            <div class="form-group" style="
-                                                                                                            margin-top: 20px;">
-                                                                                                                <label>Confirma los cambios. </label>
-                                                                                                                    <input
-                                                                                                                        class="form-control"
-                                                                                                                        name = "Contra"
-                                                                                                                        id = "Contra"
-                                                                                                                        type="password"
-                                                                                                                        placeholder = "Debe ingresar su contraseña"
-                                                                                                                        maxlength="40" required>
-                                                                                                                        
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                        <div class= "col-12"> 
-                                                                                                            <center><button type="submit" id ="submit" class="btn btn btn-dark ms-1">
-                                                                                                                Guardar Cambios</button></center>    
+                                                                <div class="row">
+                                                                    <!-- Twitter -->
 
-                                                                                                        </div>
-                                                                                                    </div>
-            
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>            
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        </form>
-                                                                        <!--Formulariooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo-->   
-                                                                        
+                                                                    <!-- Twitch -->
+                                                                    <div class="col-md-6">
+                                                                        <label style="color:  #ac2bac;"
+                                                                            class="form-label"><i
+                                                                                class="fab fa-brands fa-twitch me-2"
+                                                                                style="color:  #ac2bac;">
+                                                                            </i>
+                                                                            Twitch
+                                                                        </label>
+                                                                        <input type="text" class="form-control"
+                                                                            maxlength="20" name="Redtwitch"
+                                                                            id="Redtwitch" aria-label="Linkedin"
+                                                                            style="margin-bottom: 20px;"
+                                                                            value="{{linkTwitch}}">
+                                                                    </div>
+                                                                    <!-- Instragram -->
+                                                                    <div class="col-md-6">
+                                                                        <label style="color: #0072b1;"
+                                                                            class="form-label"><i
+                                                                                class="fab fa-fw fa-instagram text-instagram me-2"
+                                                                                style="color: #0072b1;"></i>Instragram
+                                                                        </label>
+                                                                        <input type="text" class="form-control"
+                                                                            name="RedInsta" id="RedInsta" maxlength="20"
+                                                                            aria-label="Instragram"
+                                                                            value="{{linkInstagram}}">
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <label class="form-label"><i
+                                                                                class="fab fa-fw  me-2"></i>Twitter
+                                                                        </label>
+                                                                        <input type="text" name="RedTwitter"
+                                                                            id="RedTwitter" class="form-control"
+                                                                            maxlength="20" value="{{linkTwitter}}">
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                            <!-- Termino Fila -->
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <div class="form-group"
+                                                                        style="
+                                                                                                            margin-top: 20px;">
+                                                                        <label>Confirma los cambios. </label>
+                                                                        <input class="form-control" name="Contra"
+                                                                            id="Contra" type="password"
+                                                                            placeholder="Debe ingresar su contraseña"
+                                                                            maxlength="40" required>
 
-                                                            
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <center><button type="submit" id="submit"
+                                                                            class="btn btn btn-dark ms-1">
+                                                                            Guardar Cambios</button></center>
 
+                                                                </div>
+                                                            </div>
 
-                                            
-                                        </div>                        
-                                 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            
+                                </form>
+                    </div>
+                    <!--Formulario-->
                 </div>
-
-
-
             </div>
-
-
-
         </div>
+    </div>
+    </div>
+    </div>
 
 
 
-        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
+    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-                    <div class="d-flex justify-content-between">
-                        <div class="modal-header">
+                <div class="d-flex justify-content-between">
+                    <div class="modal-header">
 
-                            <h4 class="modal-title wtitulos" id="myModalLabel">Guardar Cambios</h4>
-                        </div>
-
+                        <h4 class="modal-title wtitulos" id="myModalLabel">Guardar Cambios</h4>
                     </div>
 
-                    <div class="modal-body d-flex justify-content-center">
-                        <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
-                        <div class="row">
+                </div>
 
-                            <div class="col-12">
+                <div class="modal-body d-flex justify-content-center">
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+                    <div class="row">
+
+                        <div class="col-12">
 
 
 
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <p class="p1">Datos Actualizados Correctamente</p>
-                                    </div>
-
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p class="p1">Datos Actualizados Correctamente</p>
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-md-12 d-flex justify-content-center">
-                                        <img src="img/icons/Check-Logo-blue.png" alt="" style="width: 150px">
-
-                                    </div>
-                                </div>
-
 
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-12 d-flex justify-content-center">
+                                    <img src="img/icons/Check-Logo-blue.png" alt="" style="width: 150px">
+
+                                </div>
+                            </div>
                         </div>
-
-
-
-                    </div>
-
-                    <div class="modal-footer">
-
-                        <a class="btn btn-default btn-dark" data-dismiss="modal" style="color: white;">Ok</a>
                     </div>
                 </div>
+
+                <div class="modal-footer">
+
+                    <a class="btn btn-default btn-dark" data-dismiss="modal" style="color: white;">Ok</a>
+                </div>
             </div>
-           </div>
-
-         <script>
-            $('#confirm-delete').on('show.bs.modal', function (e) {
-                $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-
-                $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
-            });
-          </script>
-
         </div>
-
-
+    </div>
+    </div>
     </div>
 
 
@@ -548,7 +370,7 @@
                         <h6 class="text-uppercase fw-bold mb-4">
 
                         </h6>
-                        <img src="img/logo_small.png" alt="" class="logop">
+                        <img src="" alt="" class="logop">
                     </div>
                     <!-- Grid column -->
 

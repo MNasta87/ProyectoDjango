@@ -19,9 +19,9 @@
 		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 
-	
-	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	
+
 
 	
 </head>
@@ -102,8 +102,6 @@
             </div>
             {% endfor %}
             {% endif %}
-            
-
 
 				<form action="{% url 'RegistroUsuarios' %}" method="POST"  class="row g-3 col-lg-6 offset-lg-3" id="formulario" name="formulario"> 
 					{% csrf_token %}
@@ -113,23 +111,18 @@
 
 					<div class="col-md-6">
 						<!-- Grupo: Usuario -->
-						
-
 						<div class="formulario__grupo" id="grupo__usuario">
 							<label for="usuario" class="formulario__label">Nombre Usuario</label>
 							<div class="formulario__grupo-input">
 
 								<input type="text" class="formulario__input" name="usuario" id="usuario" placeholder="ElDonChaparro"
           						 minlength="4" maxlength="15"  pattern="[A-Za-z0-9_?]+" required />
-
-							<p>El NickName tiene que ser de 4 a 15 dígitos. Solo puede
-								contener
-								numeros y letras.</p>	
+								<p></p>
+								
 							</div>
-							
+							<p>El NickName tiene que ser de 4 a 15 dígitos. Solo puede
+								contener minúsculas, números, _ y - </p>
 						</div>
-
-
 					</div>
 
 					<div class="col-md-6">
@@ -140,12 +133,11 @@
 		
 								<input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="John Doe"
 								 maxlength="40" required pattern="[A-Za-z ?]+" required />
-								<p>El nombre solo puede contener letras y un maximo de 40 digitos.</p>
+								<p></p>
 							</div>
-							
+							<p>El nombre solo puede contener letras, debe tener como minimo 3 y como maximo 40.</p>
 						</div>
 					</div>
-
 
 					<!-- Grupo: Correo Electronico -->
 					<div class="formulario__grupo" id="grupo__correo">
@@ -153,71 +145,48 @@
 						<div class="formulario__grupo-input">
 							<input type="email" class="formulario__input" name="correo" id="correo" maxlength="40"
 								placeholder="correo@correo.com" required>
+							<p></p>	
 						</div>
 						<p>El correo solo puede contener 40 caracteres</p>
 					</div>
-
-
-
 
 					<div class="col-md-6">
 						<!-- Grupo: Contraseña -->
 						<div class="formulario__grupo" id="grupo__password">
 							<label for="password" class="formulario__label">Contraseña</label>
 							<div class="formulario__grupo-input">
-								<input type="password" class="formulario__input" name="password" id="password" minlength = "4" maxlength="16" required>
-								
+								<input type="password" class="formulario__input" name="password" id="password" minlength = "4" maxlength="16" >		
+							<p></p>		
 							</div>
 						<p>La Contraseña debe tener como minimo 4 y como maximo 16 </p>
-
 						</div>
-
-
-
 					</div>
-
 
 					<div class="col-md-6">
 						<!-- Grupo: Contraseña 2 -->
 						<div class="formulario__grupo" id="grupo__password2">
 							<label for="password2" class="formulario__label">Repetir Contraseña</label>
 							<div class="formulario__grupo-input">
-								<input type="password" class="formulario__input" name="password2" id="password2" required>
+								<input type="password" class="formulario__input" name="password2" id="password2">
 							<p></p>	
 							</div>
-
-
-							
 						</div>
-
-
-
 					</div>
-
-
-
-
-
-
-
-
-
 
 					<!-- Grupo: Terminos y Condiciones -->
 					<div class="formulario__grupo" id="grupo__terminos">
 						<label class="formulario__label">
-							<input class="formulario__checkbox" type="checkbox" required>
+							<div class="formulario__grupo-input">
+							<input class="formulario__checkbox" type="checkbox" id="Terminos" name="Terminos">
 							Acepto los Terminos y Condiciones
+							<p></p>	
+							</div>
+
 						</label>
 					</div>
 
-					
-
 					<div class="formulario__grupo formulario__grupo-btn-enviar">
-						<button type="button" class="formulario__btn btn-light" value ="enviar" id="enviar" onclick="validarContra()">Registrarme</button>
-						
-							
-								
+						<button type="button" class="formulario__btn btn-light" value ="enviar" id="enviar" onclick="validar()" >Registrarme</button>
 					</div>
 				</form>
 				
