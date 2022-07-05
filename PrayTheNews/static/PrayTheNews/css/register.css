@@ -1,3 +1,20 @@
+
+.formulario__grupo-input.falla p {
+  visibility: visible;
+  color:#e74c3c;
+}
+
+.formulario__grupo-input.falla {
+
+  border: 3px solid;
+  border-color: rgba(255, 2, 2, 0.589);
+
+}
+
+p{
+    color: aliceblue;
+  }
+
 .login-page-container {
     min-height: 293px;
     min-height: 29.3rem;
@@ -158,9 +175,7 @@
     background-color: #ffe259 ;
   }
 
-  p{
-    color: aliceblue;
-  }
+  
   #p_colorAdmin{
     color: #1DA1F2;
     font-weight: bold;
@@ -286,7 +301,7 @@
 
 
 #img-thumbnail {
-  background-color:#1DA1F2;
+  background-color:#ffffff;
 }
 
 
@@ -467,7 +482,6 @@
 }
 
 
-/* end */
 
 
 

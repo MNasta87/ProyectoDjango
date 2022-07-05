@@ -1,0 +1,21 @@
+.formulario__grupo-input.falla p {
+    visibility: visible;
+    color:#e74c3c;
+  }
+  
+  
+
+
+
+body {
+    background: #00416A;
+}
+
+.formulario3 {
+    background: rgba(12, 10, 10, 0.5);
+    padding: 50px;
+}
+h1, label {
+    color: #1DA1F2;
+    font-weight: bold;
+}
