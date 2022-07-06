@@ -20,108 +20,7 @@
         integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
 
 
-    <style>
-        .accordion .card {
-            color: #424e5d;
-            border: 1px solid #dddddd;
-        }
-
-        .accordion .card a {
-            color: #424e5d;
-            text-decoration: none;
-        }
-
-        .accordion .card-header {
-            background: linear-gradient(#fff, #f1f1f1);
-            padding: .75rem 1rem;
-            position: relative;
-        }
-
-        .accordion .card-header:hover {
-            background: linear-gradient(#f1f1f1, #e8e8e8);
-        }
-
-        .accordion .card-header h2 {
-            font-size: 1rem;
-        }
-
-        .accordion .fa {
-            width: 20px;
-            margin-right: .25rem;
-        }
-
-        .accordion .card-header a {
-            float: left;
-            width: 100%;
-            cursor: pointer;
-        }
-
-        .accordion .toggle {
-            font-size: .8rem;
-            line-height: .8rem;
-            cursor: pointer;
-            opacity: 0.7;
-            position: absolute;
-            right: 16px;
-            top: 16px;
-            width: 14px;
-            margin: 0;
-        }
-
-        .accordion .toggle:hover {
-            opacity: 1;
-        }
-
-        .accordion .card-body {
-            padding: 0;
-        }
-
-        .accordion .list-group-item {
-            border-radius: 0;
-            border-width: 1px 0 1px 0;
-            padding-left: 30px;
-            background: #d6dbe0;
-            font-weight: 500;
-        }
-
-        .accordion .list-group-item:hover {
-            background: #007bff;
-        }
-
-        .accordion .list-group-item:hover a {
-            color: #fff !important;
-        }
-
-        .accordion .list-group-item:hover .badge {
-            background: #fff;
-            color: #007bff;
-        }
-
-        .accordion .list-group-item a {
-            color: #61656b;
-            display: block;
-        }
-
-        .accordion .list-group-item .badge {
-            float: right;
-            min-width: 36px;
-        }
-
-        .accordion .rotate {
-            transform: rotate(180deg);
-        }
-    </style>
-    <script>
-        $(document).ready(function () {
-            // Toggle plus minus icon on show hide of collapse element
-            $(".collapse").on('show.bs.collapse', function () {
-                $(this).parent(".card").find(".toggle").addClass("rotate");
-            }).on('hide.bs.collapse', function () {
-                $(this).parent(".card").find(".toggle").removeClass("rotate");
-            });
-        });
-    </script>
-    </heaºd>
+    </heaad>
 
 <body>
 
@@ -251,10 +150,8 @@
                                                                                                                 name="Nick" id ='Nick'
                                                                                                                 minlength="4" maxlength="15" required pattern="[A-Za-z0-9_?]+" required 
                                                                                                                 
-                                                                                                                value="{{nickname}}">
-                                                                                                                <p style="color: black">El NickName tiene que ser de 4 a 15 dígitos. Solo puede
-                                                                                                                    contener
-                                                                                                                    numeros y letras.</p>
+                                                                                                                value="{{nickname}}" readonly>
+                                                                                                                
                                                                                                                 
                                                                                                         </div>
                                                                                                     </div>
@@ -271,7 +168,7 @@
                                                                                                                 readonly
                                                                                                                 value="{{correo}}">
                                                                                                         </div>
-                                                                                                        <p style="color: black">El Correo no se puede editar.</p>
+                                                                                                        
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="row">
@@ -286,11 +183,11 @@
                                                                                                                 id = "Nombres"
                                                                                                                 type="text"
                                                                                                                 
-                                                                                                                maxlength="40" required pattern="[A-Za-z ?]+" required
-                                                                                                                value="{{nombreCompleto}}"
+                                                                                                                maxlength="40"  required 
+                                                                                                                value="{{nombreCompleto}} " readonly
                                                                                                                 >
                                                                                                         </div>
-                                                                                                        <p style="color: black">El nombre solo puede contener letras y un maximo de 40 digitos.</p>
+                                                                                                        <p style="color: black">No se puede editar la informacion del usuarios. Exepto Foto, Links y rol.</p>
                                                                                                     </div>
                                                                                                 </div>
 
@@ -311,7 +208,7 @@
                                                                                             
                                                                                                                 </select>
                                                                                                         </div>
-                                                                                                        <p style="color: black">El nombre solo puede contener letras y un maximo de 40 digitos.</p>
+                                                                                                       
                                                                                                     </div>
                                                                                                 </div>
 
