@@ -4,13 +4,106 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
-from .serializers import JuegoSerializer,JuegoSerializer2
-from PrayTheNews.models import Juego
+from .serializers import *
+from PrayTheNews.models import Juego,Usuario,Publicacion
 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
-# Create your views here.
 
+# api de publicaciones
+
+@api_view(['GET'])
+def lista_Publicaciones(request):
+    if request.method == 'GET':
+        Publicacions = Publicacion.objects.all()
+        serializer = PublicacionSerializer(Publicacions,many=True)
+        return Response(serializer.data)
+
+@api_view(['POST'])
+def agregarP(request):
+    if request.method == 'POST':
+        data2 = JSONParser().parse(request)
+        serializer = PublicacionSerializer(data = data2)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status = status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET','PUT','DELETE'])
+def controlP(request,codigo):
+    try:
+        m = Publicacion.objects.get(idPublicacion = codigo)
+    except Publicacion.DoesNotExist:
+        return Response(status = status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'GET':
+        serializer = PublicacionSerializer(m)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        data2 = JSONParser().parse(request)
+        serializer = PublicacionSerializer(m,data = data2)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        m.delete()
+        return Response(status = status.HTTP_204_NO_CONTENT)
+
+
+# api de los Usuarios
+
+@api_view(['GET'])
+def lista_Usuarios(request):
+    if request.method == 'GET':
+        Usuarios = Usuario.objects.all()
+        serializer = UsuarioSerializer(Usuarios,many=True)
+        return Response(serializer.data)
+
+@api_view(['POST'])
+def agregarU(request):
+    if request.method == 'POST':
+        data2 = JSONParser().parse(request)
+        serializer = UsuarioSerializer(data = data2)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status = status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET','PUT','DELETE'])
+def controlU(request,codigo):
+    try:
+        m = Usuario.objects.get(idUsuario = codigo)
+    except Usuario.DoesNotExist:
+        return Response(status = status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'GET':
+        serializer = UsuarioSerializer(m)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        data2 = JSONParser().parse(request)
+        serializer = UsuarioSerializer(m,data = data2)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        m.delete()
+        return Response(status = status.HTTP_204_NO_CONTENT)
+    
+
+
+# api Juegos
 @csrf_exempt
 
 @api_view(['GET','POST'])
@@ -44,6 +137,8 @@ def agregarJ(request):
         else:
             return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
 
+
+
 @api_view(['GET','PUT','DELETE'])
 @permission_classes((IsAuthenticated,))
 def controlJ(request,codigo):
@@ -68,3 +163,5 @@ def controlJ(request,codigo):
     elif request.method == 'DELETE':
         m.delete()
         return Response(status = status.HTTP_204_NO_CONTENT)
+
+

@@ -36,6 +36,7 @@ class Usuario(models.Model):
     linkInstagram = models.CharField(max_length=100, verbose_name="Redes sociales intagram", blank=True)
     linkTwitch = models.CharField(max_length=100, verbose_name="Redes sociales twitch", blank=True)
     linkTwitter = models.CharField(max_length=100, verbose_name="Redes sociales twitter", blank=True)
+    
     rol = models.ForeignKey(Rol,on_delete= models.CASCADE)
 
 
