@@ -1,0 +1,165 @@
+{% extends 'PrayTheNews/Analisis/Individual/PlantillaAnalisis.html' %}
+{% load static %}
+
+
+
+
+
+
+
+{% block contenedor1 %}
+
+<div style="float: right;" class="fechas1">
+
+
+    {{ analis.fechaP }}
+
+
+
+</div>
+<h1>Analisis</h1>
+
+
+<div class="card mb-3">
+
+    <img src="{{ analis.fotoPortada.url }}" class="card-img-top" alt="...">
+
+
+    <div class="card-body bg-dark">
+
+
+
+        <header>
+            <h1>
+                {{ analis.tituloPubli }}
+            </h1>
+
+        </header>
+
+        <!--Columna 1-->
+
+        <div class="row pt-2  ">
+            <p>
+                {{ analis.descripcion }}
+
+            </p>
+
+
+        </div>
+
+        {% endblock %}
+
+
+
+
+
+
+
+
+{% block contenedor2 %}
+
+        {% for i in P1 %}
+
+
+        <div class="row justify-content-center ">
+            <div class="col-md-7">
+
+
+                <img src="{{ i.fotoParrafo.url }}" alt="Responsive image" class="img-fluid"
+                    style="margin-bottom: 20px; margin-top: 20px;">
+
+
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div>
+
+                <h2> {{ i.tituloParrafo}}</h2>
+
+
+            </div>
+
+            <p>
+                {{ i.descripcion }}
+            </p>
+
+
+
+
+        </div>
+
+        {% endfor %}
+
+        
+
+
+            <div class="container" style="margin-bottom: 30px;">
+                <div class="row justify-content-center pt-5 mt-5 mr-1">
+                    <div class="col-md-10 formularioConclusion">
+
+                        <header>
+                            <h3>
+                                Conclusion
+                            </h3>
+                        </header>
+                        <div>
+                            <p>
+                                {{ analis.conclusionP }}
+                            </p>
+                        </div>
+
+
+
+                        <div class="row">
+
+
+
+                            <!--Perfil Analista-->
+                            
+
+                            <div class "col-md-3 p-3 ">
+                                <h6 class="justify-content-center">
+
+
+                                    <img src="{{ analis.usuario.fotoUsuario.url }}" alt="Avatar"
+                                        class="avatar">
+
+                                    
+                            </div>
+                            <div class "col-md-3 p-3 ">
+
+
+                                <a href="{{ analis.get_absolute_url2 }}" class="color_enlace1"
+                                style="color: #657786; font-weight: bold; font-size: 15px;">
+                                {{ analis.usuario.nombreCompleto }}
+                                    </a>
+                                </div>
+
+
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+
+
+      
+
+{% endblock %}

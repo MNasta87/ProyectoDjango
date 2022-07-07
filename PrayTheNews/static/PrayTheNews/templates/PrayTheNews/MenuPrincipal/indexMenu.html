@@ -1,0 +1,119 @@
+{% extends 'PrayTheNews/MenuPrincipal/PlantillaMenuPrincipalTerminado.html' %}\
+
+{% load static %}
+
+
+
+
+
+
+
+
+
+
+
+
+{% block analisisM %}
+
+{% for i in articlesM %}
+
+<div class="col-md-4">
+    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative fondoanalisis">
+        <div class="col p-4 d-flex flex-column position-static">
+            <p class=" fechas1">Analisis por <a href="{{ i.get_absolute_url2 }}" class="color_enlace">
+                {{ i.usuario.nombreCompleto }}
+            </a></p>
+            <h3 class="mb-0 titulosanalisis" style="color:#AAB8C2; font-weight: bold;">
+                {{ i.tituloPubli }}
+            </h3>
+            <div class="mb-1 fechas1">
+                {{ i.fechaP }}
+            </div>
+            <p class="card-text mb-auto">
+                {{ i.descripcion |truncatechars:211 | safe }}
+                
+            </p>
+            <a href="{{ i.get_absolute_url }}" class="color_enlace1">Continuar leyendo</a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+            <img class="bd-placeholder-img" src="{{ i.fotoPortada.url }}" alt="" width="380" height="200">
+        </div>
+    </div>
+
+</div>
+
+{% endfor %}
+
+
+
+{% endblock %}
+
+
+
+
+
+{% block noticiasPrincipal %}
+
+{% for i in articuloP1 %}
+
+<div class="card mb-3">
+    <img src="{{ i.fotoPortada.url }}" class="card-img-top" alt="...">
+    <div class="card-body bg-dark">
+      <a href="{{ i.get_absolute_urlN }}" class="color_enlace1"><h5 class="card-title" style="font-size: 30px;"> 
+        {{ i.tituloPubli }}.</h5></a>  
+      <p class="card-text">
+        {{ i.descripcion |truncatechars:431 | safe }}.
+      </p>
+      <p class="card-text"><small class="text-muted">
+        {{ i.fechaP }}
+      </small></p>
+    </div>
+
+</div>
+
+
+{% endfor %}
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% block noticiasP2 %}
+
+{% for i in articuloMP %}
+
+<div class="card mb-3">
+    <img src="{{ i.fotoPortada.url }}" class="card-img-top" alt="...">
+    <div class="card-body bg-dark">
+      <a href="{{ i.get_absolute_urlN }}" class="color_enlace1"><h5 class="card-title" style="font-size: 20px;"> {{ i.tituloPubli }}</h5></a>  
+      <p class="card-text">
+          {{ i.descripcion |truncatechars:211 | safe }}
+      </p>
+      <p class="card-text"><small class="text-muted">
+        {{ i.fechaP }}
+      </small></p>
+    </div>
+
+</div>
+
+
+{% endfor %}
+
+
+
+{% endblock %}
