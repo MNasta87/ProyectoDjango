@@ -1,10 +1,13 @@
 import datetime
+
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.template import loader
 from django.http import HttpResponse
 from django.contrib import messages
 from datetime import datetime
+
+from django.db import IntegrityError
 
 from .models import Comentario, Parrafo, Publicacion, Status, TipoPubli, Usuario,Rol
 # Create your views here.
@@ -64,26 +67,43 @@ def RegistroAnalisis(request):
         c_usuario = request.session['usuario']
 
         U_usuario = Usuario.objects.get(nickname = c_usuario)
-        T_tipo = TipoPubli.objects.get(idTipo = 3)# 2 es tipo conclusion
+        T_tipo = TipoPubli.objects.get(idTipo = 3)# 3 es tipo analicis
         S_status = Status.objects.get(idStatus = 1)
 
-        
+        try:
+            publi = Publicacion.objects.filter(tituloPubli = PTitulo, descripcion = PDescripcion, usuario = U_usuario ,tipo = T_tipo , status = S_status)
+        except Publicacion.DoesNotExist:
+            publi = None
 
         if (PTitulo != '' or PFoto != '' or PDescripcion != '' or T_Parrafo1 != '' or F_Parrafo1 != '' or D_Parrafo1 != '' or Conclusion != ''
             or T_Parrafo2 != '' or F_Parrafo2 != '' or D_Parrafo2 != ''or T_Parrafo3 != '' or F_Parrafo3 != '' or D_Parrafo3 != ''):
             
-            Publicacion.objects.create(fotoPortada = PFoto, tituloPubli = PTitulo, descripcion = PDescripcion, 
-                                        fechaP = fechaActual , conclusionP = Conclusion , usuario = U_usuario ,tipo = T_tipo , status = S_status)
-            
-            Parrafo.objects.create( tituloParrafo = T_Parrafo1 ,fotoParrafo =  F_Parrafo1, descripcion = D_Parrafo1 , idPublicacion = Publicacion.objects.get(descripcion = PDescripcion))
-            
-            Parrafo.objects.create( tituloParrafo = T_Parrafo2 ,fotoParrafo=  F_Parrafo2, descripcion = D_Parrafo2 , idPublicacion = Publicacion.objects.get(descripcion = PDescripcion))
+            if(publi.exists()):
+                messages.success(request,'Error! El analisis contiene el mismo titulo y contenido que una ya existente')
+                
+                return redirect('PublicarAnalisis')      
 
-            Parrafo.objects.create( tituloParrafo = T_Parrafo3 ,fotoParrafo=  F_Parrafo3, descripcion = D_Parrafo3 , idPublicacion = Publicacion.objects.get(descripcion = PDescripcion))
+            else:   
+                try:   
+                    Publicacion.objects.create(fotoPortada = PFoto, tituloPubli = PTitulo, descripcion = PDescripcion, 
+                                                fechaP = fechaActual , conclusionP = Conclusion , usuario = U_usuario ,tipo = T_tipo , status = S_status)
+                    
+                    Parrafo.objects.create( tituloParrafo = T_Parrafo1 ,fotoParrafo =  F_Parrafo1, descripcion = D_Parrafo1 , idPublicacion = Publicacion.objects.get(tituloPubli = PTitulo, descripcion = PDescripcion,
+                                                                                                                                                                        usuario = U_usuario ,tipo = T_tipo , status = S_status))
 
-            messages.success(request,'Analisis registrado!')
-            
-            return redirect('PublicarAnalisis')                 
+                    Parrafo.objects.create( tituloParrafo = T_Parrafo2 ,fotoParrafo=  F_Parrafo2, descripcion = D_Parrafo2 , idPublicacion = Publicacion.objects.get(tituloPubli = PTitulo, descripcion = PDescripcion,
+                                                                                                                                                                        usuario = U_usuario ,tipo = T_tipo , status = S_status))
+
+                    Parrafo.objects.create( tituloParrafo = T_Parrafo3 ,fotoParrafo=  F_Parrafo3, descripcion = D_Parrafo3 , idPublicacion = Publicacion.objects.get(tituloPubli = PTitulo, descripcion = PDescripcion,
+                                                                                                                                                                        usuario = U_usuario ,tipo = T_tipo , status = S_status))
+
+                    messages.success(request,'Analisis registrado!')
+                    
+                    return redirect('PublicarAnalisis')    
+
+                except IntegrityError:
+                    messages.error(request, 'Error al crear una publicacion. Reintentelo, Error interno "Id")')
+                    return redirect('PublicarNoticia')                        
 
         else:
             messages.error(request,"Rellena el formulario")
@@ -124,25 +144,41 @@ def RegistroNoticia(request):
         T_tipo = TipoPubli.objects.get(idTipo = 4)
         S_status = Status.objects.get(idStatus = 1)
 
-        
+        try:
+            publi = Publicacion.objects.filter(tituloPubli = PTitulo, descripcion = PDescripcion, usuario = U_usuario ,tipo = T_tipo , status = S_status)
+        except Publicacion.DoesNotExist:
+            publi = None
 
         if (PTitulo != '' or PFoto != '' or PDescripcion != '' or T_Parrafo1 != '' or F_Parrafo1 != '' or D_Parrafo1 != '' 
             or T_Parrafo2 != '' or F_Parrafo2 != '' or D_Parrafo2 != ''or T_Parrafo3 != '' or F_Parrafo3 != '' or D_Parrafo3 != ''):
-            
-            Publicacion.objects.create(fotoPortada = PFoto, tituloPubli = PTitulo, descripcion = PDescripcion, 
-                                        fechaP = fechaActual , usuario = U_usuario ,tipo = T_tipo , status = S_status)
+            if(publi.exists()):
+                messages.success(request,'Error! La Noticia contiene el mismo titulo y contenido que una ya existente')
+                
+                return redirect('PublicarNoticia')       
+            else:      
 
-            
-            Parrafo.objects.create( tituloParrafo = T_Parrafo1 ,fotoParrafo =  F_Parrafo1, descripcion = D_Parrafo1 , idPublicacion = Publicacion.objects.get(descripcion = PDescripcion))
+                try:    
+                    Publicacion.objects.create(fotoPortada = PFoto, tituloPubli = PTitulo, descripcion = PDescripcion, 
+                                                fechaP = fechaActual , usuario = U_usuario ,tipo = T_tipo , status = S_status)          
+                    
+                    Parrafo.objects.create( tituloParrafo = T_Parrafo1 ,fotoParrafo =  F_Parrafo1, descripcion = D_Parrafo1 , idPublicacion = Publicacion.objects.get(tituloPubli = PTitulo, descripcion = PDescripcion,
+                                                                                                                                                                    usuario = U_usuario ,tipo = T_tipo , status = S_status))
 
-            Parrafo.objects.create( tituloParrafo = T_Parrafo2 ,fotoParrafo=  F_Parrafo2, descripcion = D_Parrafo2 , idPublicacion = Publicacion.objects.get(descripcion = PDescripcion))
+                    Parrafo.objects.create( tituloParrafo = T_Parrafo2 ,fotoParrafo=  F_Parrafo2, descripcion = D_Parrafo2 , idPublicacion = Publicacion.objects.get(tituloPubli = PTitulo, descripcion = PDescripcion,
+                                                                                                                                                                    usuario = U_usuario ,tipo = T_tipo , status = S_status))
 
-            Parrafo.objects.create( tituloParrafo = T_Parrafo3 ,fotoParrafo=  F_Parrafo3, descripcion = D_Parrafo3 , idPublicacion = Publicacion.objects.get(descripcion = PDescripcion))
+                    Parrafo.objects.create( tituloParrafo = T_Parrafo3 ,fotoParrafo=  F_Parrafo3, descripcion = D_Parrafo3 , idPublicacion = Publicacion.objects.get(tituloPubli = PTitulo, descripcion = PDescripcion,
+                                                                                                                                                                    usuario = U_usuario ,tipo = T_tipo , status = S_status))
 
-            messages.success(request,'Noticia Registrada!')
-            
-            return redirect('PublicarNoticia')                 
-
+                    messages.success(request,'Noticia Registrada!')
+                    
+                    return redirect('PublicarNoticia')
+                    
+                except IntegrityError:
+                    messages.error(request, 'Error al crear una publicacion. Reintentelo, Error interno "Id")')
+                    return redirect('PublicarNoticia')       
+                
+                
         else:
             messages.error(request,"Rellena el formulario")
             return redirect('PublicarNoticia')
@@ -332,6 +368,39 @@ def CuentaPerio(request):
 
     return render(request,'PrayTheNews/Periodista/CuentaPeriodista.html', contexto)
 
+
+def PublicacionesPerio(request):
+    Nick = request.session['usuario']
+
+    try:
+        InfoUsuario = Usuario.objects.get(nickname = Nick)
+    except Usuario.DoesNotExist:
+        InfoUsuario = None
+
+    if(InfoUsuario is not None):
+        try:
+            lista = Publicacion.objects.filter(usuario = InfoUsuario)
+        except Publicacion.DoesNotExist:
+            lista = None
+
+        if(lista.exists()):
+            contexto ={"lista_Publicacion" : lista}
+            print(lista)
+            
+            return render(request,'PrayTheNews/Periodista/BuscarPublicaciones.html',contexto)
+        else:
+            print("brijido")
+            messages.success(request,'Sin Publicaciones!')
+            return render(request,'PrayTheNews/Periodista/BuscarPublicaciones.html')
+    else:
+       return render(request,'PrayTheNews/Periodista/BuscarPublicaciones.html') 
+
+def eliminar_publi(request, id):
+    publi = Publicacion.objects.get(idPublicacion = id)
+    publi.delete() #elimina el registro
+    messages.success(request,'Publicacion Eliminada')
+    return redirect('PublicacionesPerio')
+
 #Usuario Normal 
 def CuentaUsuario1(request):
     Nick = request.session['usuario']
@@ -519,11 +588,18 @@ def RegistroUsuarios(request):
         if clave_U == clave2:
             if nombre is None:
                 if corr is None:
-                    Usuario.objects.create(nombreCompleto = nombreCompleto_U, correo = correo_U,clave = clave_U,
-                    nickname = nickname_U,linkInstagram = linkInstagram_U, linkTwitch = linkTwitch_U,
-                    linkTwitter= linkTwitter_U, rol = rol_u)
+                    try:
+                        Usuario.objects.create(nombreCompleto = nombreCompleto_U, correo = correo_U,clave = clave_U,
+                        nickname = nickname_U,linkInstagram = linkInstagram_U, linkTwitch = linkTwitch_U,
+                        linkTwitter= linkTwitter_U, rol = rol_u)
+                        return redirect('LoginUsuario')
                     
-                    return redirect('LoginUsuario')
+                    
+
+                    except IntegrityError:
+                        messages.error(request, 'Error Vuelva a intentarlo. Error interno "id" ')
+                        return redirect('Formulario')
+                    
                 else:
                     messages.error(request, "El correo ya esta vinculado a una cuenta")
                     return redirect('Formulario')

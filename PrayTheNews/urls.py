@@ -1,6 +1,6 @@
 
 from django.urls import path 
-from .views import AnalisisCompleto, AutorPerfil, BuscarAnalisis, BuscarNoticia, BuscarUsuarios, CambiarContra, CuentaUsuario1, EditarCuenta, FormularioUsuarios, GuardarCambiarContra, GuardarCuenta, GuardarCuentaUsuarios, NoticiaCompleto, NoticiaCompleto2,PerfilCompleto, PerfilConf, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,Catalogo,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarUsuario,EditarUsuario,PublicarNoticia,Logout, eliminar_Analisis, eliminar_Noticias, eliminar_Usuario, index, indexMenuPrincipal, indexNoticia, modificar_Usuario, publicarComentario
+from .views import AnalisisCompleto, AutorPerfil, BuscarAnalisis, BuscarNoticia, BuscarUsuarios, CambiarContra, CuentaUsuario1, EditarCuenta, FormularioUsuarios, GuardarCambiarContra, GuardarCuenta, GuardarCuentaUsuarios, NoticiaCompleto, NoticiaCompleto2,PerfilCompleto, PerfilConf, PublicacionesPerio, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,Catalogo,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarUsuario,EditarUsuario,PublicarNoticia,Logout, eliminar_Analisis, eliminar_Noticias, eliminar_Usuario, eliminar_publi, index, indexMenuPrincipal, indexNoticia, modificar_Usuario, publicarComentario
 
 from .views import CuentaAdmin, CuentaPerio,FormularioUsuarios, PerfilCompleto, PublicarAnalisis, RegistroAnalisis,RegistroNoticia,Catalogo,RegistroUsuarios,LoginUsuario,AdministrarUsuario,BuscarUsuario,EditarUsuario,PublicarNoticia 
                     
@@ -69,6 +69,11 @@ urlpatterns = [
     path('CuentaUsuario/',CuentaUsuario1,name="CuentaUsuario1"),
     #Periodista
     path('CuentaPeriodista/',CuentaPerio, name = "CuentaPerio"),
+
+    path('Publicaciones/',PublicacionesPerio, name = "PublicacionesPerio"),
+
+    path('eliminar_publi/<int:id>',eliminar_publi, name="eliminar_publi"),
+
     
 
 
