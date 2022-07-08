@@ -696,14 +696,6 @@ def index(request): #Analisis
 
     template = loader.get_template('PrayTheNews/Analisis/indexMenuAnalisis.html')
 
-    context = {
-        'articles': articles_paginator,
-        'articuloP': articles_paginatorP,
-        
-
-    }
-
-    
 
     if 'usuario' in request.session:
         c_usuario = request.session['usuario']
@@ -734,16 +726,27 @@ def AnalisisCompleto(request, id):
     parrafos = Parrafo.objects.filter(idPublicacion=analisis)
     
 
-    contexto2 = {
+    
+    if 'usuario' in request.session:
+        c_usuario = request.session['usuario']
+        
+        contexto2 = {
 
         'analis': analisis,
         'P1': parrafos,
-
-
-
+        'c_usuario': c_usuario,
+        
     }
+        return render(request, "PrayTheNews/Analisis/individual/indexAnalisis.html", contexto2)
 
-    return render(request, "PrayTheNews/Analisis/individual/indexAnalisis.html", contexto2)
+    else:
+        contexto2 = {
+
+        'analis': analisis,
+        'P1': parrafos, }
+        return render(request, "PrayTheNews/Analisis/individual/indexAnalisis.html", contexto2)
+
+    
 
 
 # PERFIL AUTOR
@@ -762,9 +765,16 @@ def AutorPerfil(request, id):
     page_number = request.GET.get('page')
     articles_paginator = paginator.get_page(page_number)
 
+    
+    if 'usuario' in request.session:
+        c_usuario = request.session['usuario']
+        
+        
+        return render(request,'PrayTheNews/Autor/PerfilAutor.html', {'us': user,'articlesA': articles_paginator, 'count': countA,'countN':countN,'c_usuario': c_usuario})
 
-
-    return render(request, 'PrayTheNews/Autor/PerfilAutor.html', {'us': user,'articlesA': articles_paginator, 'count': countA,'countN':countN})
+    else:
+        
+        return render(request, 'PrayTheNews/Autor/PerfilAutor.html', {'us': user,'articlesA': articles_paginator, 'count': countA,'countN':countN})
 
 
 # MENU PRINCIPAL
@@ -899,7 +909,12 @@ def NoticiaCompleto(request, id):
     noticias = Publicacion.objects.get(idPublicacion=id, tipo='4')
     parrafos = Parrafo.objects.filter(idPublicacion=noticias)
 
-    c_usuario = request.session['usuario']
+    try:
+        c_usuario = request.session['usuario']
+        Logiado = True
+    except:
+        c_usuario = ""
+        Logiado = False
 
     contexto2 = {
 
@@ -907,6 +922,8 @@ def NoticiaCompleto(request, id):
         'P2': parrafos,
         'nick': c_usuario,
         'c_usuario': c_usuario,
+        'Logiado' : Logiado
+
   
     }
 
@@ -926,8 +943,10 @@ def NoticiaCompleto2(request, id):
     articles_paginator = paginator.get_page(page_number)
     try:
         c_usuario = request.session['usuario']
+        Logiado = True
     except:
         c_usuario = ""
+        Logiado = False
 
     idPubli = noticias.idPublicacion
 
@@ -939,7 +958,8 @@ def NoticiaCompleto2(request, id):
         'P2': parrafos,
         'comentario': articles_paginator,
         'id_Publi' : idPubli,
-        'c_usuario': c_usuario
+        'c_usuario': c_usuario,
+        'Logiado' : Logiado
 
     }
 
