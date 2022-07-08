@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 import datetime
 
 from django.shortcuts import render, redirect
@@ -923,8 +924,11 @@ def NoticiaCompleto2(request, id):
     paginator = Paginator(comentario, 3)
     page_number = request.GET.get('page')
     articles_paginator = paginator.get_page(page_number)
-    
-    c_usuario = request.session['usuario']
+    try:
+        c_usuario = request.session['usuario']
+    except:
+        c_usuario = ""
+
     idPubli = noticias.idPublicacion
 
 
