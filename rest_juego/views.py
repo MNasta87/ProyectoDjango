@@ -13,6 +13,7 @@ from rest_framework.permissions import IsAuthenticated
 # api de publicaciones
 
 @api_view(['GET'])
+@permission_classes((IsAuthenticated,))
 def lista_Publicaciones(request):
     if request.method == 'GET':
         Publicacions = Publicacion.objects.all()
@@ -20,6 +21,7 @@ def lista_Publicaciones(request):
         return Response(serializer.data)
 
 @api_view(['POST'])
+@permission_classes((IsAuthenticated,))
 def agregarP(request):
     if request.method == 'POST':
         data2 = JSONParser().parse(request)
@@ -32,6 +34,7 @@ def agregarP(request):
 
 
 @api_view(['GET','PUT','DELETE'])
+@permission_classes((IsAuthenticated,))
 def controlP(request,codigo):
     try:
         m = Publicacion.objects.get(idPublicacion = codigo)
@@ -59,6 +62,7 @@ def controlP(request,codigo):
 # api de los Usuarios
 
 @api_view(['GET'])
+@permission_classes((IsAuthenticated,))
 def lista_Usuarios(request):
     if request.method == 'GET':
         Usuarios = Usuario.objects.all()
@@ -66,6 +70,7 @@ def lista_Usuarios(request):
         return Response(serializer.data)
 
 @api_view(['POST'])
+@permission_classes((IsAuthenticated,))
 def agregarU(request):
     if request.method == 'POST':
         data2 = JSONParser().parse(request)
@@ -78,6 +83,7 @@ def agregarU(request):
 
 
 @api_view(['GET','PUT','DELETE'])
+@permission_classes((IsAuthenticated,))
 def controlU(request,codigo):
     try:
         m = Usuario.objects.get(idUsuario = codigo)
