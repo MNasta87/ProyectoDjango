@@ -88,14 +88,11 @@ def RegistroAnalisis(request):
                     Publicacion.objects.create(fotoPortada = PFoto, tituloPubli = PTitulo, descripcion = PDescripcion, 
                                                 fechaP = fechaActual , conclusionP = Conclusion , usuario = U_usuario ,tipo = T_tipo , status = S_status)
                     
-                    Parrafo.objects.create( tituloParrafo = T_Parrafo1 ,fotoParrafo =  F_Parrafo1, descripcion = D_Parrafo1 , idPublicacion = Publicacion.objects.get(tituloPubli = PTitulo, descripcion = PDescripcion,
-                                                                                                                                                                        usuario = U_usuario ,tipo = T_tipo , status = S_status))
+                    Parrafo.objects.create( tituloParrafo = T_Parrafo1 ,fotoParrafo =  F_Parrafo1, descripcion = D_Parrafo1 , idPublicacion = Publicacion.objects.get(tituloPubli = PTitulo, descripcion = PDescripcion, usuario = U_usuario ,tipo = T_tipo , status = S_status))
 
-                    Parrafo.objects.create( tituloParrafo = T_Parrafo2 ,fotoParrafo=  F_Parrafo2, descripcion = D_Parrafo2 , idPublicacion = Publicacion.objects.get(tituloPubli = PTitulo, descripcion = PDescripcion,
-                                                                                                                                                                        usuario = U_usuario ,tipo = T_tipo , status = S_status))
+                    Parrafo.objects.create( tituloParrafo = T_Parrafo2 ,fotoParrafo=  F_Parrafo2, descripcion = D_Parrafo2 , idPublicacion = Publicacion.objects.get(tituloPubli = PTitulo, descripcion = PDescripcion, usuario = U_usuario ,tipo = T_tipo , status = S_status))
 
-                    Parrafo.objects.create( tituloParrafo = T_Parrafo3 ,fotoParrafo=  F_Parrafo3, descripcion = D_Parrafo3 , idPublicacion = Publicacion.objects.get(tituloPubli = PTitulo, descripcion = PDescripcion,
-                                                                                                                                                                        usuario = U_usuario ,tipo = T_tipo , status = S_status))
+                    Parrafo.objects.create( tituloParrafo = T_Parrafo3 ,fotoParrafo=  F_Parrafo3, descripcion = D_Parrafo3 , idPublicacion = Publicacion.objects.get(tituloPubli = PTitulo, descripcion = PDescripcion, usuario = U_usuario ,tipo = T_tipo , status = S_status))
 
                     messages.success(request,'Analisis registrado!')
                     
@@ -830,7 +827,7 @@ def indexNoticia(request):
     
 
     # Pagination
-    paginator = Paginator(articles, 1)
+    paginator = Paginator(articles, 3)
     page_number = request.GET.get('page')
     articles_paginator = paginator.get_page(page_number)
 
@@ -926,7 +923,7 @@ def NoticiaCompleto2(request, id):
     paginator = Paginator(comentario, 3)
     page_number = request.GET.get('page')
     articles_paginator = paginator.get_page(page_number)
-
+    
     c_usuario = request.session['usuario']
     idPubli = noticias.idPublicacion
 
